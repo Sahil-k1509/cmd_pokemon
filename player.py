@@ -50,7 +50,7 @@ class PokemonTrainer(object):
             requiredCut = 0.3 + 0.4*random()
             
             if probabilityToCatch >= requiredCut:
-                print(f"{pokemonToCatch.name} was caught!")
+                print(f"{pokemonToCatch.name} was caught!\n")
                 self.pokeballs -= 1
                 if len(self.pokemonInHand) < self.pokemonLimit:
                     self.pokemonInHand.append(pokemonToCatch)
@@ -58,5 +58,5 @@ class PokemonTrainer(object):
                     self.archivePokemons.append(pokemonToCatch)
             
         else:
-            print("You don't have pokeballs !!")            
+            print("You don't have pokeballs !!\n")            
             
