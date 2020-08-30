@@ -15,7 +15,7 @@ class Pokemon(object):
 		self.newAttackAt = 0
 		self.categories = pokedata['type']
 		self.level = level
-		self.maxHealth = 100 + floor(log10(self.level * 23 + 1) * self.level ** 1.5)
+		self.maxHealth = 10 + floor(log10(self.level * 14 + 1) * self.level ** 1.5)
 		self.health = self.maxHealth
 		self.defence = pokedata['baseDef']
 		self.speed = pokedata['baseSpeed']
@@ -28,7 +28,7 @@ class Pokemon(object):
 
 	def updateLevel(self, playertype=None):
 		self.level += 1
-		self.maxHealth = 100 + floor(log10(self.level * 23 + 1) * self.level ** 1.5)
+		self.maxHealth = 10 + floor(log10(self.level * 14 + 1) * self.level ** 1.5)
 		self.defence += randint(0, 5)
 		self.speed += randint(0, 5)
 		self.experience = self.experience - self.nextLevelAt
@@ -161,3 +161,8 @@ class Pokemon(object):
 	# def npcPokemonReady(self):
 	# 	self.updateLevel(playertype='npc')
 	# 	self.updateLevel(playertype='npc')
+ 
+
+# for i in range(100):
+#     p = Pokemon('jabba', pokemonWorld['pikachu'], i)
+#     print(p.maxHealth)

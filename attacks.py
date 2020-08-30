@@ -26,12 +26,18 @@ class Attack(object):
         
     def calcDamage(self, baseDamage=-1):
         if baseDamage == -1:
-            return floor(self.baseDamage + 9*(self.pLevel/2 + (1 - random())/3)**(1.2))
+            return floor(self.baseDamage + 4*(self.pLevel/2 + (1 - random())/3)**(1.05))
         else:
-            return floor(baseDamage + 9*(self.pLevel/2 + (1 - random())/3)**(1.2))
+            return floor(baseDamage + 4*(self.pLevel/2 + (1 - random())/3)**(1.05))
 
     def printAttack(self):
         print('|-----------------------------------------------------------------------------------------')
         print(f"| Attack: {self.name:15} | Type:   {self.attCategory:10} | Damage: {self.damage:5} | Count: {self.count:3}")
         print(f"| Heal:   {self.heal:15} | Recoil: {self.recoil:10} | Accuracy: {self.accuracy}")
         print('|-----------------------------------------------------------------------------------------')
+        
+        
+# a = Attack('pe', 'c', 100, 0, 9)
+# for i in range(100):
+#     a.updateAttack(i)
+#     print(a.damage)
