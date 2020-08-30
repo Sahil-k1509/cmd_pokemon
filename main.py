@@ -39,32 +39,41 @@ Colorize text.
 
 all_small_poke = ['pikachu', 'charmander', 'squirtle', 'bulbasaur']
 
+
+def pprint(*args, **kwargs):
+    print('\t', *args, **kwargs)
+
+
+
 def clearScreen():
     if OSname == 'nt': OSsys('cls')
     else: OSsys('clear')
+    pprint()
+    pprint()
 
 
 def main_menu():
+    pprint(); sleep(0.5)
+    pprint("(N)ew Game"); sleep(0.5)
+    pprint("(L)oad Game"); sleep(0.5)
     
-    print("(N)ew Game")
-    print("(L)oad Game")
-    
-    response = input('\nWhat would you like to do? ')
+    pprint('What would you like to do?', end=' ')
+    response = input()
     
     if response not in ['n', 'N']:
         try:
-            print("Trying to load the game...\n")
+            pprint("Trying to load the game...\n")
             sleep(1.5)
             player = load_game()
-            print("Game Loaded...")
+            pprint("Game Loaded...")
             sleep(0.5)
             return player
         except Exception:
-            print("No game found... Starting New Game...")
+            pprint("No game found... Starting New Game...")
             sleep(1)
             return None
         
-    print("Starting New Game...")
+    pprint("Starting New Game...")
     sleep(1)
     return None
 
@@ -85,14 +94,48 @@ def gameloop():
     clearScreen()
     
     if player is None:
-        print("Welcome to the world of pokemon..."); sleep(0.6)
-        print("Your Goal is to catch all pokemons in the world and become the greatest pokemon trainer of all times."); sleep(1.3)
-        print("But, for that, you need to become the champion of Indigo league which is an annual pokemon duel competition..."); sleep(1.3)
-        print("You need to earn 8 badges by defeating 8 gym leaders to prove that you are worthy of participating in league."); sleep(1.2)
-        print("Start you journey and \"Catch'em All\""); sleep(1)
+        pprint("Welcome to the world of pokemon...\n"); sleep(0.6)
+        pprint("Your Goal is to catch all pokemons in the world and \n\tbecome the greatest pokemon trainer of all times.\n"); sleep(1.3)
+        pprint("But, for that, you need to become the champion of \n\tIndigo league which is an annual pokemon duel competition...\n"); sleep(1.3)
+        pprint("You need to earn 8 badges by defeating 8 gym leaders\n\t to prove that you are worthy of participating in league.\n"); sleep(1.2)
+        pprint("Start you journey and \"Catch'em All\""); sleep(1.5)
         clearScreen()
         
-        name = input("What is your name Adventurer? ")
+        pprint("What is your name Adventurer?", end=" ")
+        name = input()
+        player = PokemonTrainer(name)
+        
+        pprint()
+        pprint("We would like you to choose a pokemon before starting your adventure\n"); sleep(0.5)
+        pprint("(C)harmander"); sleep(0.5)
+        pprint("(S)quirtle"); sleep(0.5)
+        pprint("(B)ulbasaur"); sleep(0.5)
+        
+        pprint()
+        pprint("Choose any one. By default, you get a pikachu. Press enter for pikachu : ", end='')
+        choice = input()
+        
+        if choice in ['c', 'C']:    firstpoke = 'charmander'
+        elif choice in ['s', 'S']:  firstpoke = 'squirtle'
+        elif choice in ['b', 'B']:  firstpoke = 'bulbasaur'
+        else:   firstpoke = 'pikachu'
+        
+        pokedata = pokemonWorld[firstpoke]
+        playerPokemon = Pokemon(firstpoke, pokedata)
+        player.pokemonInHand.append(playerPokemon)
+        player.currentPokemon = playerPokemon
+        
+        sleep(0.6)
+        
+        pprint(player.name)
+        pprint(player.kind)
+        pprint(player.pokemonInHand)
+        pprint(player.pokemonLimit)
+        pprint(player.archivePokemons)
+        pprint(player.currentPokemon.name)
+        pprint(player.pokeballs)
+        pprint(player.items)
+        pprint(player.money)
     
     while True:
         break
