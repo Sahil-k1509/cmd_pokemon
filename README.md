@@ -1,3 +1,5 @@
+### Status: In development
+
 # cmd_pokemon
 A Revised version of terminal based pokemon game written in C++, but with tons of extra features including a save and load feature. 
 Catching pokemons, Going to gym battles to collect badges or even fighting in Indigo league.
