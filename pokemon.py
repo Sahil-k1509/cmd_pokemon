@@ -1,17 +1,14 @@
 from math import sqrt, floor, log10
 from random import randint, shuffle, choice, random
-import json
 from time import sleep
-from pokeworld import pokemonWorld
-from attacks import Attack
-from attacklist import flamethrower, tackle, watergun
 from pokemonStrengthChart import typeAdantages, typeDisadantages
+from pokeworld import pokemonWorld
 
 
 class Pokemon(object):
 	__slots__ = 'name', 'categories', 'level', 'health', 'maxHealth', 'experience', 'nextLevelAt', 'attacks', 'learnableAttacks', 'defence', 'speed', 'evolveAt', 'evolveTo', 'newAttackAt'
 	experienceChart = [0] + [5 + 2 * (i + 1) ** 2 for i in range(100)]
-	learningCheckpoints = [2, 7, 15, 23, 30, 39, 46, 55, 60, 64, 67, 72, 78, 89, 95, 100]
+	learningCheckpoints = [2, 7, 15, 15, 23, 30, 39, 46, 55, 60, 64, 67, 72, 78, 89, 95, 100]
 
 	def __init__(self, name, pokedata, level=0, *args, **kwargs):
 		self.name = name
