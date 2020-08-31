@@ -18,33 +18,45 @@ class PokemonTrainer(object):
         self.currentCity = currentCity
         self.pokemonAwake = len(self.pokemonInHand)
         self.items = []
+        self.badges = []
         self.money = money
         
         
-    def switchPokemon(self):
-        pprint("Your Pokemons: ")
-        sleep(0.5)
-        for index, pokemon in enumerate(self.pokemonInHand):
-            pprint(index+1, end=') ')
-            pokemon.printPokemon()
+    def switchPokemon(self, trainer='player'):
+        if trainer == 'player':
+            pprint("Your Pokemons: ")
             sleep(0.5)
-        
-        pprint(f"\nCurrent Pokemon:\t {self.currentPokemon.printPokemon()}\n")
-        sleep(0.5)
-        
-        chosen = False
-        while not chosen:
-            newCurrentPoke = int(input("\tWhich pokemon would you like to choose? "))-1
-            if 0 <= newCurrentPoke < len(self.pokemonInHand):
-                if self.pokemonInHand[newCurrentPoke].health > 0:
-                    self.currentPokemon = self.pokemonInHand[newCurrentPoke]
-                    pprint(f"You chose {self.currentPokemon.name}")
-                    chosen = True
-                else:
-                    pprint(f"{self.pokemonInHand[newCurrentPoke].name}'s health is zero. You can't chose it")
-            else:
-                pprint(f"That is not a valid number. Please choose between 1 and {len(self.pokemonInHand)}")
+            for index, pokemon in enumerate(self.pokemonInHand):
+                pprint(index+1, end=') ')
+                pokemon.printPokemon()
+                sleep(0.5)
             
+            pprint(f"\nCurrent Pokemon:\t {self.currentPokemon.printPokemon()}\n")
+            sleep(0.5)
+            
+            chosen = False
+            while not chosen:
+                newCurrentPoke = int(input("\tWhich pokemon would you like to choose? "))-1
+                if 0 <= newCurrentPoke < len(self.pokemonInHand):
+                    if self.pokemonInHand[newCurrentPoke].health > 0:
+                        self.currentPokemon = self.pokemonInHand[newCurrentPoke]
+                        pprint(f"You chose {self.currentPokemon.name}")
+                        chosen = True
+                    else:
+                        pprint(f"{self.pokemonInHand[newCurrentPoke].name}'s health is zero. You can't chose it")
+                else:
+                    pprint(f"That is not a valid number. Please choose between 1 and {len(self.pokemonInHand)}")
+            
+            return True        
+        else:
+            indexOfCurrent = self.pokemonInHand.index(self.currentPokemon)
+            if indexOfCurrent == self.pokemonLimit - 1: return None
+            
+            self.currentPokemon = self.pokemonInHand[(indexOfCurrent+1)%len(self.pokemonLimit)]
+            if self.currentPokemon.health <= 0: return None
+        
+            return True    
+                
             
     def catchPokemon(self, pokemonToCatch):
         if self.pokeballs > 0:
@@ -76,5 +88,6 @@ class PokemonTrainer(object):
         pprint(f"Current Pokemon: {self.currentPokemon.name}")
         pprint(f"Pokeballs left: {self.pokeballs}")
         pprint(f"Items: {self.items}")
+        pprint(f"Gym Badges: {self.badges}")
         pprint(f"Money: {self.money}")
         pprint("+-----------------------------------------------------+")

@@ -62,7 +62,7 @@ quickattack = Attack(name='quick attack', attCategory='normal', baseDamage=15, p
 scratch = Attack(name='scratch', attCategory='normal', baseDamage=8, pokemonLevel=0, baseCount=9, recoil=0, heal=0, accuracy=1)
 cut = Attack(name='cut', attCategory='normal', baseDamage=15, pokemonLevel=0, baseCount=13, recoil=0, heal=0, accuracy=0.9)
 headbutt = Attack(name='headbutt', attCategory='normal', baseDamage=6, pokemonLevel=0, baseCount=10, recoil=0, heal=0, accuracy=0.75)
-disbale = Attack(name='disable', attCategory='normal', baseDamage=40, pokemonLevel=0, baseCount=5, recoil=0, heal=0, accuracy=1)
+disable = Attack(name='disable', attCategory='normal', baseDamage=40, pokemonLevel=0, baseCount=5, recoil=0, heal=0, accuracy=1)
 hyperbeam = Attack(name='hyper beam', attCategory='normal', baseDamage=150, pokemonLevel=0, baseCount=2, increasable=0, recoil=20, heal=0, accuracy=0.9)
 
 
@@ -76,10 +76,10 @@ iceburn = Attack(name='ice burn', attCategory='ice', baseDamage=150, pokemonLeve
 
 
 # Ground type
-sandattack = Attack(name='sandattack', attCategory='ground', baseDamage=7, pokemonLevel=0, baseCount=7, recoil=0, heal=0, accuracy=1)
-dig = Attack(name='dig', attCategory='ground', baseDamage=15, pokemonLevel=0, baseCount=5, recoil=0, heal=0, accuracy=1)
+sandattack = Attack(name='sandattack', attCategory='ground', baseDamage=17, pokemonLevel=0, baseCount=7, recoil=0, heal=0, accuracy=1)
+dig = Attack(name='dig', attCategory='ground', baseDamage=35, pokemonLevel=0, baseCount=5, recoil=0, heal=0, accuracy=1)
 earthquake = Attack(name='earthquake', attCategory='ground', baseDamage=80, pokemonLevel=0, baseCount=4, recoil=0, heal=0, accuracy=1)
-mudslap = Attack(name='mudslap', attCategory='ground', baseDamage=6, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=0.9)
+mudslap = Attack(name='mudslap', attCategory='ground', baseDamage=16, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=0.9)
 landwrath = Attack(name='land\'s wrath', attCategory='ground', baseDamage=170, pokemonLevel=0, baseCount=3, recoil=30, heal=0, accuracy=1)
 
 

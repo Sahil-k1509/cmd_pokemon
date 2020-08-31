@@ -6,7 +6,7 @@ def pprint(*args, **kwargs):
     
 
 class Attack(object):
-    __slots__ = 'name', 'attCategory', 'pLevel', 'recoil', 'heal', 'damage', 'baseDamage', 'accuracy', 'count', 'increasable'
+    __slots__ = 'name', 'attCategory', 'pLevel', 'recoil', 'heal', 'damage', 'baseDamage', 'accuracy', 'count', 'maxcount', 'increasable'
     
     def __init__(self, name, attCategory, baseDamage, pokemonLevel, baseCount, increasable=1,recoil=0, heal=0, accuracy=1, *args, **kwargs):
         self.name = name
@@ -14,7 +14,8 @@ class Attack(object):
         self.pLevel = pokemonLevel
         self.baseDamage = baseDamage
         self.recoil = - recoil
-        self.count = baseCount
+        self.maxcount = baseCount
+        self.count = self.maxcount
         self.heal = heal
         self.increasable = increasable
         self.accuracy = accuracy
@@ -24,7 +25,8 @@ class Attack(object):
         self.pLevel = newLevel
         self.recoil = - (newRecoil*self.pLevel + self.recoil)
         self.heal = newHeal*self.pLevel + self.heal
-        self.count = self.count + self.pLevel//randint(1, floor(self.pLevel)+1)*self.increasable
+        self.maxcount = self.maxcount + self.pLevel//randint(1, floor(self.pLevel)+1)*self.increasable
+        self.count = self.maxcount
         self.damage = self.calcDamage(baseDamage)
         
     def calcDamage(self, baseDamage=-1):

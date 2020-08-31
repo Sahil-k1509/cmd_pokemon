@@ -94,7 +94,7 @@ class Pokemon(object):
 				if discard in ['1', '2', '3', '4']:
 					self.attacks[int(discard)-1] = attackToLearn
 			else:
-				idiscard = randint(0, 3)
+				idiscard = randint(0, len(self.attacks)-1)
 				self.attacks[idiscard] = attackToLearn
 
 
@@ -159,6 +159,7 @@ class Pokemon(object):
 					sleep(0.5)
 					pprint(f"{self.name} got a recoil of {-attackUsed.recoil}")
 					self.health += attackUsed.recoil
+					self.health = max(0, self.health)
 
 			else:
 				self.health = min(self.maxHealth, self.health + attackUsed.heal)
