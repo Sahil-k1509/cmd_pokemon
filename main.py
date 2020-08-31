@@ -8,6 +8,7 @@ from pokemon import Pokemon
 from time import sleep
 from random import randint, random
 import os
+import sys
 from os import system as OSsys, name as OSname
 
 from colorama import init as initializeColor, Fore, Back, Style
@@ -56,9 +57,14 @@ def main_menu():
     pprint(); sleep(0.5)
     pprint("(N)ew Game"); sleep(0.5)
     pprint("(L)oad Game"); sleep(0.5)
+    pprint("(E)xit"); sleep(0.5)
     
+    pprint("New Game will overwrite any previously loaded game...")
     pprint('What would you like to do?', end=' ')
     response = input()
+    
+    if response in ['e', 'E']:
+        sys.exit(0)
     
     if response not in ['n', 'N']:
         try:

@@ -5,6 +5,10 @@ from pokemonStrengthChart import typeAdantages, typeDisadantages
 from pokeworld import pokemonWorld
 
 
+def pprint(*args, **kwargs):
+    print('\t', *args, **kwargs)
+
+
 class Pokemon(object):
 	__slots__ = 'name', 'categories', 'level', 'health', 'maxHealth', 'experience', 'nextLevelAt', 'attacks', 'learnableAttacks', 'defence', 'speed', 'evolveAt', 'evolveTo', 'newAttackAt'
 	experienceChart = [0] + [5 + 2 * (i + 1) ** 2 for i in range(100)]
@@ -59,22 +63,22 @@ class Pokemon(object):
 
 		if not all(self.attacks):
 			if playertype is None:
-				print(f"{self.name} learnt {attackToLearn.name}")
+				pprint(f"{self.name} learnt {attackToLearn.name}")
 			indNone = self.attacks.index(None)
 			self.attacks[indNone] = attackToLearn
 		else:
 			if playertype is None:
-				print(self.name, 'wants to learn', attackToLearn.name, end='\n')
+				pprint(self.name, 'wants to learn', attackToLearn.name, end='\n')
 				sleep(1)
-				print('CURRENT ATTACKS: ')
+				pprint('CURRENT ATTACKS: ')
 				i=0
 				for attack in self.attacks:
-					print(f"{i+1}) {attack.name}")
+					pprint(f"{i+1}) {attack.name}")
 					i+=1
 					sleep(0.5)
-				print("\nNew Attack Stats: \n")
+				pprint("\nNew Attack Stats: \n")
 				attackToLearn.printAttack()
-				print()
+				pprint()
 				sleep(0.5)
 				discard = input('Which attack would you like to replace?\n(Choose 1, 2, 3, 4. Any other choice will result in not learning the attack): ')
 				if discard in ['1', '2', '3', '4']:
@@ -89,13 +93,13 @@ class Pokemon(object):
 
 		if playertype is None:
 			sleep(0.5)
-			print("\nWhat is happening !!!!\n")
+			pprint("\nWhat is happening !!!!\n")
 			sleep(0.5)
-			print(self.name, 'is evolving....\n')
+			pprint(self.name, 'is evolving....\n')
 			sleep(1)
-			print(self.name, 'has evolved into', self.evolveTo)
+			pprint(self.name, 'has evolved into', self.evolveTo)
 			sleep(0.5)
-			print()
+			pprint()
 
 		self.name = self.evolveTo
 		self.evolveTo = evolveform['evolveTo']
@@ -109,7 +113,7 @@ class Pokemon(object):
 
 
 	def attack(self, enemyPokemon, attackUsed):
-		print(f"\n{self.name} used {attackUsed.name}\n")
+		pprint(f"\n{self.name} used {attackUsed.name}\n")
 		sleep(0.5)
 		attackType = attackUsed.attCategory
 		enemyType = enemyPokemon.categories
@@ -123,39 +127,56 @@ class Pokemon(object):
 				initialHealth = enemyPokemon.health
 
 				if criticalChance >= 0.92:
-					print("Critical Hit...")
+					pprint("Critical Hit...")
 					sleep(0.5)
 					enemyPokemon.health -= (0.3+random()*0.2)*attackUsed.damage
 
 				if enemyType in typeAdantages[attackType]:
-					print("It's Super Effective !!\n")
+					pprint("It's Super Effective !!\n")
 					sleep(0.5)
 					enemyPokemon.health -= (0.4+random()*0.4)*attackUsed.damage
 
 				elif enemyType in typeDisadantages[attackType]:
-					print("It's not very effective !!\n")
+					pprint("It's not very effective !!\n")
 					sleep(0.5)
 					enemyPokemon.health += (0.2+random()*0.3)*attackUsed.damage
 
 				enemyPokemon.health -= attackUsed.damage
 				enemyPokemon.health = max(0, enemyPokemon.health)
-				print(f"Health reduced by {initialHealth - enemyPokemon.health}\n")
+				pprint(f"Health reduced by {initialHealth - enemyPokemon.health}\n")
 
 				if attackUsed.recoil != 0:
 					sleep(0.5)
-					print(f"{self.name} got a recoil of {-attackUsed.recoil}")
+					pprint(f"{self.name} got a recoil of {-attackUsed.recoil}")
 					self.health += attackUsed.recoil
 
 			else:
 				self.health = min(self.maxHealth, self.health + attackUsed.heal)
 
 		else:
-			print(f"{self.name} missed...\n")
+			pprint(f"{self.name} missed...\n")
 
 		attackUsed.count -= 1
 
+
 	def printPokemon(self):
-		print(f"Name: {self.name}\tLevel: {self.level}\tHP: {self.health}/{self.maxHealth}")
+		pprint(f"Name: {self.name}\tLevel: {self.level}\tHP: {self.health}/{self.maxHealth}")
+	
+	
+	def displayStats(self, trainer="player's"):
+		pprint(f"+---------------------------------------------+")
+		pprint(f"{trainer} {self.name}")
+		pprint(f"PokemonType: {self.categories}  Level: {self.level}")
+		pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}")
+		pprint(f"Defense: {self.defence}  Speed: {self.speed}")
+		pprint(f"Experience: {self.experience}/{self.nextLevelAt}")
+		pprint(f"Attacks: ")
+		i=0
+		for attack in self.attacks:
+			pprint(f"{i+1}) {attack.name}")
+			i+=1
+			sleep(0.5)
+		pprint(f"+---------------------------------------------+")
 	
  
 	# def npcPokemonReady(self):
@@ -165,6 +186,6 @@ class Pokemon(object):
 
 # for i in range(100):
 #     p = Pokemon('jabba', pokemonWorld['pikachu'], i)
-#     print(p.maxHealth)
+#     pprint(p.maxHealth)
 # p = Pokemon('jabba', pokemonWorld['pikachu'], 0)
-# print(p.experienceChart)
+# pprint(p.experienceChart)

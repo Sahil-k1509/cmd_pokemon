@@ -1,6 +1,10 @@
 from random import random, randint
 from time import sleep
 
+def pprint(*args, **kwargs):
+    print('\t', *args, **kwargs)
+    
+
 class PokemonTrainer(object):
     
     def __init__(self, name, kind='player', startingPokemons=[], pokemonLimit=7, pokeballs=2, money=300, *args, **kwargs):
@@ -17,14 +21,14 @@ class PokemonTrainer(object):
         
         
     def switchPokemon(self):
-        print("Your Pokemons: ")
+        pprint("Your Pokemons: ")
         sleep(0.5)
         for index, pokemon in enumerate(self.pokemonInHand):
-            print(index+1, end=') ')
+            pprint(index+1, end=') ')
             pokemon.printPokemon()
             sleep(0.5)
         
-        print(f"\nCurrent Pokemon:\t {self.currentPokemon.printPokemon()}\n")
+        pprint(f"\nCurrent Pokemon:\t {self.currentPokemon.printPokemon()}\n")
         sleep(0.5)
         
         chosen = False
@@ -33,12 +37,12 @@ class PokemonTrainer(object):
             if 0 <= newCurrentPoke < len(self.pokemonInHand):
                 if self.pokemonInHand[newCurrentPoke].health > 0:
                     self.currentPokemon = self.pokemonInHand[newCurrentPoke]
-                    print(f"You chose {self.currentPokemon.name}")
+                    pprint(f"You chose {self.currentPokemon.name}")
                     chosen = True
                 else:
-                    print(f"{self.pokemonInHand[newCurrentPoke].name}'s health is zero. You can't chose it")
+                    pprint(f"{self.pokemonInHand[newCurrentPoke].name}'s health is zero. You can't chose it")
             else:
-                print(f"That is not a valid number. Please choose between 1 and {len(self.pokemonInHand)}")
+                pprint(f"That is not a valid number. Please choose between 1 and {len(self.pokemonInHand)}")
             
             
     def catchPokemon(self, pokemonToCatch):
@@ -50,7 +54,7 @@ class PokemonTrainer(object):
             requiredCut = 0.3 + 0.4*random()
             
             if probabilityToCatch >= requiredCut:
-                print(f"{pokemonToCatch.name} was caught!\n")
+                pprint(f"{pokemonToCatch.name} was caught!\n")
                 self.pokeballs -= 1
                 if len(self.pokemonInHand) < self.pokemonLimit:
                     self.pokemonInHand.append(pokemonToCatch)
@@ -58,5 +62,5 @@ class PokemonTrainer(object):
                     self.archivePokemons.append(pokemonToCatch)
             
         else:
-            print("You don't have pokeballs !!\n")            
+            pprint("You don't have pokeballs !!\n")            
             

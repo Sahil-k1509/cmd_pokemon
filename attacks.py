@@ -1,6 +1,9 @@
 from random import random, seed, randint
 from math import floor
 
+def pprint(*args, **kwargs):
+    print('\t', *args, **kwargs)
+    
 
 class Attack(object):
     __slots__ = 'name', 'attCategory', 'pLevel', 'recoil', 'heal', 'damage', 'baseDamage', 'accuracy', 'count', 'increasable'
@@ -31,13 +34,13 @@ class Attack(object):
             return floor(baseDamage + 5*(self.pLevel/2 + (1 - random())/3)**(1.2))
 
     def printAttack(self):
-        print('|-----------------------------------------------------------------------------------------')
-        print(f"| Attack: {self.name:15} | Type:   {self.attCategory:10} | Damage: {self.damage:5} | Count: {self.count:3}")
-        print(f"| Heal:   {self.heal:15} | Recoil: {self.recoil:10} | Accuracy: {self.accuracy}")
-        print('|-----------------------------------------------------------------------------------------')
+        pprint('|-----------------------------------------------------------------------------------------')
+        pprint(f"| Attack: {self.name:15} | Type:   {self.attCategory:10} | Damage: {self.damage:5} | Count: {self.count:3}")
+        pprint(f"| Heal:   {self.heal:15} | Recoil: {self.recoil:10} | Accuracy: {self.accuracy}")
+        pprint('|-----------------------------------------------------------------------------------------')
         
         
 # a = Attack('pe', 'c', 5, 0, 9)
 # for i in range(100):
 #     a.updateAttack(i)
-#     print(a.damage)
+#     pprint(a.damage)
