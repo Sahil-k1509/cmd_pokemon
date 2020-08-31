@@ -29,7 +29,7 @@ watercannon = Attack(name='watercannon', attCategory='water', baseDamage=100, po
 hydropump = Attack(name='hydro pump', attCategory='water', baseDamage=67, pokemonLevel=0, baseCount=8, recoil=0, heal=0, accuracy=1)
 bubblebeam = Attack(name='bubblebeam', attCategory='water', baseDamage=40, pokemonLevel=0, baseCount=8, recoil=20, heal=0, accuracy=0.8)
 waterspout = Attack(name='water spout', attCategory='water', baseDamage=80, pokemonLevel=0, baseCount=4, recoil=0, heal=0, accuracy=0.65)
-crabhammer = Attack(name='crab hammer', attCategory='water', baseDamage=50, pokemonLevel=0, baseCount=7, recoil=0, heal=0, accuracy=0.85)
+waterslap = Attack(name='water slap', attCategory='water', baseDamage=50, pokemonLevel=0, baseCount=7, recoil=0, heal=0, accuracy=0.85)
 hydrovortex = Attack(name='hydro vortex', attCategory='water', baseDamage=270, pokemonLevel=0, baseCount=1, increasable=0, recoil=0, heal=40, accuracy=1)
 
 
@@ -56,6 +56,7 @@ fly = Attack(name='fly', attCategory='flying', baseDamage=60, pokemonLevel=0, ba
 # Normal type
 pound = Attack(name='pound', attCategory='normal', baseDamage=10, pokemonLevel=0, baseCount=10, recoil=0, heal=0, accuracy=1)
 tackle = Attack(name='tackle', attCategory='normal', baseDamage=5, pokemonLevel=0, baseCount=13, recoil=0, heal=0, accuracy=1)
+swift = Attack(name='swift', attCategory='normal', baseDamage=5, pokemonLevel=0, baseCount=13, recoil=0, heal=0, accuracy=1)
 tailwhip = Attack(name='tail whip', attCategory='normal', baseDamage=8, pokemonLevel=0, baseCount=13, recoil=0, heal=0, accuracy=1)
 agility = Attack(name='agility', attCategory='normal', baseDamage=0, pokemonLevel=0, baseCount=8, recoil=0, heal=0, accuracy=1)
 harden = Attack(name='harden', attCategory='normal', baseDamage=0, pokemonLevel=0, baseCount=9, recoil=0, heal=0, accuracy=1)
@@ -91,6 +92,7 @@ acid = Attack(name='acid', attCategory='poison', baseDamage=20, pokemonLevel=0, 
 gunkshot = Attack(name='gunk shot', attCategory='poison', baseDamage=120, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=1)
 sludgebomb = Attack(name='sludge bomb', attCategory='poison', baseDamage=80, pokemonLevel=0, baseCount=4, recoil=0, heal=0, accuracy=1)
 poisonfang = Attack(name='poison fang', attCategory='poison', baseDamage=21, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=0.9)
+smokescreen = Attack(name='smoke screen', attCategory='poison', baseDamage=0, pokemonLevel=0, baseCount=4, recoil=0, heal=0, accuracy=1)
 
 
 # Bug type
