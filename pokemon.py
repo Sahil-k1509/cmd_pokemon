@@ -12,7 +12,7 @@ def pprint(*args, **kwargs):
 class Pokemon(object):
 	__slots__ = 'name', 'categories', 'level', 'health', 'maxHealth', 'experience', 'nextLevelAt', 'attacks', 'learnableAttacks', 'defence', 'speed', 'evolveAt', 'evolveTo', 'newAttackAt'
 	experienceChart = [0] + [5 + 2 * (i + 1) ** 2 for i in range(100)]
-	learningCheckpoints = [2, 7, 15, 15, 23, 30, 39, 46, 55, 60, 64, 67, 72, 78, 89, 95, 100]
+	learningCheckpoints = [2, 7, 10, 15, 18, 23, 30, 39, 46, 55, 60, 64, 67, 72, 78, 89, 95, 100]
 
 	def __init__(self, name, pokedata, level=0, *args, **kwargs):
 		self.name = name
@@ -99,6 +99,10 @@ class Pokemon(object):
 
 
 	def evolvePokemon(self, playertype=None):
+		if self.name == 'nidoran':
+			dice = random()
+			self.evolveTo = 'nidorino' if dice >= 0.4 else 'nidorina'
+      
 		evolveform = pokemonWorld[self.evolveTo]
 
 		if playertype is None:

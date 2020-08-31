@@ -49,13 +49,14 @@ whirlwind = Attack(name='whirl wind', attCategory='flying', baseDamage=20, pokem
 wingattack = Attack(name='wing attack', attCategory='flying', baseDamage=37, pokemonLevel=0, baseCount=7, recoil=0, heal=0, accuracy=1)
 airslash = Attack(name='air slash', attCategory='flying', baseDamage=80, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=0.9)
 aerialace = Attack(name='aerial ace', attCategory='flying', baseDamage=60, pokemonLevel=0, baseCount=5, recoil=0, heal=0, accuracy=0.75)
-aeroblast = Attack(name='leaf blade', attCategory='flying', baseDamage=100, pokemonLevel=0, baseCount=4, recoil=0, heal=0, accuracy=0.85)
+aeroblast = Attack(name='aero blast', attCategory='flying', baseDamage=100, pokemonLevel=0, baseCount=4, recoil=0, heal=0, accuracy=0.85)
 fly = Attack(name='fly', attCategory='flying', baseDamage=60, pokemonLevel=0, baseCount=4, increasable=0, recoil=0, heal=0, accuracy=1)
 
 
 # Normal type
 pound = Attack(name='pound', attCategory='normal', baseDamage=10, pokemonLevel=0, baseCount=10, recoil=0, heal=0, accuracy=1)
 tackle = Attack(name='tackle', attCategory='normal', baseDamage=5, pokemonLevel=0, baseCount=13, recoil=0, heal=0, accuracy=1)
+tailwhip = Attack(name='tail whip', attCategory='normal', baseDamage=8, pokemonLevel=0, baseCount=13, recoil=0, heal=0, accuracy=1)
 agility = Attack(name='agility', attCategory='normal', baseDamage=0, pokemonLevel=0, baseCount=8, recoil=0, heal=0, accuracy=1)
 harden = Attack(name='harden', attCategory='normal', baseDamage=0, pokemonLevel=0, baseCount=9, recoil=0, heal=0, accuracy=1)
 quickattack = Attack(name='quick attack', attCategory='normal', baseDamage=15, pokemonLevel=0, baseCount=9, recoil=0, heal=0, accuracy=1)
@@ -84,17 +85,17 @@ landwrath = Attack(name='land\'s wrath', attCategory='ground', baseDamage=170, p
 
 
 # Poison type
-posionsting = Attack(name='posion sting', attCategory='posion', baseDamage=3, pokemonLevel=0, baseCount=9, recoil=0, heal=0, accuracy=0.8)
-posionpowder = Attack(name='posion powder', attCategory='posion', baseDamage=5, pokemonLevel=0, baseCount=9, recoil=0, heal=0, accuracy=1)
-acid = Attack(name='acid', attCategory='posion', baseDamage=20, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=1)
-gunkshot = Attack(name='gunk shot', attCategory='posion', baseDamage=120, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=1)
-sludgebomb = Attack(name='sludge bomb', attCategory='posion', baseDamage=80, pokemonLevel=0, baseCount=4, recoil=0, heal=0, accuracy=1)
-poisonfang = Attack(name='poison fang', attCategory='posion', baseDamage=21, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=0.9)
+poisonsting = Attack(name='poison sting', attCategory='poison', baseDamage=3, pokemonLevel=0, baseCount=9, recoil=0, heal=0, accuracy=0.8)
+poisonpowder = Attack(name='poison powder', attCategory='poison', baseDamage=5, pokemonLevel=0, baseCount=9, recoil=0, heal=0, accuracy=1)
+acid = Attack(name='acid', attCategory='poison', baseDamage=20, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=1)
+gunkshot = Attack(name='gunk shot', attCategory='poison', baseDamage=120, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=1)
+sludgebomb = Attack(name='sludge bomb', attCategory='poison', baseDamage=80, pokemonLevel=0, baseCount=4, recoil=0, heal=0, accuracy=1)
+poisonfang = Attack(name='poison fang', attCategory='poison', baseDamage=21, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=0.9)
 
 
 # Bug type
 stringshot = Attack(name='string shot', attCategory='bug', baseDamage=3, pokemonLevel=0, baseCount=9, recoil=0, heal=0, accuracy=0.9)
-leechlife = Attack(name='leech life', attCategory='bug', baseDamage=14, pokemonLevel=0, baseCount=6, recoil=0, heal=40, accuracy=1)
+leechlife = Attack(name='leech life', attCategory='bug', baseDamage=14, pokemonLevel=0, baseCount=6, recoil=0, heal=10, accuracy=1)
 megahorn = Attack(name='mega horn', attCategory='bug', baseDamage=120, pokemonLevel=0, baseCount=4, recoil=0, heal=0, accuracy=1)
 bugbite = Attack(name='bug bite', attCategory='bug', baseDamage=8, pokemonLevel=0, baseCount=4, recoil=0, heal=0, accuracy=1)
 stinger = Attack(name='stinger', attCategory='bug', baseDamage=10, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=0.9)
