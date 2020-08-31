@@ -37,7 +37,16 @@ class Pokemon(object):
 		self.speed += randint(0, 5)
 		self.experience = self.experience - self.nextLevelAt
 		self.nextLevelAt = self.experienceChart[self.level + 1] if self.level < 100 else None
+  
+		if playertype is None:
+			pprint(f"{self.name} levelled up...\n"); sleep(0.5)
+			pprint(f"Current level: {self.level}"); sleep(0.5)
+			pprint(f"Max Health increased by {self.maxHealth}"); sleep(0.5)
+			pprint(f"Defence increased to {self.defence}"); sleep(0.5)
+			pprint(f"Speed increased to {self.speed}\n"); sleep(0.5)
 
+    
+    
 		if self.evolveAt is not None:
 			if self.level >= self.evolveAt:
 				self.evolvePokemon()
@@ -76,11 +85,12 @@ class Pokemon(object):
 					pprint(f"{i+1}) {attack.name}")
 					i+=1
 					sleep(0.5)
-				pprint("\nNew Attack Stats: \n")
+				pprint()
+				pprint("New Attack Stats: \n")
 				attackToLearn.printAttack()
 				pprint()
 				sleep(0.5)
-				discard = input('Which attack would you like to replace?\n(Choose 1, 2, 3, 4. Any other choice will result in not learning the attack): ')
+				discard = input('\tWhich attack would you like to replace?\n(Choose 1, 2, 3, 4. Any other choice will result in not learning the attack): ')
 				if discard in ['1', '2', '3', '4']:
 					self.attacks[int(discard)-1] = attackToLearn
 			else:
@@ -164,20 +174,59 @@ class Pokemon(object):
 	
 	
 	def displayStats(self, trainer="player's"):
-		pprint(f"+---------------------------------------------+")
-		pprint(f"{trainer} {self.name}")
-		pprint(f"PokemonType: {self.categories}  Level: {self.level}")
-		pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}")
-		pprint(f"Defense: {self.defence}  Speed: {self.speed}")
-		pprint(f"Experience: {self.experience}/{self.nextLevelAt}")
-		pprint(f"Attacks: ")
-		i=0
-		for attack in self.attacks:
-			pprint(f"{i+1}) {attack.name}")
-			i+=1
-			sleep(0.5)
-		pprint(f"+---------------------------------------------+")
+		if trainer == "player's":
+			pprint(f"+---------------------------------------------+"); sleep(0.5)
+			pprint(f"{trainer} {self.name}"); sleep(0.5)
+			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(0.5)
+			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(0.5)
+			pprint(f"Defense: {self.defence}  Speed: {self.speed}"); sleep(0.5)
+			pprint(f"Experience: {self.experience}/{self.nextLevelAt}"); sleep(0.5)
+			pprint(f"Attacks: "); sleep(0.5)
+			i=0
+			for attack in self.attacks:
+				pprint(f"{i+1}) {attack.name} \t\t:  {attack.count} left")
+				i+=1
+				sleep(0.5)
+			pprint(f"+---------------------------------------------+")
+		else:
+			pprint(f"+---------------------------------------------+")
+			pprint(f"{trainer} {self.name}"); sleep(0.5)
+			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(0.5)
+			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(0.5)
+			pprint(f"+---------------------------------------------+")
 	
+	
+	def gain_exp(self, enemyPok, battletype='wild'):
+		enemyType = enemyPok.categories
+		multiplier = 1
+  
+		ExpIncrease = 3*(self.level*2 + 1)
+  
+		if enemyType in typeAdantages[self.categories]:
+			multiplier = 0.4 + random()*0.5
+		elif enemyType in typeDisadantages[self.categories]:
+			multiplier = 1.3 + random()*0.7
+   
+		if battletype == 'gym': multiplier += 4
+		elif battletype == 'duel': multiplier += 2
+   
+		enemylvl = enemyPok.level
+		if enemylvl >= self.level:
+			ExpIncrease += 6*(enemylvl-self.level)**2.8
+		else:
+			ExpIncrease -= 5*(self.level-enemylvl)**1.75
+   
+		ExpIncrease = max(7, ExpIncrease)*multiplier
+	
+		pprint(f"{self.name}'s Experience increased by {ExpIncrease}")
+		self.experience += ExpIncrease
+		# pprint(f"{self.experience} <- Total exp\n")
+		sleep(0.8)
+		if self.experience > self.nextLevelAt:
+			self.updateLevel()
+			
+
+
  
 	# def npcPokemonReady(self):
 	# 	self.updateLevel(playertype='npc')
@@ -189,3 +238,10 @@ class Pokemon(object):
 #     pprint(p.maxHealth)
 # p = Pokemon('jabba', pokemonWorld['pikachu'], 0)
 # pprint(p.experienceChart)
+
+# for i in range(3,20):
+# 	for j in range(3,20):
+# 		p1 = Pokemon('jabba', pokemonWorld['charmander'], i)
+# 		p2 = Pokemon('dabba', pokemonWorld['charmander'], j)
+# 		pprint(f"p1 lvl: {i} | p2 lvl: {j}", end=' ')
+# 		p1.gain_exp(p2)	

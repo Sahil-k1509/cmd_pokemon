@@ -93,7 +93,7 @@ def load_game():
     with open('pokemon_progress.pkl', 'rb') as inputf:
         player = pickle.load(inputf)
     return player
-    
+
 
 def gameloop():
     player = main_menu()
@@ -131,17 +131,15 @@ def gameloop():
         player.pokemonInHand.append(playerPokemon)
         player.currentPokemon = playerPokemon
         
+        pprint("Saving the Game...")
+        save_game(player)
         sleep(0.6)
-        
-        pprint(player.name)
-        pprint(player.kind)
-        pprint(player.pokemonInHand)
-        pprint(player.pokemonLimit)
-        pprint(player.archivePokemons)
-        pprint(player.currentPokemon.name)
-        pprint(player.pokeballs)
-        pprint(player.items)
-        pprint(player.money)
+        clearScreen()
+        pprint("Let's Start our adventure..."); sleep(0.8)
+        clearScreen()
+    else:
+        pprint(f"Welcome Back {player.name}. Let's Continue our adventure..."); sleep(0.8)
+        clearScreen()
     
     while True:
         break

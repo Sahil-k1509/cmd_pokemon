@@ -7,7 +7,7 @@ def pprint(*args, **kwargs):
 
 class PokemonTrainer(object):
     
-    def __init__(self, name, kind='player', startingPokemons=[], pokemonLimit=7, pokeballs=2, money=300, *args, **kwargs):
+    def __init__(self, name, currentCity='Veridian', kind='player', startingPokemons=[], pokemonLimit=7, pokeballs=2, money=300, *args, **kwargs):
         self.name = name
         self.kind = kind
         self.pokemonInHand = startingPokemons
@@ -15,6 +15,7 @@ class PokemonTrainer(object):
         self.archivePokemons = []
         self.currentPokemon = None
         self.pokeballs = pokeballs
+        self.currentCity = currentCity
         self.pokemonAwake = len(self.pokemonInHand)
         self.items = []
         self.money = money
@@ -33,7 +34,7 @@ class PokemonTrainer(object):
         
         chosen = False
         while not chosen:
-            newCurrentPoke = int(input("Which pokemon would you like to choose?"))-1
+            newCurrentPoke = int(input("\tWhich pokemon would you like to choose? "))-1
             if 0 <= newCurrentPoke < len(self.pokemonInHand):
                 if self.pokemonInHand[newCurrentPoke].health > 0:
                     self.currentPokemon = self.pokemonInHand[newCurrentPoke]
@@ -61,6 +62,19 @@ class PokemonTrainer(object):
                 else:
                     self.archivePokemons.append(pokemonToCatch)
             
-        else:
-            pprint("You don't have pokeballs !!\n")            
+            else:
+                pprint(f"{pokemonToCatch.name} wasn't caught...")
+                self.pokeballs -= 1
             
+        else:
+            pprint("You don't have pokeballs !!\n")
+            
+    
+    def printTrainer(self):
+        pprint("+-----------------------------------------------------+")
+        pprint(f"Name: {self.name}")
+        pprint(f"Current Pokemon: {self.currentPokemon.name}")
+        pprint(f"Pokeballs left: {self.pokeballs}")
+        pprint(f"Items: {self.items}")
+        pprint(f"Money: {self.money}")
+        pprint("+-----------------------------------------------------+")
