@@ -6,7 +6,7 @@ from pokeworld import pokemonWorld
 
 
 def pprint(*args, **kwargs):
-    print('\t', *args, **kwargs)
+    print('\t\t', *args, **kwargs)
 
 
 class Pokemon(object):
@@ -39,11 +39,11 @@ class Pokemon(object):
 		self.nextLevelAt = self.experienceChart[self.level + 1] if self.level < 100 else None
   
 		if playertype is None:
-			pprint(f"{self.name} levelled up...\n"); sleep(0.5)
-			pprint(f"Current level: {self.level}"); sleep(0.5)
-			pprint(f"Max Health increased by {self.maxHealth}"); sleep(0.5)
-			pprint(f"Defence increased to {self.defence}"); sleep(0.5)
-			pprint(f"Speed increased to {self.speed}\n"); sleep(0.5)
+			pprint(f"{self.name} levelled up...\n"); sleep(1.8)
+			pprint(f"Current level: {self.level}"); sleep(1.8)
+			pprint(f"Max Health increased by {self.maxHealth}"); sleep(1.8)
+			pprint(f"Defence increased to {self.defence}"); sleep(1.8)
+			pprint(f"Speed increased to {self.speed}\n"); sleep(1.8)
 
     
     
@@ -67,30 +67,30 @@ class Pokemon(object):
 
 
 	def learnNewAttack(self, playertype=None):
-		sleep(0.5)
+		sleep(1.5)
 		attackToLearn = self.learnableAttacks.pop()
 
 		if not all(self.attacks):
 			if playertype is None:
-				pprint(f"{self.name} learnt {attackToLearn.name}")
+				pprint(f"{self.name} learnt {attackToLearn.name}"); sleep(1)
 			indNone = self.attacks.index(None)
 			self.attacks[indNone] = attackToLearn
 		else:
 			if playertype is None:
 				pprint(self.name, 'wants to learn', attackToLearn.name, end='\n')
 				sleep(1)
-				pprint('CURRENT ATTACKS: ')
+				pprint('CURRENT ATTACKS: '); sleep(1)
 				i=0
 				for attack in self.attacks:
 					pprint(f"{i+1}) {attack.name}")
 					i+=1
-					sleep(0.5)
+					sleep(1.5)
 				pprint()
 				pprint("New Attack Stats: \n")
 				attackToLearn.printAttack()
 				pprint()
-				sleep(0.5)
-				discard = input('\tWhich attack would you like to replace?\n(Choose 1, 2, 3, 4. Any other choice will result in not learning the attack): ')
+				sleep(1.5)
+				discard = input('\t\tWhich attack would you like to replace?\n\t\t(Choose 1, 2, 3, 4. Any other choice will result in not learning the attack): ')
 				if discard in ['1', '2', '3', '4']:
 					self.attacks[int(discard)-1] = attackToLearn
 			else:
@@ -106,13 +106,13 @@ class Pokemon(object):
 		evolveform = pokemonWorld[self.evolveTo]
 
 		if playertype is None:
-			sleep(0.5)
+			sleep(1.5)
 			pprint("\nWhat is happening !!!!\n")
-			sleep(0.5)
+			sleep(1.5)
 			pprint(self.name, 'is evolving....\n')
 			sleep(1)
 			pprint(self.name, 'has evolved into', self.evolveTo)
-			sleep(0.5)
+			sleep(1.5)
 			pprint()
 
 		self.name = self.evolveTo
@@ -126,9 +126,10 @@ class Pokemon(object):
 			self.learnableAttacks = evolveform['learnableAttacks'] + self.learnableAttacks
 
 
-	def attack(self, enemyPokemon, attackUsed):
+	def attack(self, enemyPokemon, attackUsedInd):
+		attackUsed = self.attacks[attackUsedInd]
 		pprint(f"\n{self.name} used {attackUsed.name}\n")
-		sleep(0.5)
+		sleep(1.5)
 		attackType = attackUsed.attCategory
 		enemyType = enemyPokemon.categories
 
@@ -142,17 +143,17 @@ class Pokemon(object):
 
 				if criticalChance >= 0.92:
 					pprint("Critical Hit...")
-					sleep(0.5)
+					sleep(1.5)
 					enemyPokemon.health -= (0.3+random()*0.2)*attackUsed.damage
 
 				if enemyType in typeAdantages[attackType]:
 					pprint("It's Super Effective !!\n")
-					sleep(0.5)
+					sleep(1.5)
 					enemyPokemon.health -= (0.4+random()*0.4)*attackUsed.damage
 
 				elif enemyType in typeDisadantages[attackType]:
 					pprint("It's not very effective !!\n")
-					sleep(0.5)
+					sleep(1.5)
 					enemyPokemon.health += (0.2+random()*0.3)*attackUsed.damage
 
 				enemyPokemon.health -= attackUsed.damage
@@ -160,7 +161,7 @@ class Pokemon(object):
 				pprint(f"Health reduced by {initialHealth - enemyPokemon.health}\n")
 
 				if attackUsed.recoil != 0:
-					sleep(0.5)
+					sleep(1.5)
 					pprint(f"{self.name} got a recoil of {-attackUsed.recoil}")
 					self.health += attackUsed.recoil
 					self.health = max(0, self.health)
@@ -171,7 +172,7 @@ class Pokemon(object):
 		else:
 			pprint(f"{self.name} missed...\n")
 
-		attackUsed.count -= 1
+		self.attacks[attackUsedInd].count -= 1
 
 
 	def printPokemon(self):
@@ -180,24 +181,28 @@ class Pokemon(object):
 	
 	def displayStats(self, trainer="player's"):
 		if trainer == "player's":
-			pprint(f"+---------------------------------------------+"); sleep(0.5)
-			pprint(f"{trainer} {self.name}"); sleep(0.5)
-			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(0.5)
-			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(0.5)
-			pprint(f"Defense: {self.defence}  Speed: {self.speed}"); sleep(0.5)
-			pprint(f"Experience: {self.experience}/{self.nextLevelAt}"); sleep(0.5)
-			pprint(f"Attacks: "); sleep(0.5)
+			pprint(f"+---------------------------------------------+"); sleep(1.5)
+			pprint(f"{trainer} {self.name}"); sleep(1.5)
+			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(1.5)
+			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(1.5)
+			pprint(f"Defense: {self.defence}  Speed: {self.speed}"); sleep(1.5)
+			pprint(f"Experience: {self.experience}/{self.nextLevelAt}"); sleep(1.5)
+			pprint(f"Attacks: "); sleep(1.5)
 			i=0
 			for attack in self.attacks:
-				pprint(f"{i+1}) {attack.name} \t\t:  {attack.count} left")
+				if attack != None:
+					pprint(f"{i+1}) {attack.name:20} :  {attack.count} left")
+				else:
+					pprint(f"{i+1}) {attack}")
 				i+=1
-				sleep(0.5)
+				sleep(1.5)
 			pprint(f"+---------------------------------------------+")
+   
 		else:
 			pprint(f"+---------------------------------------------+")
-			pprint(f"{trainer} {self.name}"); sleep(0.5)
-			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(0.5)
-			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(0.5)
+			pprint(f"{trainer} {self.name}"); sleep(1.5)
+			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(1.5)
+			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(1.5)
 			pprint(f"+---------------------------------------------+")
 	
 	

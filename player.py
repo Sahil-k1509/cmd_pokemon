@@ -2,7 +2,7 @@ from random import random, randint
 from time import sleep
 
 def pprint(*args, **kwargs):
-    print('\t', *args, **kwargs)
+    print('\t\t', *args, **kwargs)
     
 
 class PokemonTrainer(object):
@@ -16,44 +16,48 @@ class PokemonTrainer(object):
         self.currentPokemon = None
         self.pokeballs = pokeballs
         self.currentCity = currentCity
-        self.pokemonAwake = len(self.pokemonInHand)
         self.items = []
         self.badges = []
         self.money = money
         
         
-    def switchPokemon(self, trainer='player'):
-        if trainer == 'player':
+    def switchPokemon(self):
+        if self.kind == 'player':
             pprint("Your Pokemons: ")
-            sleep(0.5)
+            sleep(1.5)
+            nonzerohp = 0
             for index, pokemon in enumerate(self.pokemonInHand):
                 pprint(index+1, end=') ')
                 pokemon.printPokemon()
-                sleep(0.5)
+                if pokemon.health > 0: nonzerohp+=1
+                sleep(1.5)
+                
+            pprint(f"Current Pokemon:"); sleep(1.5)
+            self.currentPokemon.printPokemon()
+            sleep(2.5)
             
-            pprint(f"\nCurrent Pokemon:\t {self.currentPokemon.printPokemon()}\n")
-            sleep(0.5)
+            if nonzerohp == 0: return False
             
             chosen = False
             while not chosen:
-                newCurrentPoke = int(input("\tWhich pokemon would you like to choose? "))-1
+                newCurrentPoke = int(input("\t\tWhich pokemon would you like to choose? "))-1
                 if 0 <= newCurrentPoke < len(self.pokemonInHand):
                     if self.pokemonInHand[newCurrentPoke].health > 0:
                         self.currentPokemon = self.pokemonInHand[newCurrentPoke]
-                        pprint(f"You chose {self.currentPokemon.name}")
+                        pprint(f"You chose {self.currentPokemon.name}"); sleep(1.2)
                         chosen = True
                     else:
-                        pprint(f"{self.pokemonInHand[newCurrentPoke].name}'s health is zero. You can't chose it")
+                        pprint(f"{self.pokemonInHand[newCurrentPoke].name}'s health is zero. You can't chose it"); sleep(1.2)
                 else:
-                    pprint(f"That is not a valid number. Please choose between 1 and {len(self.pokemonInHand)}")
+                    pprint(f"That is not a valid number. Please choose between 1 and {len(self.pokemonInHand)}"); sleep(1.2)
             
             return True        
         else:
             indexOfCurrent = self.pokemonInHand.index(self.currentPokemon)
-            if indexOfCurrent == self.pokemonLimit - 1: return None
+            if indexOfCurrent == self.pokemonLimit - 1: return False
             
             self.currentPokemon = self.pokemonInHand[(indexOfCurrent+1)%len(self.pokemonLimit)]
-            if self.currentPokemon.health <= 0: return None
+            if self.currentPokemon.health <= 0: return False
         
             return True    
                 
@@ -67,27 +71,30 @@ class PokemonTrainer(object):
             requiredCut = 0.3 + 0.4*random()
             
             if probabilityToCatch >= requiredCut:
-                pprint(f"{pokemonToCatch.name} was caught!\n")
+                pprint(f"{pokemonToCatch.name} was caught!\n"); sleep(1.8)
                 self.pokeballs -= 1
                 if len(self.pokemonInHand) < self.pokemonLimit:
                     self.pokemonInHand.append(pokemonToCatch)
                 else:
                     self.archivePokemons.append(pokemonToCatch)
-            
+                
+                return True
             else:
-                pprint(f"{pokemonToCatch.name} wasn't caught...")
+                pprint(f"{pokemonToCatch.name} wasn't caught..."); sleep(1.8)
                 self.pokeballs -= 1
+                return False
             
         else:
-            pprint("You don't have pokeballs !!\n")
+            pprint("You don't have pokeballs !!\n"); sleep(1.8)
+            return False
             
     
     def printTrainer(self):
         pprint("+-----------------------------------------------------+")
-        pprint(f"Name: {self.name}")
-        pprint(f"Current Pokemon: {self.currentPokemon.name}")
-        pprint(f"Pokeballs left: {self.pokeballs}")
-        pprint(f"Items: {self.items}")
-        pprint(f"Gym Badges: {self.badges}")
-        pprint(f"Money: {self.money}")
+        pprint(f"Name: {self.name}"); sleep(1.5)
+        pprint(f"Current Pokemon: {self.currentPokemon.name}"); sleep(1.5)
+        pprint(f"Pokeballs left: {self.pokeballs}"); sleep(1.5)
+        pprint(f"Items: {self.items}"); sleep(1.5)
+        pprint(f"Gym Badges: {self.badges}"); sleep(1.5)
+        pprint(f"Money: {self.money}"); sleep(1.5)
         pprint("+-----------------------------------------------------+")

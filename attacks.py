@@ -2,7 +2,7 @@ from random import random, seed, randint
 from math import floor
 
 def pprint(*args, **kwargs):
-    print('\t', *args, **kwargs)
+    print('\t\t', *args, **kwargs)
     
 
 class Attack(object):
