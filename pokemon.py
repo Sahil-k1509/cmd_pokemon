@@ -205,7 +205,8 @@ class Pokemon(object):
 			pprint(f"+---------------------------------------------+"); sleep(1.5); pprint()
 			pprint(f"{trainer} {self.name}"); sleep(1.5)
 			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(1.5)
-			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(1.5); pprint()
+			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(1.5)
+			pprint()
 			pprint(f"+---------------------------------------------+"); sleep(1); pprint()
 	
 	
@@ -236,7 +237,8 @@ class Pokemon(object):
 		# pprint(f"{self.experience} <- Total exp\n")
 		sleep(0.8)
 		if self.experience > self.nextLevelAt:
-			self.updateLevel()
+			while self.experience > self.nextLevelAt:
+   				self.updateLevel()
 			
 
 	def visitPokemonCentre(self):

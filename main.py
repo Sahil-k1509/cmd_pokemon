@@ -346,7 +346,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                     player.money += 0.15*opponent.money
                     pprint(f"{opponent.name} gave {player.name}, {floor(opponent.money*0.15)} as a reward for losing against him..."); sleep(2)
                     return (player.name, player)
-    
+        sleep(3)
         clearScreen()    
         
 def gameloop():
@@ -391,7 +391,7 @@ def gameloop():
         
         pprint()
         pprint(f"'Wait {player.name}!! I am Gary.. I think You remember me...'"); sleep(1.3)
-        pprint(f"'Let's have a pokemon battle to test our pokemons. Shall We? If you are not chickened out..' - Gary"); sleep(1.8)
+        pprint(f"'Let's have a pokemon battle to test our pokemons. Shall We? If you are not chickened out..' - Gary"); sleep(2.8)
         clearScreen()
         
         winner, player = pokemon_duel(player, Gary, battle='duel')
