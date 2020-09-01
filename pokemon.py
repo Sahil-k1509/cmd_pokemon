@@ -150,14 +150,14 @@ class Pokemon(object):
 				if enemyType in typeAdantages[attackType]:
 					pprint("It's Super Effective !!\n")
 					sleep(1.2)
-					enemyPokemon.health -= floor((0.4+random()*0.4)*attackUsed.damage)
+					enemyPokemon.health -= floor((0.6+random()*0.8)*attackUsed.damage)
 
 				elif enemyType in typeDisadantages[attackType]:
 					pprint("It's not very effective !!\n")
 					sleep(1.2)
-					enemyPokemon.health += floor((0.2+random()*0.3)*attackUsed.damage)
+					enemyPokemon.health += floor((0.2+random()*0.5)*attackUsed.damage)
 
-				enemyPokemon.health -= floor(attackUsed.damage)
+				enemyPokemon.health -= floor(attackUsed.damage*((2.71823)**(-0.0056*enemyPokemon.defence)))
 				enemyPokemon.health = max(0, enemyPokemon.health)
 				pprint(f"Health reduced by {initialHealth - enemyPokemon.health}\n")
 
