@@ -4,6 +4,7 @@ from pokeworld import pokemonWorld, small_pokemons, legendary_pokemons
 from pokemon import Pokemon
 
 
+# Code Garry. 
 garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
 garyPok = pokemonWorld[garyPokname]
 garyPok = Pokemon(garyPokname, garyPok, level=0)

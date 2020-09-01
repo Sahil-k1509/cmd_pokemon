@@ -7,6 +7,7 @@ from npc import *
 
 
 from time import sleep
+from math import floor
 from random import randint, random, choice
 import os
 import sys
@@ -124,7 +125,7 @@ def pokemon_duel(player, opponent, battle='wild'):
             pprint("(E)scape"); sleep(1)
 
         pprint('\n\n')
-        pprint("What would you like to do?", end=' ')
+        pprint("What would you like to do? (Wrong option will result in you skipping your turn.)", end=' ')
         whatTodo = input()
         
         if battle == 'wild':
@@ -239,6 +240,123 @@ def pokemon_duel(player, opponent, battle='wild'):
                 player.currentPokemon.gain_exp(opponent, battletype=battle); sleep(1.2)
                 return player.name
         
+        else:
+            
+            if whatTodo in ['s', 'S']:
+                if not player.switchPokemon():
+                    battleOver = True
+                    pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                    player.money -= 0.15*player.money
+                    player.money = max(0, player.money) 
+                    return (opponent.name, player)
+                
+        
+            i = 0
+            attackInd = randint(0, len(opponent.currentPokemon.attacks)-i-1)
+            while opponent.currentPokemon.attacks[attackInd] is None:
+                attackInd = randint(0, len(opponent.currentPokemon.attacks)-i-1)
+                i+=1
+            attackOpp = opponent.currentPokemon.attacks[attackInd]
+            
+            if whatTodo not in ['f', 'F']:
+                opponent.currentPokemon.attack(player.currentPokemon, attackInd)
+                if player.currentPokemon.health <= 0:
+                    pprint(f"{player.currentPokemon.name} fainted...")
+                    if not player.switchPokemon():
+                        pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                        player.money -= 0.15*player.money
+                        player.money = max(0, player.money) 
+                        return (opponent.name, player)
+                    
+            else:
+                pprint("Choose Your Attack: ", end=' '); sleep(1.8)
+                attackpl = int(input()) - 1
+                while True:
+                    if attackpl not in [0, 1, 2, 3]:
+                        sleep(1.2)
+                        pprint("Invalid choice... Choose again : ", end='') 
+                        attackpl = int(input())-1
+                    elif player.currentPokemon.attacks[attackpl] is None:
+                        sleep(1.2)
+                        pprint("You haven't learnt any attack for that slot... Choose again: ", end='')
+                        attackpl = int(input())-1
+                    elif player.currentPokemon.attacks[attackpl].count == 0:
+                        sleep(1.2)
+                        pprint("You can't use that attack anymore... Choose again: ", end='')
+                        attackpl = int(input())-1
+                    else:
+                        sleep(1.2)
+                        break
+                
+                attackplayer = player.currentPokemon.attacks[attackpl]
+                if attackplayer.name == 'quick attack' and attackOpp.name != 'quick attack':
+                    player.currentPokemon.attack(opponent.currentPokemon, attackpl)
+                    sleep(1.2)
+                    if opponent.currentPokemon.health > 0: 
+                        opponent.currentPokemon.attack(player.currentPokemon, attackInd)
+                    else:
+                        if player.currentPokemon.health <= 0:
+                            pprint(f"{player.currentPokemon.name} fainted...")
+                            if not player.switchPokemon():
+                                pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                                player.money -= 0.15*player.money
+                                player.money = max(0, player.money) 
+                                return (opponent.name, player)    
+                        
+                elif attackplayer.name != 'quick attack' and attackOpp.name == 'quick attack':
+                    opponent.currentPokemon.attack(player.currentPokemon, attackInd)
+                    sleep(1.2)
+                    
+                    if player.currentPokemon.health > 0: 
+                        player.currentPokemon.attack(opponent.currentPokemon, attackpl)
+                    
+                    if player.currentPokemon.health <= 0:
+                        pprint(f"{player.currentPokemon.name} fainted...")
+                        if not player.switchPokemon():
+                            pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                            player.money -= 0.15*player.money
+                            player.money = max(0, player.money) 
+                            return (opponent.name, player)
+                        
+                else:
+                    if player.currentPokemon.speed >= opponent.currentPokemon.speed:
+                        player.currentPokemon.attack(opponent.currentPokemon, attackpl)
+                        sleep(1.2)
+                        if opponent.currentPokemon.health > 0: 
+                            opponent.currentPokemon.attack(player.currentPokemon, attackInd)
+                        else:
+                            if player.currentPokemon.health <= 0:
+                                pprint(f"{player.currentPokemon.name} fainted...")
+                                if not player.switchPokemon():
+                                    pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                                    player.money -= 0.15*player.money
+                                    player.money = max(0, player.money) 
+                                    return (opponent.name, player)  
+                    else:
+                        opponent.currentPokemon.attack(player.currentPokemon, attackInd)
+                        sleep(1.2)
+                        if player.currentPokemon.health > 0: 
+                            player.currentPokemon.attack(opponent.currentPokemon, attackpl)
+                        print(player.currentPokemon.health)
+                        if player.currentPokemon.health <= 0:
+                            pprint(f"{player.currentPokemon.name} fainted...")
+                            if not player.switchPokemon():
+                                pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                                player.money -= 0.15*player.money
+                                player.money = max(0, player.money) 
+                                return (opponent.name, player)
+            
+            if opponent.currentPokemon.health <= 0:
+                if not opponent.switchPokemon():
+                    sleep(1.2)
+                    pprint(f"wild {opponent.currentPokemon.name} fainted"); sleep(1.2)
+                    pprint("You won the battle!!!\n"); sleep(1.2)
+                    battleOver = True            
+                    player.currentPokemon.gain_exp(opponent.currentPokemon, battletype=battle); sleep(1.2)
+                    player.money += 0.15*opponent.money
+                    pprint(f"{opponent.name} gave {player.name}, {floor(opponent.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                    return (player.name, player)
+        
         
 
 
@@ -287,7 +405,7 @@ def gameloop():
         pprint(f"'Let's have a pokemon battle to test our pokemons. Shall We? If you are not chickened out..' - Gary"); sleep(1.8)
         clearScreen()
         
-        winner = pokemon_duel(player, garyPok, battle='wild')
+        winner, player = pokemon_duel(player, Gary, battle='wild')
         
         if winner != player.name: 
             gameOver = True

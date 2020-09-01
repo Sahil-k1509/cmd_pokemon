@@ -39,11 +39,11 @@ class Pokemon(object):
 		self.nextLevelAt = self.experienceChart[self.level + 1] if self.level < 100 else None
   
 		if playertype is None:
-			pprint(f"{self.name} levelled up...\n"); sleep(1.8)
-			pprint(f"Current level: {self.level}"); sleep(1.8)
-			pprint(f"Max Health increased by {self.maxHealth}"); sleep(1.8)
-			pprint(f"Defence increased to {self.defence}"); sleep(1.8)
-			pprint(f"Speed increased to {self.speed}\n"); sleep(1.8)
+			pprint(f"{self.name} levelled up...\n"); sleep(1.3)
+			pprint(f"Current level: {self.level}"); sleep(1.3)
+			pprint(f"Max Health increased by {self.maxHealth}"); sleep(1.3)
+			pprint(f"Defence increased to {self.defence}"); sleep(1.3)
+			pprint(f"Speed increased to {self.speed}\n"); sleep(1.3)
 
     
     
@@ -84,12 +84,12 @@ class Pokemon(object):
 				for attack in self.attacks:
 					pprint(f"{i+1}) {attack.name}")
 					i+=1
-					sleep(1.5)
+					sleep(1.2)
 				pprint()
 				pprint("New Attack Stats: \n")
 				attackToLearn.printAttack()
 				pprint()
-				sleep(1.5)
+				sleep(1.2)
 				discard = input('\t\tWhich attack would you like to replace?\n\t\t(Choose 1, 2, 3, 4. Any other choice will result in not learning the attack): ')
 				if discard in ['1', '2', '3', '4']:
 					self.attacks[int(discard)-1] = attackToLearn
@@ -106,13 +106,13 @@ class Pokemon(object):
 		evolveform = pokemonWorld[self.evolveTo]
 
 		if playertype is None:
-			sleep(1.5)
+			sleep(1.2)
 			pprint("\nWhat is happening !!!!\n")
 			sleep(1.5)
 			pprint(self.name, 'is evolving....\n')
 			sleep(1)
 			pprint(self.name, 'has evolved into', self.evolveTo)
-			sleep(1.5)
+			sleep(1.2)
 			pprint()
 
 		self.name = self.evolveTo
@@ -130,7 +130,7 @@ class Pokemon(object):
 		attackUsed = self.attacks[attackUsedInd]
 		pprint()
 		pprint(f"{self.name} used {attackUsed.name}\n")
-		sleep(1.5)
+		sleep(1.2)
 		attackType = attackUsed.attCategory
 		enemyType = enemyPokemon.categories
 
@@ -144,40 +144,41 @@ class Pokemon(object):
 
 				if criticalChance >= 0.92:
 					pprint("Critical Hit...")
-					sleep(1.5)
-					enemyPokemon.health -= (0.3+random()*0.2)*attackUsed.damage
+					sleep(1.2)
+					enemyPokemon.health -= floor((0.3+random()*0.2)*attackUsed.damage)
 
 				if enemyType in typeAdantages[attackType]:
 					pprint("It's Super Effective !!\n")
-					sleep(1.5)
-					enemyPokemon.health -= (0.4+random()*0.4)*attackUsed.damage
+					sleep(1.2)
+					enemyPokemon.health -= floor((0.4+random()*0.4)*attackUsed.damage)
 
 				elif enemyType in typeDisadantages[attackType]:
 					pprint("It's not very effective !!\n")
-					sleep(1.5)
-					enemyPokemon.health += (0.2+random()*0.3)*attackUsed.damage
+					sleep(1.2)
+					enemyPokemon.health += floor((0.2+random()*0.3)*attackUsed.damage)
 
-				enemyPokemon.health -= attackUsed.damage
+				enemyPokemon.health -= floor(attackUsed.damage)
 				enemyPokemon.health = max(0, enemyPokemon.health)
 				pprint(f"Health reduced by {initialHealth - enemyPokemon.health}\n")
 
 				if attackUsed.recoil != 0:
-					sleep(1.5)
-					pprint(f"{self.name} got a recoil of {-attackUsed.recoil}")
-					self.health += attackUsed.recoil
+					sleep(1.2)
+					pprint(f"{self.name} got a recoil of {-floor(attackUsed.recoil)}"); sleep(1.2)
+					self.health += floor(attackUsed.recoil)
 					self.health = max(0, self.health)
 
 			else:
 				self.health = min(self.maxHealth, self.health + attackUsed.heal)
+				pprint(f"{self.name} healed some portion of it's health..."); sleep(1.2)
 
 		else:
-			pprint(f"{self.name} missed...\n")
+			pprint(f"{self.name} missed...\n"); sleep(1.2)
 
 		self.attacks[attackUsedInd].count -= 1
 
 
 	def printPokemon(self):
-		pprint(f"Name: {self.name}\tLevel: {self.level}\tHP: {self.health}/{self.maxHealth}")
+		pprint(f"Name: {self.name}\tLevel: {self.level}\tHP: {self.health}/{self.maxHealth}"); sleep(1)
 	
 	
 	def displayStats(self, trainer="player's"):
@@ -204,7 +205,7 @@ class Pokemon(object):
 			pprint(f"+---------------------------------------------+"); sleep(1.5); pprint()
 			pprint(f"{trainer} {self.name}"); sleep(1.5)
 			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(1.5)
-			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(1.5)
+			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(1.5); pprint()
 			pprint(f"+---------------------------------------------+"); sleep(1); pprint()
 	
 	
@@ -228,7 +229,7 @@ class Pokemon(object):
 		else:
 			ExpIncrease -= 5*(self.level-enemylvl)**1.75
    
-		ExpIncrease = max(7, ExpIncrease)*multiplier
+		ExpIncrease = floor(max(7, ExpIncrease)*multiplier)
 	
 		pprint(f"{self.name}'s Experience increased by {ExpIncrease}")
 		self.experience += ExpIncrease
