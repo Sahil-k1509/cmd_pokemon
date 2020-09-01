@@ -151,7 +151,7 @@ def pokemon_duel(player, opponent, battle='wild'):
             if whatTodo not in ['f', 'F']:
                 opponent.attack(player.currentPokemon, attackInd)
                 if player.currentPokemon.health <= 0:
-                    pprint(f"{player.currentPokemon.name} fainted...")
+                    pprint(f"{player.currentPokemon.name} fainted..."); sleep(2)
                     if not player.switchPokemon():
                         return (opponent.name, player)
                     
@@ -183,7 +183,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                         opponent.attack(player.currentPokemon, attackInd)
                     else:
                         if player.currentPokemon.health <= 0:
-                            pprint(f"{player.currentPokemon.name} fainted...")
+                            pprint(f"{player.currentPokemon.name} fainted..."); sleep(2)
                             if not player.switchPokemon():
                                 return (opponent.name, player)    
                         
@@ -195,7 +195,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                         player.currentPokemon.attack(opponent, attackpl)
                     
                     if player.currentPokemon.health <= 0:
-                        pprint(f"{player.currentPokemon.name} fainted...")
+                        pprint(f"{player.currentPokemon.name} fainted..."); sleep(2)
                         if not player.switchPokemon():
                             return (opponent.name, player)
                         
@@ -207,7 +207,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                             opponent.attack(player.currentPokemon, attackInd)
                         else:
                             if player.currentPokemon.health <= 0:
-                                pprint(f"{player.currentPokemon.name} fainted...")
+                                pprint(f"{player.currentPokemon.name} fainted..."); sleep(2)
                                 if not player.switchPokemon():
                                     return (opponent.name, player)  
                     else:
@@ -215,9 +215,9 @@ def pokemon_duel(player, opponent, battle='wild'):
                         sleep(1.2)
                         if player.currentPokemon.health > 0: 
                             player.currentPokemon.attack(opponent, attackpl)
-                        print(player.currentPokemon.health)
+                        
                         if player.currentPokemon.health <= 0:
-                            pprint(f"{player.currentPokemon.name} fainted...")
+                            pprint(f"{player.currentPokemon.name} fainted..."); sleep(2)
                             if not player.switchPokemon():
                                 return (opponent.name, player)
             
@@ -250,9 +250,9 @@ def pokemon_duel(player, opponent, battle='wild'):
             if whatTodo not in ['f', 'F']:
                 opponent.currentPokemon.attack(player.currentPokemon, attackInd)
                 if player.currentPokemon.health <= 0:
-                    pprint(f"{player.currentPokemon.name} fainted...")
+                    pprint(f"{player.currentPokemon.name} fainted..."); sleep(2)
                     if not player.switchPokemon():
-                        pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                        pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(2)
                         player.money -= 0.15*player.money
                         player.money = max(0, player.money) 
                         return (opponent.name, player)
@@ -285,9 +285,9 @@ def pokemon_duel(player, opponent, battle='wild'):
                         opponent.currentPokemon.attack(player.currentPokemon, attackInd)
                     else:
                         if player.currentPokemon.health <= 0:
-                            pprint(f"{player.currentPokemon.name} fainted...")
+                            pprint(f"{player.currentPokemon.name} fainted..."); sleep(2)
                             if not player.switchPokemon():
-                                pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                                pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(2)
                                 player.money -= 0.15*player.money
                                 player.money = max(0, player.money) 
                                 return (opponent.name, player)    
@@ -300,9 +300,9 @@ def pokemon_duel(player, opponent, battle='wild'):
                         player.currentPokemon.attack(opponent.currentPokemon, attackpl)
                     
                     if player.currentPokemon.health <= 0:
-                        pprint(f"{player.currentPokemon.name} fainted...")
+                        pprint(f"{player.currentPokemon.name} fainted..."); sleep(2)
                         if not player.switchPokemon():
-                            pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                            pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(2)
                             player.money -= 0.15*player.money
                             player.money = max(0, player.money) 
                             return (opponent.name, player)
@@ -315,9 +315,9 @@ def pokemon_duel(player, opponent, battle='wild'):
                             opponent.currentPokemon.attack(player.currentPokemon, attackInd)
                         else:
                             if player.currentPokemon.health <= 0:
-                                pprint(f"{player.currentPokemon.name} fainted...")
+                                pprint(f"{player.currentPokemon.name} fainted..."); sleep(2)
                                 if not player.switchPokemon():
-                                    pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                                    pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(2)
                                     player.money -= 0.15*player.money
                                     player.money = max(0, player.money) 
                                     return (opponent.name, player)  
@@ -326,27 +326,28 @@ def pokemon_duel(player, opponent, battle='wild'):
                         sleep(1.2)
                         if player.currentPokemon.health > 0: 
                             player.currentPokemon.attack(opponent.currentPokemon, attackpl)
-                        print(player.currentPokemon.health)
+                        
                         if player.currentPokemon.health <= 0:
-                            pprint(f"{player.currentPokemon.name} fainted...")
+                            pprint(f"{player.currentPokemon.name} fainted..."); sleep(2)
                             if not player.switchPokemon():
-                                pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                                pprint(f"{player.name} gave {opponent.name},  {floor(player.money*0.15)} as a reward for losing against him..."); sleep(2)
                                 player.money -= 0.15*player.money
                                 player.money = max(0, player.money) 
                                 return (opponent.name, player)
             
             if opponent.currentPokemon.health <= 0:
-                sleep(1.2)
+                sleep(1.5)
                 pprint(f"{opponent.name}'s {opponent.currentPokemon.name} fainted")
                 if not opponent.switchPokemon():
-                    sleep(1.2)
-                    pprint("You won the battle!!!\n"); sleep(1.2)
+                    sleep(1.5)
+                    pprint("You won the battle!!!\n"); sleep(1.4)
                     battleOver = True            
                     player.currentPokemon.gain_exp(opponent.currentPokemon, battletype=battle); sleep(1.2)
                     player.money += 0.15*opponent.money
-                    pprint(f"{opponent.name} gave {player.name}, {floor(opponent.money*0.15)} as a reward for losing against him..."); sleep(1.1)
+                    pprint(f"{opponent.name} gave {player.name}, {floor(opponent.money*0.15)} as a reward for losing against him..."); sleep(2)
                     return (player.name, player)
-        
+    
+        clearScreen()    
         
 def gameloop():
     player = main_menu()
@@ -354,11 +355,11 @@ def gameloop():
     gameOver = False
     
     if player is None:
-        pprint("Welcome to the world of pokemon...\n"); sleep(0.6)
-        pprint("Your Goal is to catch all pokemons in the world and \n\t\tbecome the greatest pokemon trainer of all times.\n"); sleep(1.3)
-        pprint("But, for that, you need to become the champion of \n\t\tIndigo league which is an annual pokemon duel competition...\n"); sleep(1.3)
-        pprint("You need to earn 8 badges by defeating 8 gym leaders\n\t\t to prove that you are worthy of participating in league.\n"); sleep(1.2)
-        pprint("Start you journey and \"Catch'em All\""); sleep(3)
+        pprint("Welcome to the world of pokemon...\n"); sleep(1)
+        pprint("Your Goal is to catch all pokemons in the world and \n\t\tbecome the greatest pokemon trainer of all times.\n"); sleep(1.7)
+        pprint("But, for that, you need to become the champion of \n\t\tIndigo league which is an annual pokemon duel competition...\n"); sleep(1.7)
+        pprint("You need to earn 8 badges by defeating 8 gym leaders\n\t\t to prove that you are worthy of participating in league.\n"); sleep(1.9)
+        pprint("Start you journey and \"Catch'em All\""); sleep(5)
         clearScreen()
         
         pprint("What is your name Adventurer?", end=" ")
@@ -393,7 +394,7 @@ def gameloop():
         pprint(f"'Let's have a pokemon battle to test our pokemons. Shall We? If you are not chickened out..' - Gary"); sleep(1.8)
         clearScreen()
         
-        winner, player = pokemon_duel(player, Gary, battle='wild')
+        winner, player = pokemon_duel(player, Gary, battle='duel')
         clearScreen()
         
         if winner != player.name: 

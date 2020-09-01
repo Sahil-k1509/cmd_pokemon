@@ -56,7 +56,7 @@ class PokemonTrainer(object):
             indexOfCurrent = self.pokemonInHand.index(self.currentPokemon)
             if indexOfCurrent == self.pokemonLimit - 1: return False
             
-            self.currentPokemon = self.pokemonInHand[(indexOfCurrent+1)%len(self.pokemonLimit)]
+            self.currentPokemon = self.pokemonInHand[(indexOfCurrent+1)%len(self.pokemonInHand)]
             if self.currentPokemon.health <= 0: return False
         
             pprint(f"{self.name} Chose {self.currentPokemon.name}"); sleep(1.1)
