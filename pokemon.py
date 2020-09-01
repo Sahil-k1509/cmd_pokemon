@@ -231,6 +231,10 @@ class Pokemon(object):
 			self.updateLevel()
 			
 
+	def visitPokemonCentre(self):
+		self.health = self.maxHealth
+		for attack in self.attacks:
+			attack.count = attack.maxcount
 
  
 	# def npcPokemonReady(self):
