@@ -7,7 +7,7 @@ def pprint(*args, **kwargs):
 
 class PokemonTrainer(object):
     
-    def __init__(self, name, currentLocation='Veridian', kind='player', startingPokemons=[], pokemonLimit=7, pokeballs=2, money=300, *args, **kwargs):
+    def __init__(self, name, currentLocation='Pallet Town', kind='player', startingPokemons=[], pokemonLimit=7, pokeballs=2, money=300, *args, **kwargs):
         self.name = name
         self.kind = kind
         self.pokemonInHand = startingPokemons
