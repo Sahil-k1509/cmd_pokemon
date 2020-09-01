@@ -103,7 +103,7 @@ def load_game():
 
 def pokemon_duel(player, opponent, battle='wild'):
     battleOver = False
-    print(player.currentPokemon)
+    
     
     if battle != 'wild': opp = opponent.name + "'s"
     else: opp = 'wild'
@@ -113,7 +113,7 @@ def pokemon_duel(player, opponent, battle='wild'):
         
         if battle != 'wild': opponent.currentPokemon.displayStats(trainer=opp)
         else: opponent.displayStats(trainer=opp)
-        
+        pprint()
         player.currentPokemon.displayStats()
         
         pprint('\n\n')
@@ -160,6 +160,11 @@ def pokemon_duel(player, opponent, battle='wild'):
             
             if whatTodo not in ['f', 'F']:
                 opponent.attack(player.currentPokemon, attackInd)
+                if player.currentPokemon.health <= 0:
+                    pprint(f"{player.currentPokemon.name} fainted...")
+                    if not player.switchPokemon():
+                        return opponent.name
+                    
             else:
                 pprint("Choose Your Attack: ", end=' '); sleep(1.8)
                 attackpl = int(input()) - 1
@@ -195,6 +200,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                 elif attackplayer.name != 'quick attack' and attackOpp.name == 'quick attack':
                     opponent.attack(player.currentPokemon, attackInd)
                     sleep(1.2)
+                    
                     if player.currentPokemon.health > 0: 
                         player.currentPokemon.attack(opponent, attackpl)
                     
@@ -219,7 +225,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                         sleep(1.2)
                         if player.currentPokemon.health > 0: 
                             player.currentPokemon.attack(opponent, attackpl)
-                        
+                        print(player.currentPokemon.health)
                         if player.currentPokemon.health <= 0:
                             pprint(f"{player.currentPokemon.name} fainted...")
                             if not player.switchPokemon():
@@ -230,11 +236,8 @@ def pokemon_duel(player, opponent, battle='wild'):
                 pprint(f"wild {opponent.name} fainted"); sleep(1.2)
                 pprint("You won the battle!!!\n"); sleep(1.2)
                 battleOver = True            
-                
-                
-    
-    player.currentPokemon.gain_exp(opponent.currentPokemon, battletype=battle); sleep(1.2)
-    return player.name
+                player.currentPokemon.gain_exp(opponent, battletype=battle); sleep(1.2)
+                return player.name
         
         
 
@@ -277,11 +280,11 @@ def gameloop():
         player.currentPokemon = playerPokemon
         
         
-        pprint("Let's Start our adventure..."); sleep(0.8)
+        pprint("Let's Start our adventure..."); sleep(1.8)
         
         pprint()
-        pprint(f"'Wait {player.name}!! I am Gary.. I think You remember me...'"); sleep(1.5)
-        pprint(f"'Let's have a pokemon battle to test our pokemons. Shall We? If you are not chickened out..' - Gary"); sleep(0.8)
+        pprint(f"'Wait {player.name}!! I am Gary.. I think You remember me...'"); sleep(1.3)
+        pprint(f"'Let's have a pokemon battle to test our pokemons. Shall We? If you are not chickened out..' - Gary"); sleep(1.8)
         clearScreen()
         
         winner = pokemon_duel(player, garyPok, battle='wild')
@@ -289,14 +292,14 @@ def gameloop():
         if winner != player.name: 
             gameOver = True
             pprint()
-            pprint("Unfortunately, you lost your first battle against gary.\n"); sleep(0.6)
+            pprint("Unfortunately, you lost your first battle against gary.\n"); sleep(1.4)
             clearScreen()
-            pprint("Game Over...\n"); sleep(0.6)
-            pprint("But you can start again... Load the game to start from last check point you saved at..."); sleep(0.8)
+            pprint("Game Over...\n"); sleep(1.6)
+            pprint("But you can start again... Load the game to start from last check point you saved at..."); sleep(1.8)
         else:
             pprint("Saving the Game...")
             save_game(player)
-            sleep(0.6)
+            sleep(1.6)
             
         clearScreen()
     else:

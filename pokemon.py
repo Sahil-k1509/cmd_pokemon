@@ -128,7 +128,8 @@ class Pokemon(object):
 
 	def attack(self, enemyPokemon, attackUsedInd):
 		attackUsed = self.attacks[attackUsedInd]
-		pprint(f"\n{self.name} used {attackUsed.name}\n")
+		pprint()
+		pprint(f"{self.name} used {attackUsed.name}\n")
 		sleep(1.5)
 		attackType = attackUsed.attCategory
 		enemyType = enemyPokemon.categories
@@ -181,7 +182,7 @@ class Pokemon(object):
 	
 	def displayStats(self, trainer="player's"):
 		if trainer == "player's":
-			pprint(f"+---------------------------------------------+"); sleep(1.5)
+			pprint(f"+---------------------------------------------+"); sleep(1.5); pprint()
 			pprint(f"{trainer} {self.name}"); sleep(1.5)
 			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(1.5)
 			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(1.5)
@@ -196,14 +197,15 @@ class Pokemon(object):
 					pprint(f"{i+1}) {attack}")
 				i+=1
 				sleep(1.5)
-			pprint(f"+---------------------------------------------+")
+			pprint()
+			pprint(f"+---------------------------------------------+"); sleep(1); pprint()
    
 		else:
-			pprint(f"+---------------------------------------------+")
+			pprint(f"+---------------------------------------------+"); sleep(1.5); pprint()
 			pprint(f"{trainer} {self.name}"); sleep(1.5)
 			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(1.5)
 			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(1.5)
-			pprint(f"+---------------------------------------------+")
+			pprint(f"+---------------------------------------------+"); sleep(1); pprint()
 	
 	
 	def gain_exp(self, enemyPok, battletype='wild'):
