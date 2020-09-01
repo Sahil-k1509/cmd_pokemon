@@ -3,7 +3,7 @@ import pickle
 from player import PokemonTrainer
 from pokeworld import pokemonWorld
 from pokemon import Pokemon
-from npc import *
+from npc import Gary
 
 
 from time import sleep
@@ -38,22 +38,14 @@ Colorize text.
 """
 
 
-
-
-all_small_poke = ['pikachu', 'charmander', 'squirtle', 'bulbasaur']
-
-
 def pprint(*args, **kwargs):
     print('\t\t', *args, **kwargs)
-
-
 
 def clearScreen():
     if OSname == 'nt': OSsys('cls')
     else: OSsys('clear')
     pprint()
     pprint()
-
 
 def main_menu():
     pprint(); sleep(1.5)
@@ -89,18 +81,15 @@ def main_menu():
     sleep(1.9)
     return None
 
-
 def save_game(player):
     with open('pokemon_progress.pkl', 'wb') as output:
         pickle.dump(player, output, pickle.HIGHEST_PROTOCOL)
-        
-        
+                
 def load_game():
     with open('pokemon_progress.pkl', 'rb') as inputf:
         player = pickle.load(inputf)
     print(player)
     return player
-
 
 def pokemon_duel(player, opponent, battle='wild'):
     battleOver = False
@@ -149,7 +138,7 @@ def pokemon_duel(player, opponent, battle='wild'):
             if whatTodo in ['s', 'S']:
                 if not player.switchPokemon():
                     battleOver = True
-                    return opponent.name
+                    return (opponent.name, player)
                 
         
             i = 0
@@ -164,7 +153,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                 if player.currentPokemon.health <= 0:
                     pprint(f"{player.currentPokemon.name} fainted...")
                     if not player.switchPokemon():
-                        return opponent.name
+                        return (opponent.name, player)
                     
             else:
                 pprint("Choose Your Attack: ", end=' '); sleep(1.8)
@@ -196,7 +185,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                         if player.currentPokemon.health <= 0:
                             pprint(f"{player.currentPokemon.name} fainted...")
                             if not player.switchPokemon():
-                                return opponent.name    
+                                return (opponent.name, player)    
                         
                 elif attackplayer.name != 'quick attack' and attackOpp.name == 'quick attack':
                     opponent.attack(player.currentPokemon, attackInd)
@@ -208,7 +197,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                     if player.currentPokemon.health <= 0:
                         pprint(f"{player.currentPokemon.name} fainted...")
                         if not player.switchPokemon():
-                            return opponent.name
+                            return (opponent.name, player)
                         
                 else:
                     if player.currentPokemon.speed >= opponent.speed:
@@ -220,7 +209,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                             if player.currentPokemon.health <= 0:
                                 pprint(f"{player.currentPokemon.name} fainted...")
                                 if not player.switchPokemon():
-                                    return opponent.name  
+                                    return (opponent.name, player)  
                     else:
                         opponent.attack(player.currentPokemon, attackInd)
                         sleep(1.2)
@@ -230,7 +219,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                         if player.currentPokemon.health <= 0:
                             pprint(f"{player.currentPokemon.name} fainted...")
                             if not player.switchPokemon():
-                                return opponent.name
+                                return (opponent.name, player)
             
             if opponent.health <= 0:
                 sleep(1.2)
@@ -238,7 +227,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                 pprint("You won the battle!!!\n"); sleep(1.2)
                 battleOver = True            
                 player.currentPokemon.gain_exp(opponent, battletype=battle); sleep(1.2)
-                return player.name
+                return (player.name, player)
         
         else:
             
@@ -347,9 +336,10 @@ def pokemon_duel(player, opponent, battle='wild'):
                                 return (opponent.name, player)
             
             if opponent.currentPokemon.health <= 0:
+                sleep(1.2)
+                pprint(f"{opponent.name}'s {opponent.currentPokemon.name} fainted")
                 if not opponent.switchPokemon():
                     sleep(1.2)
-                    pprint(f"wild {opponent.currentPokemon.name} fainted"); sleep(1.2)
                     pprint("You won the battle!!!\n"); sleep(1.2)
                     battleOver = True            
                     player.currentPokemon.gain_exp(opponent.currentPokemon, battletype=battle); sleep(1.2)
@@ -358,8 +348,6 @@ def pokemon_duel(player, opponent, battle='wild'):
                     return (player.name, player)
         
         
-
-
 def gameloop():
     player = main_menu()
     clearScreen()
@@ -406,6 +394,7 @@ def gameloop():
         clearScreen()
         
         winner, player = pokemon_duel(player, Gary, battle='wild')
+        clearScreen()
         
         if winner != player.name: 
             gameOver = True
