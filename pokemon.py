@@ -176,7 +176,7 @@ class Pokemon(object):
 
 
 		self.attacks[attackUsedInd].count -= 1
-		pprint(f"{self.attacks[attackUsedInd].name}'s count decreased to {self.attacks[attackUsedInd].count}"); sleep(1.2)
+		sleep(1.2); pprint(f"{self.attacks[attackUsedInd].name}'s count decreased to {self.attacks[attackUsedInd].count}"); sleep(1.2)
 
 
 	def printPokemon(self):
@@ -195,7 +195,7 @@ class Pokemon(object):
 			i=0
 			for attack in self.attacks:
 				if attack != None:
-					pprint(f"{i+1}) {attack.name:20} :  {attack.count} left"); sleep(1.1)
+					pprint(f"{i+1}) {attack.name:20} :  {attack.count} left"); sleep(0.5)
 					if detailed: 
 						pprint()
 						attack.printAttack()

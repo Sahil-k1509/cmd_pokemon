@@ -1,5 +1,6 @@
 from pokeworld import pokemonWorld, small_pokemons, legendary_pokemons
 from pokemon import Pokemon
+from npc import Gary
 
 import os
 import sys
@@ -11,37 +12,9 @@ from os import system as OSsys, name as OSname
 
 from colorama import init as initializeColor, Fore, Back, Style
 from termcolor import colored
+from pyfiglet import figlet_format
 
 initializeColor()
-
-
-
-def main_game(player):
-    # pprint(player)
-    # pprint(player.currentLocation)
-    
-    if player.currentLocation == 'Pallet Town': palletTown(player)
-    elif player.currentLocation == 'Viridian City': viridianCity(player)
-    elif player.currentLocation == 'Victory Road': victoryRoad(player)
-    elif player.currentLocation == 'Horizon': horizon(player)
-    elif player.currentLocation == 'Viridian Forest': viridianForest(player)
-    elif player.currentLocation == 'Pewter City': pewterCity(player)
-    elif player.currentLocation == 'Mt. Moon': mtMoon(player)
-    elif player.currentLocation == 'Mt. Top': mtTop(player)
-    elif player.currentLocation == 'Cerulean City': ceruleanCity(player)
-    elif player.currentLocation == 'Lavender Town': lavenderTown(player)
-    elif player.currentLocation == 'Outskirts': outskirts(player)
-    elif player.currentLocation == 'Saffron City': saffronCity(player)
-    elif player.currentLocation == 'Vermillion City': vermilionCity(player)
-    elif player.currentLocation == 'Celadon City': celadonCity(player)
-    elif player.currentLocation == 'Fuschia City': fuschiaCity(player)
-    elif player.currentLocation == 'Seafoam Island': seafoamIsland(player)
-    elif player.currentLocation == 'Cinnabar Island': cinnabarIsland(player)
-    elif player.currentLocation == 'Volcano': volcano(player)
-    elif player.currentLocation == 'Indigo Plateau': indigoPlateau(player)
-    else: sys.exit(0)
-
-
 
 routes = {
         'Pallet Town': ['Viridian City', 'Cinnabar Island'],   
@@ -66,10 +39,41 @@ routes = {
 }
 
 def showMap(player):
-    pprint(f"Current Location: {player.currentLocation}")
-    pprint("Map:")
+    sleep(1)
+    pprint()
     
+    print(figlet_format("                M a p ")); sleep(0.7)
+
+    pprint(r"                                                      Volcano      "); sleep(0.2)
+    pprint(r"                                                         |         "); sleep(0.2)
+    pprint(r"                                                         |         "); sleep(0.2)
+    pprint(r"Indigo Plateau        Pallet . . . . . . . . . .  Cinnabar Island  "); sleep(0.2)
+    pprint(r"     |                  |                                .         "); sleep(0.2)
+    pprint(r"     |                  |                                .         "); sleep(0.2)
+    pprint(r"Victory Road ------ Viridian City                 Seafoam Island   "); sleep(0.2)
+    pprint(r"     |                  |                                .         "); sleep(0.2)
+    pprint(r"     |                  |                                .         "); sleep(0.2)
+    pprint(r" Horizon           Viridian Forest                 Fuschia City    "); sleep(0.2)
+    pprint(r"                        |                          /     |         "); sleep(0.2)
+    pprint(r"                        |                         /      |         "); sleep(0.2)
+    pprint(r"                    Pewter City       Celadon City       |         "); sleep(0.2)
+    pprint(r"                        |               |                |         "); sleep(0.2)
+    pprint(r"                        |               |                |         "); sleep(0.2)
+    pprint(r"        Mt. Top ---  Mt. Moon     Saffron City           |         "); sleep(0.2)
+    pprint(r"                        |        /      |     \          |         "); sleep(0.2)
+    pprint(r"                        |       /       |      \         |         "); sleep(0.2)
+    pprint(r"                   Cerulean City        |        Vermillion City   "); sleep(0.2)
+    pprint(r"                                \       |       /                  "); sleep(0.2)
+    pprint(r"                                 \      |      /                   "); sleep(0.2)
+    pprint(r"                                  Lavender Town                    "); sleep(0.2)
+    pprint(r"                                        |                          "); sleep(0.2)
+    pprint(r"                                        |                          "); sleep(0.2)
+    pprint(r"                                    Outskirts                      "); sleep(0.2)
     
+    pprint()
+    pprint()
+        
+    pprint(f"Current Location: {player.currentLocation}"); sleep(1)
     pprint("Go back? (press enter): ", end='')
     input()
     return
@@ -84,7 +88,6 @@ def clearScreen():
     pprint()
     pprint()
 
-
 def save_game(player):
     with open('pokemon_progress.pkl', 'wb') as output:
         pickle.dump(player, output, pickle.HIGHEST_PROTOCOL)
@@ -93,7 +96,6 @@ def load_game():
     with open('pokemon_progress.pkl', 'rb') as inputf:
         player = pickle.load(inputf)
     return player
-
 
 def pokemon_duel(player, opponent, battle='wild'):
     battleOver = False
@@ -353,7 +355,6 @@ def pokemon_duel(player, opponent, battle='wild'):
         sleep(3)
         clearScreen()    
 
-
 def navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False):
     pprint("+--------------------------------------------------+") 
     sleep(1.2); pprint()
@@ -394,10 +395,8 @@ def navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokec
         sleep(1)
         pprint("Game Saved...."); sleep(1); clearScreen()
         return ('S', player)
-    elif navigate in ['b', 'B']:
-        return ('B', player)
-    elif navigate in ['p', 'P']:
-        return ('P', player)
+    elif navigate in ['b', 'B']:    return ('B', player)
+    elif navigate in ['p', 'P']:    return ('P', player)
     elif navigate in ['m', 'M']:
         showMap(player)
         return ('M', player)
@@ -407,10 +406,8 @@ def navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokec
         pprint("Go back? (press any key and enter): ", end='')
         input()
         return ('I', player)
-    elif navigate in ['w', 'W'] and hasWild:
-        return ('W', player)
-    elif navigate in ['g', 'G'] and hasGym:
-        return ('G', player)
+    elif navigate in ['w', 'W'] and hasWild:    return ('W', player)
+    elif navigate in ['g', 'G'] and hasGym:     return ('G', player)
     else:
         currentCity = player.currentLocation
         if currentCity == 'Indigo Plateau':
@@ -642,3 +639,33 @@ def horizon(player):
         elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
         elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
+
+
+
+
+def main_game(player):
+    # pprint(player)
+    # pprint(player.currentLocation)
+    
+    if player.currentLocation == 'Pallet Town': palletTown(player)
+    elif player.currentLocation == 'Viridian City': viridianCity(player)
+    elif player.currentLocation == 'Victory Road': victoryRoad(player)
+    elif player.currentLocation == 'Horizon': horizon(player)
+    elif player.currentLocation == 'Viridian Forest': viridianForest(player)
+    elif player.currentLocation == 'Pewter City': pewterCity(player)
+    elif player.currentLocation == 'Mt. Moon': mtMoon(player)
+    elif player.currentLocation == 'Mt. Top': mtTop(player)
+    elif player.currentLocation == 'Cerulean City': ceruleanCity(player)
+    elif player.currentLocation == 'Lavender Town': lavenderTown(player)
+    elif player.currentLocation == 'Outskirts': outskirts(player)
+    elif player.currentLocation == 'Saffron City': saffronCity(player)
+    elif player.currentLocation == 'Vermillion City': vermilionCity(player)
+    elif player.currentLocation == 'Celadon City': celadonCity(player)
+    elif player.currentLocation == 'Fuschia City': fuschiaCity(player)
+    elif player.currentLocation == 'Seafoam Island': seafoamIsland(player)
+    elif player.currentLocation == 'Cinnabar Island': cinnabarIsland(player)
+    elif player.currentLocation == 'Volcano': volcano(player)
+    elif player.currentLocation == 'Indigo Plateau': indigoPlateau(player)
+    else: sys.exit(0)
+
+
