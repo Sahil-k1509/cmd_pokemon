@@ -174,7 +174,9 @@ class Pokemon(object):
 		else:
 			pprint(f"{self.name} missed...\n"); sleep(1.2)
 
+
 		self.attacks[attackUsedInd].count -= 1
+		pprint(f"{self.attacks[attackUsedInd].name}'s count decreased to {self.attacks[attackUsedInd].count}"); sleep(1.2)
 
 
 	def printPokemon(self):

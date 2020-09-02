@@ -17,6 +17,9 @@ initializeColor()
 
 
 def main_game(player):
+    # pprint(player)
+    # pprint(player.currentLocation)
+    
     if player.currentLocation == 'Pallet Town': palletTown(player)
     elif player.currentLocation == 'Viridian City': viridianCity(player)
     elif player.currentLocation == 'Victory Road': victoryRoad(player)
@@ -36,6 +39,7 @@ def main_game(player):
     elif player.currentLocation == 'Cinnabar Island': cinnabarIsland(player)
     elif player.currentLocation == 'Volcano': volcano(player)
     elif player.currentLocation == 'Indigo Plateau': indigoPlateau(player)
+    else: sys.exit(0)
 
 
 
@@ -62,9 +66,13 @@ routes = {
 }
 
 def showMap(player):
-    pass
-
-
+    pprint(f"Current Location: {player.currentLocation}")
+    pprint("Map:")
+    
+    
+    pprint("Go back? (press enter): ", end='')
+    input()
+    return
 
 
 def pprint(*args, **kwargs):
@@ -84,7 +92,6 @@ def save_game(player):
 def load_game():
     with open('pokemon_progress.pkl', 'rb') as inputf:
         player = pickle.load(inputf)
-    print(player)
     return player
 
 
