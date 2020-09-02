@@ -1,5 +1,9 @@
 from attacklist import *
-from copy import deepcopy
+# from copy import deepcopy
+
+def deepcopy(actualAttack):
+    newattack = Attack(actualAttack.name, actualAttack.attCategory, actualAttack.baseDamage, actualAttack.pLevel, actualAttack.maxcount, heal=actualAttack.heal, accuracy=actualAttack.accuracy, recoil=actualAttack.recoil)
+    return newattack
 
 small_pokemons = ['pikachu', 'charmander', 'squirtle', 'bulbasaur', 'caterpie', 'weedle', 'pidgey', 'ekans', 
                   'sandshrew', 'nidoran',  'vulpix', 'jigglypuff', 'zubat',  'diglett', 'meowth', 'psyduck',  

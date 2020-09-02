@@ -176,7 +176,7 @@ class Pokemon(object):
 
 
 		self.attacks[attackUsedInd].count -= 1
-		sleep(1.2); pprint(f"{self.attacks[attackUsedInd].name}'s count decreased to {self.attacks[attackUsedInd].count}"); sleep(1.2)
+		# sleep(1.2); pprint(f"{self.attacks[attackUsedInd].name}'s count decreased to {self.attacks[attackUsedInd].count}"); sleep(1.2)
 
 
 	def printPokemon(self):

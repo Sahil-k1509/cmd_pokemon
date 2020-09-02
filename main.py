@@ -74,8 +74,8 @@ def gameloop():
     
     if player is None:
         pprint("Welcome to the world of pokemon...\n"); sleep(1)
-        pprint("Your Goal is to catch all pokemons in the world and \n\t\tbecome the greatest pokemon trainer of all times.\n"); sleep(1.2)
-        pprint("But, for that, you need to become the champion of \n\t\tIndigo league which is an annual pokemon duel competition...\n"); sleep(1.2)
+        pprint("Your Goal is to catch all pokemons in the world and\n\t\t become the greatest pokemon trainer of all times.\n"); sleep(1.2)
+        pprint("But, for that, you need to become the champion of\n\t\t Indigo league which is an annual pokemon duel competition...\n"); sleep(1.2)
         pprint("You need to earn 8 badges by defeating 8 gym leaders\n\t\t to prove that you are worthy of participating in league.\n"); sleep(1.2)
         pprint("Start you journey and \"Catch'em All\""); sleep(1)
         
@@ -88,7 +88,7 @@ def gameloop():
         player = PokemonTrainer(name)
         sleep(1.2)
         pprint()
-        pprint("We would like you to choose a pokemon before starting your adventure\n"); sleep(1.5)
+        pprint("We would like you to choose a pokemon before starting your Journey\n"); sleep(1.5)
         pprint("(C)harmander"); sleep(1.5)
         pprint("(S)quirtle"); sleep(1.5)
         pprint("(B)ulbasaur"); sleep(1.5)
