@@ -181,7 +181,7 @@ class Pokemon(object):
 		pprint(f"Name: {self.name}\tLevel: {self.level}\tHP: {self.health}/{self.maxHealth}"); sleep(1)
 	
 	
-	def displayStats(self, trainer="player's"):
+	def displayStats(self, trainer="player's", detailed=False):
 		if trainer == "player's":
 			pprint(f"+---------------------------------------------+"); sleep(1.5); pprint()
 			pprint(f"{trainer} {self.name}"); sleep(1.5)
@@ -193,7 +193,11 @@ class Pokemon(object):
 			i=0
 			for attack in self.attacks:
 				if attack != None:
-					pprint(f"{i+1}) {attack.name:20} :  {attack.count} left")
+					pprint(f"{i+1}) {attack.name:20} :  {attack.count} left"); sleep(1.1)
+					if detailed: 
+						pprint()
+						attack.printAttack()
+						pprint()
 				else:
 					pprint(f"{i+1}) {attack}")
 				i+=1

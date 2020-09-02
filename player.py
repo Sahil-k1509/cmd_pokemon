@@ -90,12 +90,29 @@ class PokemonTrainer(object):
             return False
             
     
-    def printTrainer(self):
-        pprint("+-----------------------------------------------------+")
-        pprint(f"Name: {self.name}"); sleep(1.2)
-        pprint(f"Current Pokemon: {self.currentPokemon.name}"); sleep(1.2)
-        pprint(f"Pokeballs left: {self.pokeballs}"); sleep(1.2)
-        pprint(f"Items: {self.items}"); sleep(1.2)
-        pprint(f"Gym Badges: {self.badges}"); sleep(1.2)
-        pprint(f"Money: {self.money}"); sleep(1.2)
-        pprint("+-----------------------------------------------------+")
+    def printTrainer(self, showAllpoke=False):
+        if self.kind == 'player':
+            pprint("+-----------------------------------------------------+"); sleep(1.2) 
+            pprint()
+            pprint(f"Name: {self.name}"); sleep(1.2)
+            pprint(f"Current Pokemon: {self.currentPokemon.name}"); sleep(1.2)
+            pprint(f"Pokeballs left: {self.pokeballs}"); sleep(1.2)
+            pprint(f"Items: {self.items}"); sleep(1.2)
+            pprint(f"Gym Badges: {self.badges}"); sleep(1.2)
+            pprint(f"Money: {self.money}"); sleep(1.2)
+            pprint()
+            
+            if showAllpoke:
+                for pokemon in self.pokemonInHand:
+                    pokemon.displayStats(detailed=True); sleep(1)
+            
+            pprint()
+            pprint("+-----------------------------------------------------+")
+        else:
+            pprint("+-----------------------------------------------------+"); sleep(1.2) 
+            pprint()
+            pprint(f"Name: {self.name}"); sleep(1.2)
+            pprint(f"Number of pokemons: {len(self.pokemonInHand)}"); sleep(1.2)
+            pprint(f"Money: {self.money}"); sleep(1.2)
+            pprint()
+            pprint("+-----------------------------------------------------+")

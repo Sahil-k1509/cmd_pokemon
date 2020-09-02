@@ -16,6 +16,57 @@ initializeColor()
 
 
 
+def main_game(player):
+    if player.currentLocation == 'Pallet Town': palletTown(player)
+    elif player.currentLocation == 'Viridian City': viridianCity(player)
+    elif player.currentLocation == 'Victory Road': victoryRoad(player)
+    elif player.currentLocation == 'Horizon': horizon(player)
+    elif player.currentLocation == 'Viridian Forest': viridianForest(player)
+    elif player.currentLocation == 'Pewter City': pewterCity(player)
+    elif player.currentLocation == 'Mt. Moon': mtMoon(player)
+    elif player.currentLocation == 'Mt. Top': mtTop(player)
+    elif player.currentLocation == 'Cerulean City': ceruleanCity(player)
+    elif player.currentLocation == 'Lavender Town': lavenderTown(player)
+    elif player.currentLocation == 'Outskirts': outskirts(player)
+    elif player.currentLocation == 'Saffron City': saffronCity(player)
+    elif player.currentLocation == 'Vermillion City': vermilionCity(player)
+    elif player.currentLocation == 'Celadon City': celadonCity(player)
+    elif player.currentLocation == 'Fuschia City': fuschiaCity(player)
+    elif player.currentLocation == 'Seafoam Island': seafoamIsland(player)
+    elif player.currentLocation == 'Cinnabar Island': cinnabarIsland(player)
+    elif player.currentLocation == 'Volcano': volcano(player)
+    elif player.currentLocation == 'Indigo Plateau': indigoPlateau(player)
+
+
+
+routes = {
+        'Pallet Town': ['Viridian City', 'Cinnabar Island'],   
+        'Viridian City': ['Pallet Town', 'Victory Road', 'Viridian Forest'],   
+        'Victory Road': ['Viridian City', 'Indigo Plateau', 'Horizon'],   
+        'Horizon': ['Victory Road'],   
+        'Viridian Forest': ['Viridian City', 'Pewter City'],   
+        'Pewter City': ['Viridian Forest', 'Mt. Moon'],   
+        'Mt. Moon': ['Pewter City', 'Mt. Top', 'Cerulean City'],   
+        'Mt. Top': ['Mt. Moon'],   
+        'Cerulean City': ['Saffron City', 'Mt. Moon', 'Lavender Town'],   
+        'Lavender Town': ['Cerulean City', 'Vermillion City', 'Outskirts'],   
+        'Outskirts': ['Lavender Town'],   
+        'Saffron City': ['Lavender Town', 'Cerulean City', 'Vermillion City', 'Celadon City'],   
+        'Vermillion City': ['Saffron City', 'Lavender Town', 'Fuschia City'],   
+        'Celadon City': ['Saffron City', 'Fuschia City'],   
+        'Fuschia City': ['Celadon City', 'Vermillion City', 'Seafoam Island'],   
+        'Seafoam Island': ['Fuschia City', 'Cinnabar Island'],   
+        'Cinnabar Island': ['Pallet Town', 'Volcano'],   
+        'Volcano': ['Cinnabar Island'],
+        'Indigo Plateau': [] 
+}
+
+def showMap(player):
+    pass
+
+
+
+
 def pprint(*args, **kwargs):
     print('\t\t', *args, **kwargs)
 
@@ -296,104 +347,291 @@ def pokemon_duel(player, opponent, battle='wild'):
         clearScreen()    
 
 
-routes = {
-        'Pallet Town': ['Viridian City', 'Cinnabar Island'],   
-        'Viridian City': ['Pallet Town', 'Victory Road', 'Viridian Forest'],   
-        'Victory Road': ['Viridian City', 'Indigo Plateau', 'Horizon'],   
-        'Horizon': ['Victory Road'],   
-        'Viridian Forest': ['Viridian City', 'Pewter City'],   
-        'Pewter City': ['Viridian Forest', 'Mt. Moon'],   
-        'Mt. Moon': ['Pewter City', 'Mt. Top', 'Cerulean City'],   
-        'Mt. Top': ['Mt. Moon'],   
-        'Cerulean City': ['Saffron City', 'Mt. Moon', 'Lavender Town'],   
-        'Lavender Town': ['Cerulean City', 'Vermillion City', 'Outskirts'],   
-        'Outskirts': ['Lavender Town'],   
-        'Saffron City': ['Lavender Town', 'Cerulean City', 'Vermillion City', 'Celadon City'],   
-        'Vermillion City': ['Saffron City', 'Lavender Town', 'Fuschia City'],   
-        'Celadon City': ['Saffron City', 'Fuschia City'],   
-        'Fuschia City': ['Celadon City', 'Vermillion City', 'Seafoam Island'],   
-        'Seafoam Island': ['Fuschia City', 'Cinnabar Island'],   
-        'Cinnabar Island': ['Pallet Town', 'Volcano'],   
-        'Volcano': ['Cinnabar Island'] 
-}
+def navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False):
+    pprint("+--------------------------------------------------+") 
+    sleep(1.2); pprint()
+    
+    pprint("(N)avigate to other city"); sleep(1.2)
+    pprint("(M)ap"); sleep(1.2)
+    pprint("(I)nfo of player"); sleep(1.2)
+    if hasWild:
+        pprint("(W)ild pokemon catching"); sleep(1.2)
+    if hasGym:
+        pprint("(G)ym battle"); sleep(1.2)
+    if hasShop:
+        pprint("(B)uy Stuff")
+    if hasPokecenter:
+        pprint("(P)okemon Centre")
+    pprint("(S)ave")
+    pprint("(E)xit")
+    
+    pprint()
+    pprint("+--------------------------------------------------+")
+    
+    pprint()
+    sleep(1)
+    pprint("What would you like to do? ", end='')
+    navigate = input()
+    sleep(1)
+    
+    clearScreen()
+    
+    if navigate in ['e', 'E']:
+        save_game(player)
+        sleep(1)
+        pprint("Game Saved...."); sleep(1); clearScreen()
+        pprint("We hope you would return soon...") 
+        sys.exit(0)
+    elif navigate in ['s', 'S']:
+        save_game(player)
+        sleep(1)
+        pprint("Game Saved...."); sleep(1); clearScreen()
+        return ('S', player)
+    elif navigate in ['b', 'B']:
+        return ('B', player)
+    elif navigate in ['p', 'P']:
+        return ('P', player)
+    elif navigate in ['m', 'M']:
+        showMap(player)
+        return ('M', player)
+    elif navigate in ['i', 'I']:
+        player.printTrainer(showAllpoke=True)
+        pprint()
+        pprint("Go back? (press any key and enter): ", end='')
+        input()
+        return ('I', player)
+    elif navigate in ['w', 'W'] and hasWild:
+        return ('W', player)
+    elif navigate in ['g', 'G'] and hasGym:
+        return ('G', player)
+    else:
+        currentCity = player.currentLocation
+        if currentCity == 'Indigo Plateau':
+            return ('N', player)
+        
+        pprint("|------------------------------------|")
+        for index, neighbour in enumerate(routes[currentCity], 1):
+            pprint(f"{index}) {neighbour}"); sleep(1.2)
+        pprint("|------------------------------------|")
+        pprint()
+        sleep(1.2)
+        pprint("Where would you like to Go? (Choose no. of city)", end='')
+        cityToGo = int(input())-1
+        if not (0<=cityToGo<=len(routes[currentCity])):
+            pprint(f"Invalid city. You will stay in {currentCity} only..."); sleep(3)
+            clearScreen()
+            return ('N', player)
+        else:
+            player.currentLocation = routes[currentCity][cityToGo]
+            pprint(f"Alright... Let's go to {player.currentLocation}"); sleep(3)
+            clearScreen()
+            return ('N', player)
 
 
 def palletTown(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def viridianCity(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def viridianForest(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def pewterCity(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def mtMoon(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def mtTop(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def ceruleanCity(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def vermilionCity(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def fuschiaCity(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def saffronCity(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def lavenderTown(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def outskirts(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def celadonCity(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def seafoamIsland(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def cinnabarIsland(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def volcano(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def indigoPlateau(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def victoryRoad(player):
-    return player
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
 
 
 def horizon(player):
-    return player
-
-
-
-def main_game(player):
-    return
+    while True:
+        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        if response == 'N': main_game(player)
+        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
+        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
+        elif response == 'E': sys.exit(0)
