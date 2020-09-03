@@ -218,7 +218,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                     clearScreen()
                     pprint("Escaped Successfully..."); sleep(1.8)
                     battleOver = True
-                    return None
+                    return (None, player)
                 else:
                     pprint("couldn't escape..\n\n"); sleep(1.8)
             
@@ -226,7 +226,7 @@ def pokemon_duel(player, opponent, battle='wild'):
                 if player.catchPokemon(opponent):
                     battleOver = True
                     clearScreen()
-                    return None
+                    return (None, player)
             
             if whatTodo in ['s', 'S']:
                 if not player.switchPokemon():
@@ -542,7 +542,10 @@ def wildPokemonGenerator(player, listofpokemon, minlevel=0, maxlevel=100):
     wildpokemon.npcPokemonReady(wildpokelvl)
     pprint(f"A wild {wildpokemon.name} of level {wildpokelvl} appeared..."); sleep(1.2)
     
-    pokemon_duel(player, wildpokemon)
+    winner, player = pokemon_duel(player, wildpokemon)
+    
+    if winner == None or winner == player.name: return True
+    else: return False
 
 
 def palletTown(player):
@@ -551,7 +554,13 @@ def palletTown(player):
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 0, 10)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 0, 10)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
@@ -561,179 +570,296 @@ def viridianCity(player):
         response, player = navigation_menu(player, hasGym=True, hasWild=False, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 3, 14)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 3, 14)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Viridian City'
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def viridianForest(player):
-    listofpokemons = []
+    listofpokemons = ['caterpie', 'weedle', 'pidgey', 'eevee']
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 0, 13)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 0, 15)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Viridian City'
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def pewterCity(player):
-    listofpokemons = []
+    listofpokemons = ['meowth', 'pikachu', 'pidgey', 'nidoran']
     while True:
         response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 12, 23)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 12, 23)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def mtMoon(player):
-    listofpokemons = []
+    listofpokemons = ['jigglypuff']
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 15, 30)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 15, 30)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Pewter City'
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def mtTop(player):
-    listofpokemons = []
+    listofpokemons = ['diglett', 'sandshrew', 'nidoran', 'ekans', 'zubat']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 17, 50)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 17, 50)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Pewter City'
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def ceruleanCity(player):
-    listofpokemons = []
+    listofpokemons = ['staryu', 'pidgey']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 15, 38)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 15, 38)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def vermilionCity(player):
-    listofpokemons = []
+    listofpokemons = ['sandshrew', 'growlithe']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 18, 40)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 18, 40)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def fuschiaCity(player):
-    listofpokemons = []
+    listofpokemons = ['weedle', 'nidoran', 'zubat', 'koffing']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 16, 35)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 16, 35)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def saffronCity(player):
-    listofpokemons = []
+    listofpokemons = ['abra', 'psyduck', 'meowth']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 15, 38)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 15, 38)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def lavenderTown(player):
-    listofpokemons = []
+    listofpokemons = ['gastly']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 10, 45)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 10, 45)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Cerulean City'
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def outskirts(player):
-    listofpokemons = []
+    listofpokemons = ['psyduck', 'gastly', 'vulpix', 'geodude', 'onix']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 30, 70)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 30, 70)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Cerulean City'
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def celadonCity(player):
-    listofpokemons = []
+    listofpokemons = ['scyther', 'meowth', 'bulbasaur', 'caterpie']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 10, 20)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 10, 20)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def seafoamIsland(player):
-    listofpokemons = []
+    listofpokemons = ['shelldar', 'horsea', 'staryu', 'magikarp']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 8, 19)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 8, 19)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Fuschia City'
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def cinnabarIsland(player):
-    listofpokemons = []
+    listofpokemons = ['growlithe', 'vulpix']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 30, 60)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 30, 60)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def volcano(player):
-    listofpokemons = []
+    listofpokemons = ['sandshrew', 'vulpix', 'charmander', 'diglett', 'geodude', 'magmar']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 50, 70)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 50, 70)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Cinnabar Island'
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def indigoPlateau(player):
     listofpokemons = []
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 55, 80)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 55, 80)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def victoryRoad(player):
-    listofpokemons = []
+    listofpokemons = ['pikachu', 'charmander', 'squirtle', 'bulbasaur', 'onix', 'koffing', 'magikarp', 'shelldar', 'psyduck', 'magmar', 'nidoran', 'pidgey']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 60, 80)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 60, 80)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Viridian City'
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def horizon(player):
-    listofpokemons = []
+    listofpokemons = ['gastly', 'psyduck', 'jigglypuff', 'abra']
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 70, 90)
+        elif response == 'W':   
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 70, 90)
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Viridian City'
+                player.healAllpoke()
         elif response == 'E': sys.exit(0)
-
 
 
 
