@@ -130,7 +130,7 @@ class Pokemon(object):
 	def attack(self, enemyPokemon, attackUsedInd):
 		attackUsed = self.attacks[attackUsedInd]
 		pprint()
-		pprint(f"{self.name} used {attackUsed.name}\n")
+		pprint(f"{self.name} used {attackUsed.name}")
 		sleep(1.2)
 		attackType = attackUsed.attCategory
 		enemyType = enemyPokemon.categories
@@ -149,24 +149,29 @@ class Pokemon(object):
 					enemyPokemon.health -= floor((0.3+random()*0.2)*attackUsed.damage)
 
 				if enemyType in typeAdantages[attackType]:
-					pprint("It's Super Effective !!\n")
+					pprint("It's Super Effective !!")
 					sleep(1.2)
 					enemyPokemon.health -= floor((0.6+random()*0.8)*attackUsed.damage)
 
 				elif enemyType in typeDisadantages[attackType]:
-					pprint("It's not very effective !!\n")
+					pprint("It's not very effective !!")
 					sleep(1.2)
 					enemyPokemon.health += floor((0.2+random()*0.5)*attackUsed.damage)
 
 				enemyPokemon.health -= floor(attackUsed.damage*((2.71823)**(-0.0056*enemyPokemon.defence)))
 				enemyPokemon.health = max(0, enemyPokemon.health)
-				pprint(f"Health reduced by {initialHealth - enemyPokemon.health}\n")
+				pprint(f"Health reduced by {initialHealth - enemyPokemon.health}")
 
 				if attackUsed.recoil != 0:
 					sleep(1.2)
 					pprint(f"{self.name} got a recoil of {-floor(attackUsed.recoil)}"); sleep(1.2)
 					self.health += floor(attackUsed.recoil)
 					self.health = max(0, self.health)
+     
+				if attackUsed.heal != 0:
+					sleep(1.2)
+					self.health = min(self.maxHealth, self.health + attackUsed.heal)
+					pprint(f"{self.name} healed some portion of it's health..."); sleep(1.2)
 
 			else:
 				self.health = min(self.maxHealth, self.health + attackUsed.heal)
