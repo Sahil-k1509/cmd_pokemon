@@ -103,7 +103,7 @@ def gameloop():
         else:   firstpoke = 'pikachu'
         
         pokedata = pokemonWorld[firstpoke]
-        playerPokemon = Pokemon(firstpoke, pokedata)
+        playerPokemon = Pokemon(firstpoke, pokedata, 0)
         player.pokemonInHand.append(playerPokemon)
         player.currentPokemon = playerPokemon
         
