@@ -532,6 +532,7 @@ def navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokec
             return ('N', player)
 
 def wildPokemonGenerator(player, listofpokemon, minlevel=0, maxlevel=100):
+    clearScreen()
     pprint("Searching for pokemons...", end='')
     sleep(randint(3, 8))
     pprint()
@@ -644,10 +645,12 @@ def mtMoon(player):
 
 def mtTop(player):
     listofpokemons = ['diglett', 'sandshrew', 'nidoran', 'ekans', 'zubat']
+    total = 0
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
-        if response == 'N': main_game(player)
-        elif response == 'W':   
+        pprint("What is 1 + 1 = ?", end=' ')
+        answer = input()
+        if answer == '1': total += 1
+        else:
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 17, 50)
             if not didPlayerWin:
                 pprint()
@@ -655,8 +658,24 @@ def mtTop(player):
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
                 player.currentLocation = 'Pewter City'
                 player.healAllpoke()
-        elif response == 'E': sys.exit(0)
-
+                main_game(player)
+            else: total += 1
+        
+        if total >= 3:
+            pprint("What is that ?!!!!"); sleep(2)
+            pprint("It's a pokemon! But, pokedex doesn't have it in database..."); sleep(2)
+            pprint()
+            pprint("A Legendary Articuno appeared..."); sleep(2)
+            clearScreen()
+            didPlayerWin, player = pokemon_duel(player, Articuno, battle='wild')
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Pewter City'
+                player.healAllpoke()
+                main_game(player)
+    
 
 def ceruleanCity(player):
     listofpokemons = ['staryu', 'pidgey']
@@ -798,18 +817,36 @@ def lavenderTown(player):
 
 def outskirts(player):
     listofpokemons = ['psyduck', 'gastly', 'vulpix', 'geodude', 'onix']
+    total = 0
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
-        if response == 'N': main_game(player)
-        elif response == 'W':   
-            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 30, 70)
+        pprint("What is 1 + 1 = ?", end=' ')
+        answer = input()
+        if answer == '1': total += 1
+        else:
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 30, 60)
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(1.2)
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
                 player.currentLocation = 'Cerulean City'
                 player.healAllpoke()
-        elif response == 'E': sys.exit(0)
+                main_game(player)
+            else: total += 1
+        
+        if total >= 3:
+            pprint("What is that ?!!!!"); sleep(2)
+            pprint("It's a pokemon! But, pokedex doesn't have it in database..."); sleep(2)
+            pprint()
+            pprint("A Legendary Zapdos appeared..."); sleep(2)
+            clearScreen()
+            didPlayerWin, player = pokemon_duel(player, Zapdos, battle='wild')
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Cerulean City'
+                player.healAllpoke()
+                main_game(player)
 
 
 def celadonCity(player):
@@ -892,10 +929,12 @@ def cinnabarIsland(player):
 
 def volcano(player):
     listofpokemons = ['sandshrew', 'vulpix', 'charmander', 'diglett', 'geodude', 'magmar']
+    total = 0
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
-        if response == 'N': main_game(player)
-        elif response == 'W':   
+        pprint("What is 1 + 1 = ?", end=' ')
+        answer = input()
+        if answer == '1': total += 1
+        else:
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 50, 70)
             if not didPlayerWin:
                 pprint()
@@ -903,8 +942,24 @@ def volcano(player):
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
                 player.currentLocation = 'Cinnabar Island'
                 player.healAllpoke()
-        elif response == 'E': sys.exit(0)
-
+                main_game(player)
+            else: total += 1
+        
+        if total >= 3:
+            pprint("What is that ?!!!!"); sleep(2)
+            pprint("It's a pokemon! But, pokedex doesn't have it in database..."); sleep(2)
+            pprint()
+            pprint("A Legendary Moltres appeared..."); sleep(2)
+            clearScreen()
+            didPlayerWin, player = pokemon_duel(player, Moltres, battle='wild')
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Cinnabar Island'
+                player.healAllpoke()
+                main_game(player)
+    
 
 def indigoPlateau(player):
     while True:
@@ -930,26 +985,44 @@ def victoryRoad(player):
 
 
 def horizon(player):
-    listofpokemons = ['gastly', 'psyduck', 'jigglypuff', 'abra']
+    listofpokemons = ['gastly', 'psyduck', 'jigglypuff', 'abra']        
+    total = 0
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
-        if response == 'N': main_game(player)
-        elif response == 'W':   
+        pprint("What is 1 + 1 = ?", end=' ')
+        answer = input()
+        if answer == '1': total += 1
+        else:
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 70, 90)
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(1.2)
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
-                player.currentLocation = 'Viridian City'
+                player.currentLocation = 'Viridian Island'
                 player.healAllpoke()
-        elif response == 'E': sys.exit(0)
+                main_game(player)
+            else: total += 1
+        
+        if total >= 3:
+            pprint("What is that ?!!!!"); sleep(2)
+            pprint("It's a pokemon! But, pokedex doesn't have it in database..."); sleep(2)
+            pprint()
+            pprint("A Mythical 'Selmon Jong Un' appeared..."); sleep(2)
+            clearScreen()
+            didPlayerWin, player = pokemon_duel(player, SelmonJongUn, battle='wild')
+            if not didPlayerWin:
+                pprint()
+                pprint("All your pokemons have fainted..."); sleep(1.2)
+                pprint("You went to nearest pokecentre..."); sleep(1.2)
+                player.currentLocation = 'Viridian Island'
+                player.healAllpoke()
+                main_game(player)
 
 
 
 def main_game(player):
     # pprint(player)
     # pprint(player.currentLocation)
-
+    clearScreen()
     
     if player.currentLocation == 'Pallet Town': palletTown(player)
     elif player.currentLocation == 'Viridian City': viridianCity(player)
