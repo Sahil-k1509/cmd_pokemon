@@ -77,7 +77,6 @@ class PokemonTrainer(object):
             pprint(f"Current Pokemon:"); sleep(1.2)
             self.currentPokemon.printPokemon()
             sleep(2)
-            print(nonzerohp)
             
             if nonzerohp == 0: return False
             chosen = False
