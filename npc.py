@@ -62,7 +62,7 @@ surgep1 = pokemonWorld['pikachu']
 
 surgep1 = Pokemon('pikachu', surgep1, level=0)
 
-surgep1.npcPokemonReady(maxlevel=21)
+surgep1.npcPokemonReady(maxlevel=24)
 surgep1.useStone('thunderstone', playertype='npc')
 
 Surge = PokemonTrainer('Surge', kind='npc', money=20000, startingPokemons=[surgep1])
@@ -70,73 +70,67 @@ Surge.currentPokemon = Surge.pokemonInHand[0]
 
 
 # Code Erika 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+erikap1 = pokemonWorld['bulbasaur']
+erikap2 = pokemonWorld['oddish']
 
-brockp1 = Pokemon('geodude', brockp1, level=0)
-brockp2 = Pokemon('onix', brockp2, level=0)
+erikap1 = Pokemon('bulbasaur', erikap1, level=0)
+erikap2 = Pokemon('oddish', erikap2, level=0)
 
-brockp1.npcPokemonReady(maxlevel=4)
-brockp2.npcPokemonReady(maxlevel=7)
+erikap1.npcPokemonReady(maxlevel=29)
+erikap2.npcPokemonReady(maxlevel=30)
 
-Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
-Brock.currentPokemon = Brock.pokemonInHand[0]
+Erika = PokemonTrainer('Erika', kind='npc', money=24000, startingPokemons=[erikap1, erikap2])
+Erika.currentPokemon = Erika.pokemonInHand[0]
 
 
 # Code Koga 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+kogap1 = pokemonWorld['ekans']
+kogap2 = pokemonWorld['zubat']
 
-brockp1 = Pokemon('geodude', brockp1, level=0)
-brockp2 = Pokemon('onix', brockp2, level=0)
+kogap1 = Pokemon('ekans', kogap1, level=0)
+kogap2 = Pokemon('zubat', kogap2, level=0)
 
-brockp1.npcPokemonReady(maxlevel=4)
-brockp2.npcPokemonReady(maxlevel=7)
+kogap1.npcPokemonReady(maxlevel=26)
+kogap2.npcPokemonReady(maxlevel=32)
 
-Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
-Brock.currentPokemon = Brock.pokemonInHand[0]
+Koga = PokemonTrainer('Koga', kind='npc', money=40000, startingPokemons=[kogap1, kogap2])
+Koga.currentPokemon = Koga.pokemonInHand[0]
 
 
 # Code Sabrina 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+sabrinap1 = pokemonWorld['abra']
 
-brockp1 = Pokemon('geodude', brockp1, level=0)
-brockp2 = Pokemon('onix', brockp2, level=0)
+sabrinap1 = Pokemon('geodude', sabrinap1, level=0)
 
-brockp1.npcPokemonReady(maxlevel=4)
-brockp2.npcPokemonReady(maxlevel=7)
+sabrinap1.npcPokemonReady(maxlevel=40)
 
-Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
-Brock.currentPokemon = Brock.pokemonInHand[0]
+Sabrina = PokemonTrainer('Sabrina', kind='npc', money=51000, startingPokemons=[sabrinap1])
+Sabrina.currentPokemon = Sabrina.pokemonInHand[0]
 
 
 # Code Blaine 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+blainep1 = pokemonWorld['magmar']
 
-brockp1 = Pokemon('geodude', brockp1, level=0)
-brockp2 = Pokemon('onix', brockp2, level=0)
+blainep1 = Pokemon('magmar', blainep1, level=0)
 
-brockp1.npcPokemonReady(maxlevel=4)
-brockp2.npcPokemonReady(maxlevel=7)
+blainep1.npcPokemonReady(maxlevel=52)
 
-Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
-Brock.currentPokemon = Brock.pokemonInHand[0]
+Blaine = PokemonTrainer('Blaine', kind='npc', money=69000, startingPokemons=[blainep1])
+Blaine.currentPokemon = Blaine.pokemonInHand[0]
 
 
 # Code Giovanni 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+giovannip1 = pokemonWorld['geodude']
+giovannip2 = pokemonWorld['nidoran']
 
-brockp1 = Pokemon('geodude', brockp1, level=0)
-brockp2 = Pokemon('onix', brockp2, level=0)
+giovannip1 = Pokemon('geodude', giovannip1, level=0)
+giovannip2 = Pokemon('nidoran', giovannip2, level=0)
 
-brockp1.npcPokemonReady(maxlevel=4)
-brockp2.npcPokemonReady(maxlevel=7)
+giovannip1.npcPokemonReady(maxlevel=61)
+giovannip2.npcPokemonReady(maxlevel=70)
 
-Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
-Brock.currentPokemon = Brock.pokemonInHand[0]
+Giovanni = PokemonTrainer('Giovanni', kind='npc', money=90000, startingPokemons=[giovannip1, giovannip2])
+Giovanni.currentPokemon = Giovanni.pokemonInHand[0]
 
 
 # Code Lorelei 

@@ -582,13 +582,13 @@ def viridianCity(player):
 
 
 def viridianForest(player):
-    listofpokemons = ['caterpie', 'weedle', 'pidgey', 'eevee']
+    listofpokemons = ['caterpie', 'weedle', 'pidgey', 'eevee', 'oddish']
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W':   
-            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 0, 15)
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 0, 11)
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(1.2)
