@@ -2,13 +2,13 @@ from random import choice
 from player import PokemonTrainer
 from pokeworld import pokemonWorld, small_pokemons, legendary_pokemons
 from pokemon import Pokemon
-
+from copy import deepcopy
 
 # Legendary Pokemons
-zapdosData = pokemonWorld['zapdos']
-moltresData = pokemonWorld['moltres']
-articunoData = pokemonWorld['articuno']
-sjuData = pokemonWorld['selmon jong un']
+zapdosData =  deepcopy(pokemonWorld['zapdos'])
+moltresData =  deepcopy(pokemonWorld['moltres'])
+articunoData = deepcopy(pokemonWorld['articuno'])
+sjuData = deepcopy(pokemonWorld['selmon jong un'])
 
 Zapdos = Pokemon('zapdos', zapdosData, 0)
 Moltres = Pokemon('moltres', moltresData, 0)
@@ -23,15 +23,15 @@ SelmonJongUn.npcPokemonReady(100)
 
 # Code Garry 
 garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
+garyPok = deepcopy(pokemonWorld[garyPokname])
 garyPok = Pokemon(garyPokname, garyPok, level=0)
 Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
 Gary.currentPokemon = Gary.pokemonInHand[0]
 
 
 # Code Brock
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -44,8 +44,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Misty 
-mistyp1 = pokemonWorld['staryu']
-mistyp2 = pokemonWorld['staryu']
+mistyp1 = deepcopy(pokemonWorld['staryu'])
+mistyp2 = deepcopy(pokemonWorld['staryu'])
 
 mistyp1 = Pokemon('staryu', mistyp1, level=0)
 mistyp2 = Pokemon('staryu', mistyp2, level=0)
@@ -58,7 +58,7 @@ Misty.currentPokemon = Misty.pokemonInHand[0]
 
 
 # Code Lt. Surge 
-surgep1 = pokemonWorld['pikachu']
+surgep1 = deepcopy(pokemonWorld['pikachu'])
 
 surgep1 = Pokemon('pikachu', surgep1, level=0)
 
@@ -67,11 +67,12 @@ surgep1.useStone('thunderstone', playertype='npc')
 
 Surge = PokemonTrainer('Surge', kind='npc', money=20000, startingPokemons=[surgep1])
 Surge.currentPokemon = Surge.pokemonInHand[0]
+surgep1.displayStats(trainer="player's")
 
 
 # Code Erika 
-erikap1 = pokemonWorld['bulbasaur']
-erikap2 = pokemonWorld['oddish']
+erikap1 = deepcopy(pokemonWorld['bulbasaur'])
+erikap2 = deepcopy(pokemonWorld['oddish'])
 
 erikap1 = Pokemon('bulbasaur', erikap1, level=0)
 erikap2 = Pokemon('oddish', erikap2, level=0)
@@ -84,8 +85,8 @@ Erika.currentPokemon = Erika.pokemonInHand[0]
 
 
 # Code Koga 
-kogap1 = pokemonWorld['ekans']
-kogap2 = pokemonWorld['zubat']
+kogap1 = deepcopy(pokemonWorld['ekans'])
+kogap2 = deepcopy(pokemonWorld['zubat'])
 
 kogap1 = Pokemon('ekans', kogap1, level=0)
 kogap2 = Pokemon('zubat', kogap2, level=0)
@@ -98,7 +99,7 @@ Koga.currentPokemon = Koga.pokemonInHand[0]
 
 
 # Code Sabrina 
-sabrinap1 = pokemonWorld['abra']
+sabrinap1 = deepcopy(pokemonWorld['abra'])
 
 sabrinap1 = Pokemon('geodude', sabrinap1, level=0)
 
@@ -109,7 +110,7 @@ Sabrina.currentPokemon = Sabrina.pokemonInHand[0]
 
 
 # Code Blaine 
-blainep1 = pokemonWorld['magmar']
+blainep1 = deepcopy(pokemonWorld['magmar'])
 
 blainep1 = Pokemon('magmar', blainep1, level=0)
 
@@ -120,8 +121,8 @@ Blaine.currentPokemon = Blaine.pokemonInHand[0]
 
 
 # Code Giovanni 
-giovannip1 = pokemonWorld['geodude']
-giovannip2 = pokemonWorld['nidoran']
+giovannip1 = deepcopy(pokemonWorld['geodude'])
+giovannip2 = deepcopy(pokemonWorld['nidoran'])
 
 giovannip1 = Pokemon('geodude', giovannip1, level=0)
 giovannip2 = Pokemon('nidoran', giovannip2, level=0)
@@ -135,8 +136,8 @@ Giovanni.currentPokemon = Giovanni.pokemonInHand[0]
 
 '''
 # Code Lorelei 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -149,8 +150,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Bruno 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -163,8 +164,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Agatha 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -177,8 +178,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Lance 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -191,8 +192,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Champion Indigo 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -205,8 +206,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Jessie 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -219,8 +220,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code James 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -233,8 +234,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Trainer Josh 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -247,8 +248,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Trainer Lee 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -261,8 +262,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Trainer Mojo 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -275,8 +276,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Pokemon master Joe 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -289,8 +290,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Pokemon master Kira 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)
@@ -303,8 +304,8 @@ Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Pokemon master Sting 
-brockp1 = pokemonWorld['geodude']
-brockp2 = pokemonWorld['onix']
+brockp1 = deepcopy(pokemonWorld['geodude'])
+brockp2 = deepcopy(pokemonWorld['onix'])
 
 brockp1 = Pokemon('geodude', brockp1, level=0)
 brockp2 = Pokemon('onix', brockp2, level=0)

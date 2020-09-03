@@ -256,7 +256,8 @@ class Pokemon(object):
 	def visitPokemonCentre(self):
 		self.health = self.maxHealth
 		for attack in self.attacks:
-			attack.count = attack.maxcount
+			if attack is not None:
+				attack.count = attack.maxcount
 
  
 	def npcPokemonReady(self, maxlevel):
