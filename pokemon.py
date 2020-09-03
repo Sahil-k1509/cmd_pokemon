@@ -37,7 +37,6 @@ class Pokemon(object):
 		self.speed += randint(0, 5)
 		self.experience = self.experience - self.nextLevelAt
 		self.nextLevelAt = self.experienceChart[self.level + 1] if self.level < 100 else None
-  
 		if playertype is None:
 			pprint(f"{self.name} levelled up...\n"); sleep(1.3)
 			pprint(f"Current level: {self.level}"); sleep(1.3)
@@ -49,7 +48,7 @@ class Pokemon(object):
     
 		if self.evolveAt is not None:
 			if self.level >= self.evolveAt:
-				self.evolvePokemon()
+				self.evolvePokemon(playertype)
 
 		if len(self.learnableAttacks) != 0:
 			if self.level >= self.learningCheckpoints[self.newAttackAt]:
@@ -67,16 +66,16 @@ class Pokemon(object):
 
 
 	def learnNewAttack(self, playertype=None):
-		sleep(1.5)
 		attackToLearn = self.learnableAttacks.pop()
-
 		if not all(self.attacks):
 			if playertype is None:
+				sleep(1.5)			
 				pprint(f"{self.name} learnt {attackToLearn.name}"); sleep(1)
 			indNone = self.attacks.index(None)
 			self.attacks[indNone] = attackToLearn
 		else:
 			if playertype is None:
+				sleep(1.5)
 				pprint(self.name, 'wants to learn', attackToLearn.name, end='\n')
 				sleep(1)
 				pprint('CURRENT ATTACKS: '); sleep(1)
@@ -107,12 +106,13 @@ class Pokemon(object):
 
 		if playertype is None:
 			sleep(1.2)
-			pprint("\nWhat is happening !!!!\n")
-			sleep(1.5)
-			pprint(self.name, 'is evolving....\n')
-			sleep(1)
+			pprint()
+			pprint("What is happening !!!!")
+			sleep(2.5)
+			pprint(self.name, 'is evolving....')
+			sleep(2)
 			pprint(self.name, 'has evolved into', self.evolveTo)
-			sleep(1.2)
+			sleep(2.2)
 			pprint()
 
 		self.name = self.evolveTo
@@ -253,15 +253,61 @@ class Pokemon(object):
 			attack.count = attack.maxcount
 
  
-	# def npcPokemonReady(self):
+	def npcPokemonReady(self, maxlevel):
+		for _ in range(maxlevel+1):
+			self.updateLevel(playertype='npc')
 	# 	self.updateLevel(playertype='npc')
 	# 	self.updateLevel(playertype='npc')
+ 
+ 
+	def useStone(self, stonetype, playertype=None):
+		sleep(1)
+		if self.name == 'pikachu':
+			if self.level >= 18: 
+				if stonetype == 'thunderstone':
+					if playertype is None:
+						pprint(f"You used {stonetype} to evolve {self.name} into {self.evolveTo}"); sleep(1.2)
+					self.evolvePokemon(playertype)
+				else: pprint(f"{stonetype} can't be used on {self.name}"); sleep(1.2)
+			else: pprint(f"{self.name} can't be evolved at this level. Train it more..."); sleep(1.2)
+		elif self.name == 'eevee':
+			if self.level >= 10:
+				if stonetype == 'thunderstone':
+					self.evolveTo = 'jolteon'
+					
+					if playertype is None:
+						pprint(f"You used {stonetype} to evolve {self.name} into {self.evolveTo}")
+      	
+					self.evolvePokemon(playertype)
+     
+				elif stonetype == 'waterstone':
+					self.evolveTo = 'vaporeon'
+					
+					if playertype is None:
+						pprint(f"You used {stonetype} to evolve {self.name} into {self.evolveTo}")
+      
+					self.evolvePokemon(playertype)
+
+				elif stonetype == 'firestone':
+					self.evolveTo = 'flareon'
+					
+					if playertype is None:
+						pprint(f"You used {stonetype} to evolve {self.name} into {self.evolveTo}")
+      
+					self.evolvePokemon(playertype)
+
+				else: pprint(f"{stonetype} can't be used on {self.name}."); sleep(1.2)
+    
+			else: pprint(f"{self.name} can't be evolved at this level. Train it more..."); sleep(1.2)
+				
  
 
 # for i in range(100):
 #     p = Pokemon('jabba', pokemonWorld['pikachu'], i)
 #     pprint(p.maxHealth)
-# p = Pokemon('jabba', pokemonWorld['pikachu'], 0)
+# p = Pokemon('eevee', pokemonWorld['eevee'], 10)
+# p.useStone('waterstone')
+
 # pprint(p.experienceChart)
 
 # for i in range(3,20):

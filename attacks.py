@@ -36,10 +36,10 @@ class Attack(object):
             return floor(baseDamage + 5*(self.pLevel/2 + (1 - random())/3)**(1.2))
 
     def printAttack(self):
-        pprint('|-----------------------------------------------------------------------------------------')
+        pprint('|----------------------------------------------------------------------------')
         pprint(f"| Attack: {self.name:15} | Type:   {self.attCategory:10} | Damage: {self.damage:5} | Count: {self.count:3}")
         pprint(f"| Heal:   {self.heal:15} | Recoil: {self.recoil:10} | Accuracy: {self.accuracy}")
-        pprint('|-----------------------------------------------------------------------------------------')
+        pprint('|----------------------------------------------------------------------------')
         
         
 # a = Attack('pe', 'c', 5, 0, 9)

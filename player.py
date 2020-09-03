@@ -16,9 +16,51 @@ class PokemonTrainer(object):
         self.currentPokemon = None
         self.pokeballs = pokeballs
         self.currentLocation = currentLocation
-        self.items = []
+        self.items = {}
         self.badges = []
         self.money = money
+        
+    def archiveExchange(self):
+        sleep(1.2)
+        if len(self.archivePokemons) == 0:
+            pprint("You don't have any pokemon in archive..."); sleep(1)
+            return
+        pprint("Pokemons in archive: ")
+        sleep(1.2)
+        for index, pokemon in enumerate(self.archivePokemons):
+                pprint(index+1, end=') ')
+                pokemon.printPokemon()
+                if pokemon.health > 0: nonzerohp+=1
+                sleep(1.2)
+        pprint()
+        pprint("Pokemon in Hand: ")
+        for index, pokemon in enumerate(self.pokemonInHand):
+                pprint(index+1, end=') ')
+                pokemon.printPokemon()
+                sleep(1.2)
+                
+        pprint()
+        pprint("Select index of pokemon from archive: ", end=''); sleep(1.2)
+        archiveIndex = int(input())-1
+                
+        pprint()
+        pprint("Select index of pokemon from hand: ", end=''); sleep(1.2)
+        handIndex = int(input())-1
+        
+        if not (0 <= archiveIndex < len(self.archivePokemons)):
+            pprint("You don't have pokemon at that index in archive..."); sleep(1.2)
+            return 
+        
+        if not (0 <= handIndex < len(self.pokemonInHand)):
+            pprint("You don't have pokemon at that index in hand..."); sleep(1.2)
+            return 
+        
+        pprint("Pokemon Changed Succesfully..."); sleep(1.2)
+        self.pokemonInHand[handIndex], self.archivePokemons[archiveIndex] = self.archivePokemons[archiveIndex], self.pokemonInHand[handIndex]
+        
+        self.switchPokemon()
+        
+        return        
         
         
     def switchPokemon(self):
@@ -40,7 +82,7 @@ class PokemonTrainer(object):
             
             chosen = False
             while not chosen:
-                newCurrentPoke = int(input("\t\tWhich pokemon would you like to choose? "))-1
+                newCurrentPoke = int(input("\t\tWhich pokemon would you like to choose as current Pokemon? "))-1
                 if 0 <= newCurrentPoke < len(self.pokemonInHand):
                     if self.pokemonInHand[newCurrentPoke].health > 0:
                         self.currentPokemon = self.pokemonInHand[newCurrentPoke]
@@ -92,7 +134,7 @@ class PokemonTrainer(object):
     
     def printTrainer(self, showAllpoke=False):
         if self.kind == 'player':
-            pprint("+-----------------------------------------------------+"); sleep(1.2) 
+            pprint("+--------------------------------------------------------------------------+"); sleep(1.2) 
             pprint()
             pprint(f"Name: {self.name}"); sleep(1.2)
             pprint(f"Current Pokemon: {self.currentPokemon.name}"); sleep(1.2)
@@ -107,12 +149,18 @@ class PokemonTrainer(object):
                     pokemon.displayStats(detailed=True); sleep(1)
             
             pprint()
-            pprint("+-----------------------------------------------------+")
+            pprint("+--------------------------------------------------------------------------+")
         else:
             pprint("+-----------------------------------------------------+"); sleep(1.2) 
             pprint()
             pprint(f"Name: {self.name}"); sleep(1.2)
             pprint(f"Number of pokemons: {len(self.pokemonInHand)}"); sleep(1.2)
-            pprint(f"Money: {self.money}"); sleep(1.2)
+            pprint(f"Money: $ {self.money}"); sleep(1.2)
             pprint()
             pprint("+-----------------------------------------------------+")
+            
+    def healAllpoke(self):
+        sleep(1.2)
+        pprint("All your pokemons have been healed..."); sleep(1.2)
+        for pokemon in self.pokemonInHand:
+            pokemon.visitPokemonCentre()

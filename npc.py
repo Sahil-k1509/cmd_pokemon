@@ -13,168 +13,293 @@ Gary.currentPokemon = Gary.pokemonInHand[0]
 
 
 # Code Brock
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=5000, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Misty 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+mistyp1 = pokemonWorld['staryu']
+mistyp2 = pokemonWorld['staryu']
+
+mistyp1 = Pokemon('staryu', mistyp1, level=0)
+mistyp2 = Pokemon('staryu', mistyp2, level=0)
+
+mistyp1.npcPokemonReady(maxlevel=12)
+mistyp2.npcPokemonReady(maxlevel=19)
+
+Misty = PokemonTrainer('Misty', kind='npc', money=16000, startingPokemons=[mistyp1, mistyp2])
+Misty.currentPokemon = Misty.pokemonInHand[0]
 
 
 # Code Lt. Surge 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+surgep1 = pokemonWorld['pikachu']
+
+surgep1 = Pokemon('pikachu', surgep1, level=0)
+
+surgep1.npcPokemonReady(maxlevel=21)
+surgep1.useStone('thunderstone', playertype='npc')
+
+Surge = PokemonTrainer('Surge', kind='npc', money=20000, startingPokemons=[surgep1])
+Surge.currentPokemon = Surge.pokemonInHand[0]
 
 
 # Code Erika 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Koga 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Sabrina 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Blaine 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Giovanni 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Lorelei 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Bruno 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Agatha 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Lance 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Champion Indigo 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Jessie 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code James 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Trainer Josh 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Trainer Lee 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Trainer Mojo 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Pokemon master Joe 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Pokemon master Kira 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
 
 
 # Code Pokemon master Sting 
-garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
-garyPok = pokemonWorld[garyPokname]
-garyPok = Pokemon(garyPokname, garyPok, level=0)
-Gary = PokemonTrainer('Gary', kind='npc', money=400, startingPokemons=[garyPok])
-Gary.currentPokemon = Gary.pokemonInHand[0]
+brockp1 = pokemonWorld['geodude']
+brockp2 = pokemonWorld['onix']
+
+brockp1 = Pokemon('geodude', brockp1, level=0)
+brockp2 = Pokemon('onix', brockp2, level=0)
+
+brockp1.npcPokemonReady(maxlevel=4)
+brockp2.npcPokemonReady(maxlevel=7)
+
+Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
+Brock.currentPokemon = Brock.pokemonInHand[0]
+

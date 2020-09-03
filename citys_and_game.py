@@ -38,6 +38,26 @@ routes = {
         'Indigo Plateau': [] 
 }
 
+
+def pprint(*args, **kwargs):
+    print('\t\t', *args, **kwargs)
+
+def clearScreen():
+    if OSname == 'nt': OSsys('cls')
+    else: OSsys('clear')
+    pprint()
+    pprint()
+
+def save_game(player):
+    with open('pokemon_progress.pkl', 'wb') as output:
+        pickle.dump(player, output, pickle.HIGHEST_PROTOCOL)
+                
+def load_game():
+    with open('pokemon_progress.pkl', 'rb') as inputf:
+        player = pickle.load(inputf)
+    return player
+
+
 def showMap(player):
     sleep(1)
     pprint()
@@ -47,7 +67,7 @@ def showMap(player):
     pprint(r"                                                      Volcano      "); sleep(0.2)
     pprint(r"                                                         |         "); sleep(0.2)
     pprint(r"                                                         |         "); sleep(0.2)
-    pprint(r"Indigo Plateau        Pallet . . . . . . . . . .  Cinnabar Island  "); sleep(0.2)
+    pprint(r"Indigo Plateau     Pallet Town . . . . . . . . .  Cinnabar Island  "); sleep(0.2)
     pprint(r"     |                  |                                .         "); sleep(0.2)
     pprint(r"     |                  |                                .         "); sleep(0.2)
     pprint(r"Victory Road ------ Viridian City                 Seafoam Island   "); sleep(0.2)
@@ -74,27 +94,94 @@ def showMap(player):
     pprint()
         
     pprint(f"Current Location: {player.currentLocation}"); sleep(1)
-    pprint("Go back? (press enter): ", end='')
+    pprint("Go back? (press enter) ", end='')
     input()
     return
 
-
-def pprint(*args, **kwargs):
-    print('\t\t', *args, **kwargs)
-
-def clearScreen():
-    if OSname == 'nt': OSsys('cls')
-    else: OSsys('clear')
+def openShop(player):
+    shopitems = {1 :['thunderstone', 1000], 2: ['waterstone', 1000], 3: ['firestone', 1200], 4: ['pokeballs', 100]}
+    pprint(f"Welcome to the shop {player.name}. What would you like to buy?"); sleep(1.2)
+    
+    pprint("+--------------------------------------------------+")
+    pprint(); sleep(1.2)
+    
+    for index, item in shopitems.items():
+        pprint(f"{index}) {item[0]} : $ {item[1]}"); sleep(0.5)
+        
+    pprint(); sleep(1.2)
+    pprint("+--------------------------------------------------+")
     pprint()
-    pprint()
+    pprint(f"Money left: $ {player.money}")
+    pprint("Enter the index of item you want: ", end='')
+    try: 
+        itemwantIndex = int(input())
+    except Exception:
+        return player
+    
+    sleep(1)
+    if shopitems.get(itemwantIndex, -1) ==  -1:
+        pprint("Sorry, we don't have that item. Please visit later..."); sleep(1.2)
+        return player
+    else:
+        pprint("How much do you want? ", end='')
+        try:
+            count = int(input())
+        except Exception:
+            return player
+        sleep(2)
+        if shopitems[itemwantIndex][1]*count > player.money:
+            pprint("You don't have enough money. Please come back later..."); sleep(1.2)
+            return player
+         
+        pprint(f"You received {count} {shopitems[itemwantIndex][0]} for $ {shopitems[itemwantIndex][1]*count}")
+        player.money -= shopitems[itemwantIndex][1]*count
+        
+        if shopitems[itemwantIndex][0] == 'pokeballs': player.pokeballs += count
+        else: player.items[shopitems[itemwantIndex][0]] = player.items.get(shopitems[itemwantIndex][0], 0) + count
+        
+        return player
 
-def save_game(player):
-    with open('pokemon_progress.pkl', 'wb') as output:
-        pickle.dump(player, output, pickle.HIGHEST_PROTOCOL)
+def useItem(player): 
+    itemsUsableTemp = {}
+    if len(player.items) == 0:
+        pprint("You don't have any items to use..."); sleep(1)
+        return player
+    pprint("+----------------------------------------------+"); sleep(1.2); pprint()
+    for index, item in enumerate(player.items.items(), 1):
+        pprint(f"{index}) {item[0]} : {item[1]} left"); sleep(0.5)
+        itemsUsableTemp[index] = item[0]
+    sleep(1.2); pprint()
+    pprint("+----------------------------------------------+")
+    pprint()
+    pprint("Choose index of item to use: ", end='')
+    itemIndex = int(input())
+     
+    if itemsUsableTemp.get(itemIndex, -1) == -1:
+        pprint("This is not a valid item..."); sleep(1)
+        return player
+    elif player.items[itemsUsableTemp[itemIndex]] <= 0:
+        pprint("You don't have that item left anymore..."); sleep(1)
+        return player
+    
+    if itemsUsableTemp[itemIndex] in ['thunderstone', 'waterstone', 'firestone']:
+        
+        pprint("Pokemon in Hand: ")
+        for index, pokemon in enumerate(player.pokemonInHand):
+                pprint(index+1, end=') ')
+                pokemon.printPokemon()
+                sleep(1)
                 
-def load_game():
-    with open('pokemon_progress.pkl', 'rb') as inputf:
-        player = pickle.load(inputf)
+        pprint()
+        pprint("Select index of pokemon from hand: ", end=''); sleep(1.2)
+        handIndex = int(input())-1
+        
+        if not (0 <= handIndex < len(player.pokemonInHand)):
+            pprint("You don't have pokemon at that index in hand..."); sleep(1.2)
+            return player
+        
+        player.pokemonInHand[handIndex].useStone(stonetype=itemsUsableTemp[itemIndex])
+        player.items[itemsUsableTemp[itemIndex]] -= 1
+        
     return player
 
 def pokemon_duel(player, opponent, battle='wild'):
@@ -356,22 +443,24 @@ def pokemon_duel(player, opponent, battle='wild'):
         clearScreen()    
 
 def navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False):
+    clearScreen()
     pprint("+--------------------------------------------------+") 
     sleep(1.2); pprint()
     
     pprint("(N)avigate to other city"); sleep(1.2)
     pprint("(M)ap"); sleep(1.2)
     pprint("(I)nfo of player"); sleep(1.2)
+    pprint("(U)se item"); sleep(1.2)
     if hasWild:
         pprint("(W)ild pokemon catching"); sleep(1.2)
     if hasGym:
         pprint("(G)ym battle"); sleep(1.2)
     if hasShop:
-        pprint("(B)uy Stuff")
+        pprint("(B)uy Stuff"); sleep(1.2)
     if hasPokecenter:
-        pprint("(P)okemon Centre")
-    pprint("(S)ave")
-    pprint("(E)xit")
+        pprint("(P)okemon Centre"); sleep(1.2)
+    pprint("(S)ave"); sleep(1.2)
+    pprint("(E)xit"); sleep(1.2)
     
     pprint()
     pprint("+--------------------------------------------------+")
@@ -395,8 +484,19 @@ def navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokec
         sleep(1)
         pprint("Game Saved...."); sleep(1); clearScreen()
         return ('S', player)
-    elif navigate in ['b', 'B']:    return ('B', player)
-    elif navigate in ['p', 'P']:    return ('P', player)
+    elif navigate in ['u', 'U']:
+        player = useItem(player)
+        return ('U', player)
+    elif navigate in ['b', 'B'] and hasShop:    
+        player = openShop(player)
+        return ('B', player)
+    elif navigate in ['p', 'P'] and hasPokecenter: 
+        pprint("Welcome to pokemon centre..."); sleep(1.2)   
+        player.healAllpoke()
+        pprint("Do you want to exchange any pokemons from your current hand to any of your pokemon in archive? (y/n): ", end='')
+        d = input()
+        if d in ['y', 'Y']: player.archiveExchange()
+        return ('P', player)
     elif navigate in ['m', 'M']:
         showMap(player)
         return ('M', player)
@@ -431,213 +531,188 @@ def navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokec
             clearScreen()
             return ('N', player)
 
+def wildPokemonGenerator(player, listofpokemon, minlevel=0, maxlevel=100):
+    pprint("Searching for pokemons...", end='')
+    sleep(randint(3, 8))
+    pprint()
+    randpoke = choice(listofpokemon)
+    randpokedata = pokemonWorld[randpoke]
+    wildpokelvl = randint(minlevel, maxlevel)
+    wildpokemon = Pokemon(randpoke, randpokedata, level=0)
+    wildpokemon.npcPokemonReady(wildpokelvl)
+    pprint(f"A wild {wildpokemon.name} of level {wildpokelvl} appeared..."); sleep(1.2)
+    
+    pokemon_duel(player, wildpokemon)
+
 
 def palletTown(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def viridianCity(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=True, hasWild=False, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def viridianForest(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def pewterCity(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def mtMoon(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def mtTop(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def ceruleanCity(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def vermilionCity(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def fuschiaCity(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def saffronCity(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def lavenderTown(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def outskirts(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def celadonCity(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def seafoamIsland(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def cinnabarIsland(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def volcano(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def indigoPlateau(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def victoryRoad(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
 def horizon(player):
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False)
+        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
-        elif response == 'B': pprint(f"Visited shop of {player.currentLocation}")
-        elif response == 'P': pprint(f"Visited pokemon centre of {player.currentLocation}")
         elif response == 'E': sys.exit(0)
 
 
