@@ -27,8 +27,9 @@ class Pokemon(object):
 		self.evolveTo = pokedata['evolveTo']
 		self.experience = 0
 		self.nextLevelAt = self.experienceChart[self.level + 1]
-		self.attacks = pokedata['startAttacks']
-		self.learnableAttacks = pokedata['learnableAttacks']
+		self.attacks = pokedata['startAttacks'][:]
+		self.learnableAttacks = pokedata['learnableAttacks'][:]
+		pprint(self.attacks)
 
 	def updateLevel(self, playertype=None):
 		self.level += 1
