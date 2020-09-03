@@ -445,22 +445,22 @@ def pokemon_duel(player, opponent, battle='wild'):
 def navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False):
     clearScreen()
     pprint("+--------------------------------------------------+") 
-    sleep(1.2); pprint()
+    sleep(0.8); pprint()
     
-    pprint("(N)avigate to other city"); sleep(1.2)
-    pprint("(M)ap"); sleep(1.2)
-    pprint("(I)nfo of player"); sleep(1.2)
-    pprint("(U)se item"); sleep(1.2)
+    pprint("(N)avigate to other city"); sleep(0.8)
+    pprint("(M)ap"); sleep(0.8)
+    pprint("(I)nfo of player"); sleep(0.8)
+    pprint("(U)se item"); sleep(0.8)
     if hasWild:
-        pprint("(W)ild pokemon catching"); sleep(1.2)
+        pprint("(W)ild pokemon catching"); sleep(0.8)
     if hasGym:
-        pprint("(G)ym battle"); sleep(1.2)
+        pprint("(G)ym battle"); sleep(0.8)
     if hasShop:
-        pprint("(B)uy Stuff"); sleep(1.2)
+        pprint("(B)uy Stuff"); sleep(0.8)
     if hasPokecenter:
-        pprint("(P)okemon Centre"); sleep(1.2)
-    pprint("(S)ave"); sleep(1.2)
-    pprint("(E)xit"); sleep(1.2)
+        pprint("(P)okemon Centre"); sleep(0.8)
+    pprint("(S)ave"); sleep(0.8)
+    pprint("(E)xit"); sleep(0.8)
     
     pprint()
     pprint("+--------------------------------------------------+")
@@ -513,14 +513,16 @@ def navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokec
         if currentCity == 'Indigo Plateau':
             return ('N', player)
         
-        pprint("|------------------------------------|")
+        pprint("|------------------------------------|"); pprint()
         for index, neighbour in enumerate(routes[currentCity], 1):
-            pprint(f"{index}) {neighbour}"); sleep(1.2)
-        pprint("|------------------------------------|")
+            pprint(f"{index}) {neighbour}"); sleep(0.8)
         pprint()
-        sleep(1.2)
-        pprint("Where would you like to Go? (Choose no. of city)", end='')
+        pprint("|------------------------------------|"); pprint()
+        pprint()
+        sleep(1)
+        pprint("Where would you like to Go? (Choose no. of city): ", end='')
         cityToGo = int(input())-1
+        pprint()
         if not (0<=cityToGo<=len(routes[currentCity])):
             pprint(f"Invalid city. You will stay in {currentCity} only..."); sleep(3)
             clearScreen()
@@ -667,8 +669,8 @@ def mtTop(player):
             pprint()
             pprint("A Legendary Articuno appeared..."); sleep(2)
             clearScreen()
-            didPlayerWin, player = pokemon_duel(player, Articuno, battle='wild')
-            if not didPlayerWin:
+            winner, player = pokemon_duel(player, Articuno, battle='wild')
+            if winner != player.name:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(1.2)
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
@@ -839,8 +841,8 @@ def outskirts(player):
             pprint()
             pprint("A Legendary Zapdos appeared..."); sleep(2)
             clearScreen()
-            didPlayerWin, player = pokemon_duel(player, Zapdos, battle='wild')
-            if not didPlayerWin:
+            winner, player = pokemon_duel(player, Zapdos, battle='wild')
+            if winner != player.name:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(1.2)
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
@@ -951,8 +953,8 @@ def volcano(player):
             pprint()
             pprint("A Legendary Moltres appeared..."); sleep(2)
             clearScreen()
-            didPlayerWin, player = pokemon_duel(player, Moltres, battle='wild')
-            if not didPlayerWin:
+            winner, player = pokemon_duel(player, Moltres, battle='wild')
+            if winner != player.name:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(1.2)
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
@@ -988,6 +990,7 @@ def horizon(player):
     listofpokemons = ['gastly', 'psyduck', 'jigglypuff', 'abra']        
     total = 0
     while True:
+        clearScreen()
         pprint("What is 1 + 1 = ?", end=' ')
         answer = input()
         if answer == '1': total += 1
@@ -1003,13 +1006,19 @@ def horizon(player):
             else: total += 1
         
         if total >= 3:
+            clearScreen()
             pprint("What is that ?!!!!"); sleep(2)
             pprint("It's a pokemon! But, pokedex doesn't have it in database..."); sleep(2)
             pprint()
             pprint("A Mythical 'Selmon Jong Un' appeared..."); sleep(2)
+            
+            pprint()
+            pprint()
+            pprint("Press Enter to continue..", end=' '); input()
             clearScreen()
-            didPlayerWin, player = pokemon_duel(player, SelmonJongUn, battle='wild')
-            if not didPlayerWin:
+            winner, player = pokemon_duel(player, SelmonJongUn, battle='wild')
+            
+            if winner != player.name:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(1.2)
                 pprint("You went to nearest pokecentre..."); sleep(1.2)

@@ -33,10 +33,10 @@ Colorize text.
 """
 
 def main_menu():
-    pprint(); sleep(1.5)
-    pprint("(N)ew Game"); sleep(1.5)
-    pprint("(L)oad Game"); sleep(1.5)
-    pprint("(E)xit"); sleep(1.5)
+    pprint(); sleep(1)
+    pprint("(N)ew Game"); sleep(1)
+    pprint("(L)oad Game"); sleep(1)
+    pprint("(E)xit"); sleep(1)
     
     pprint()
     pprint("New Game will overwrite any previously loaded game..."); sleep(1.5)
@@ -88,10 +88,10 @@ def gameloop():
         player = PokemonTrainer(name)
         sleep(1.2)
         pprint()
-        pprint("We would like you to choose a pokemon before starting your Journey\n"); sleep(1.5)
-        pprint("(C)harmander"); sleep(1.5)
-        pprint("(S)quirtle"); sleep(1.5)
-        pprint("(B)ulbasaur"); sleep(1.5)
+        pprint("We would like you to choose a pokemon before starting your Journey\n"); sleep(1)
+        pprint("(C)harmander"); sleep(1)
+        pprint("(S)quirtle"); sleep(1)
+        pprint("(B)ulbasaur"); sleep(1)
         
         pprint()
         pprint("Choose any one. By default, you get a pikachu. Press enter for pikachu : ", end='')

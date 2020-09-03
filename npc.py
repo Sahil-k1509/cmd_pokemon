@@ -67,7 +67,6 @@ surgep1.useStone('thunderstone', playertype='npc')
 
 Surge = PokemonTrainer('Surge', kind='npc', money=20000, startingPokemons=[surgep1])
 Surge.currentPokemon = Surge.pokemonInHand[0]
-#surgep1.displayStats(trainer="player's")
 
 
 # Code Erika 
