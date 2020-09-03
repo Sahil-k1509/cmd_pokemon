@@ -1,6 +1,6 @@
 from pokeworld import pokemonWorld, small_pokemons, legendary_pokemons
 from pokemon import Pokemon
-from npc import Gary
+from npc import Gary, Zapdos, Articuno, Moltres, SelmonJongUn, Brock, Misty, Surge
 
 import os
 import sys
@@ -546,173 +546,192 @@ def wildPokemonGenerator(player, listofpokemon, minlevel=0, maxlevel=100):
 
 
 def palletTown(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 0, 10)
         elif response == 'E': sys.exit(0)
 
 
 def viridianCity(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=True, hasWild=False, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 3, 14)
         elif response == 'E': sys.exit(0)
 
 
 def viridianForest(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 0, 13)
         elif response == 'E': sys.exit(0)
 
 
 def pewterCity(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 12, 23)
         elif response == 'E': sys.exit(0)
 
 
 def mtMoon(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 15, 30)
         elif response == 'E': sys.exit(0)
 
 
 def mtTop(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 17, 50)
         elif response == 'E': sys.exit(0)
 
 
 def ceruleanCity(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 15, 38)
         elif response == 'E': sys.exit(0)
 
 
 def vermilionCity(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 18, 40)
         elif response == 'E': sys.exit(0)
 
 
 def fuschiaCity(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 16, 35)
         elif response == 'E': sys.exit(0)
 
 
 def saffronCity(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 15, 38)
         elif response == 'E': sys.exit(0)
 
 
 def lavenderTown(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 10, 45)
         elif response == 'E': sys.exit(0)
 
 
 def outskirts(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 30, 70)
         elif response == 'E': sys.exit(0)
 
 
 def celadonCity(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 10, 20)
         elif response == 'E': sys.exit(0)
 
 
 def seafoamIsland(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 8, 19)
         elif response == 'E': sys.exit(0)
 
 
 def cinnabarIsland(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 30, 60)
         elif response == 'E': sys.exit(0)
 
 
 def volcano(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 50, 70)
         elif response == 'E': sys.exit(0)
 
 
 def indigoPlateau(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 55, 80)
         elif response == 'E': sys.exit(0)
 
 
 def victoryRoad(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 60, 80)
         elif response == 'E': sys.exit(0)
 
 
 def horizon(player):
+    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W': pprint(f"Visited wild of {player.currentLocation}")
+        elif response == 'W':   wildPokemonGenerator(player, listofpokemons, 70, 90)
         elif response == 'E': sys.exit(0)
 
 
@@ -721,6 +740,7 @@ def horizon(player):
 def main_game(player):
     # pprint(player)
     # pprint(player.currentLocation)
+
     
     if player.currentLocation == 'Pallet Town': palletTown(player)
     elif player.currentLocation == 'Viridian City': viridianCity(player)

@@ -4,6 +4,23 @@ from pokeworld import pokemonWorld, small_pokemons, legendary_pokemons
 from pokemon import Pokemon
 
 
+# Legendary Pokemons
+zapdosData = pokemonWorld['zapdos']
+moltresData = pokemonWorld['moltres']
+articunoData = pokemonWorld['articuno']
+sjuData = pokemonWorld['selmon jong un']
+
+Zapdos = Pokemon('zapdos', zapdosData, 0)
+Moltres = Pokemon('moltres', moltresData, 0)
+Articuno = Pokemon('articuno', articunoData, 0)
+SelmonJongUn = Pokemon('selmon jong un', sjuData, 0)
+
+Zapdos.npcPokemonReady(100)
+Articuno.npcPokemonReady(100)
+Moltres.npcPokemonReady(100)
+SelmonJongUn.npcPokemonReady(100)
+
+
 # Code Garry 
 garyPokname = choice(['charmander', 'bulbasaur', 'squirtle'])
 garyPok = pokemonWorld[garyPokname]

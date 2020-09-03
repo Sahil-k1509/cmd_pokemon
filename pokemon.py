@@ -33,6 +33,7 @@ class Pokemon(object):
 	def updateLevel(self, playertype=None):
 		self.level += 1
 		self.maxHealth = 15 + floor(log10(self.level * 23 + 1) * self.level ** 1.7)
+		self.health = self.maxHealth
 		self.defence += randint(0, 5)
 		self.speed += randint(0, 5)
 		self.experience = self.experience - self.nextLevelAt
@@ -254,7 +255,7 @@ class Pokemon(object):
 
  
 	def npcPokemonReady(self, maxlevel):
-		for _ in range(maxlevel+1):
+		for _ in range(maxlevel):
 			self.updateLevel(playertype='npc')
 	# 	self.updateLevel(playertype='npc')
 	# 	self.updateLevel(playertype='npc')
