@@ -29,8 +29,7 @@ class Pokemon(object):
 		self.nextLevelAt = self.experienceChart[self.level + 1]
 		self.attacks = pokedata['startAttacks'][:]
 		self.learnableAttacks = pokedata['learnableAttacks'][:]
-		pprint(self.attacks)
-
+		
 	def updateLevel(self, playertype=None):
 		self.level += 1
 		self.maxHealth = 15 + floor(log10(self.level * 23 + 1) * self.level ** 1.7)
