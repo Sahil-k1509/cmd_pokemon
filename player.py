@@ -161,6 +161,7 @@ class PokemonTrainer(object):
             
     def healAllpoke(self):
         sleep(1.2)
-        pprint("All your pokemons have been healed..."); sleep(1.2)
+        if self.kind == 'player':
+            pprint("All your pokemons have been healed..."); sleep(1.2)
         for pokemon in self.pokemonInHand:
             pokemon.visitPokemonCentre()

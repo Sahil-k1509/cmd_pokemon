@@ -133,6 +133,7 @@ Giovanni = PokemonTrainer('Giovanni', kind='npc', money=90000, startingPokemons=
 Giovanni.currentPokemon = Giovanni.pokemonInHand[0]
 
 
+'''
 # Code Lorelei 
 brockp1 = pokemonWorld['geodude']
 brockp2 = pokemonWorld['onix']
@@ -313,4 +314,4 @@ brockp2.npcPokemonReady(maxlevel=7)
 
 Brock = PokemonTrainer('Brock', kind='npc', money=400, startingPokemons=[brockp1, brockp2])
 Brock.currentPokemon = Brock.pokemonInHand[0]
-
+'''

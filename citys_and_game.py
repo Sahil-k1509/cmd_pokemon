@@ -1,6 +1,6 @@
 from pokeworld import pokemonWorld, small_pokemons, legendary_pokemons
 from pokemon import Pokemon
-from npc import Gary, Zapdos, Articuno, Moltres, SelmonJongUn, Brock, Misty, Surge
+from npc import Gary, Zapdos, Articuno, Moltres, SelmonJongUn, Brock, Misty, Surge, Erika, Koga, Sabrina, Blaine, Giovanni
 
 import os
 import sys
@@ -17,7 +17,7 @@ from pyfiglet import figlet_format
 initializeColor()
 
 routes = {
-        'Pallet Town': ['Viridian City', 'Cinnabar Island'],   
+        'Pallet Town': ['Viridian City'],   
         'Viridian City': ['Pallet Town', 'Victory Road', 'Viridian Forest'],   
         'Victory Road': ['Viridian City', 'Indigo Plateau', 'Horizon'],   
         'Horizon': ['Victory Road'],   
@@ -33,7 +33,7 @@ routes = {
         'Celadon City': ['Saffron City', 'Fuschia City'],   
         'Fuschia City': ['Celadon City', 'Vermillion City', 'Seafoam Island'],   
         'Seafoam Island': ['Fuschia City', 'Cinnabar Island'],   
-        'Cinnabar Island': ['Pallet Town', 'Volcano'],   
+        'Cinnabar Island': ['Pallet Town', 'Volcano', 'Seafoam Island'],   
         'Volcano': ['Cinnabar Island'],
         'Indigo Plateau': [] 
 }
@@ -549,35 +549,34 @@ def wildPokemonGenerator(player, listofpokemon, minlevel=0, maxlevel=100):
 
 
 def palletTown(player):
-    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   
-            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 0, 10)
-            if not didPlayerWin:
-                pprint()
-                pprint("All your pokemons have fainted..."); sleep(1.2)
-                pprint("You went to nearest pokecentre..."); sleep(1.2)
-                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
 def viridianCity(player):
-    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=True, hasWild=False, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   
-            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 3, 14)
-            if not didPlayerWin:
-                pprint()
-                pprint("All your pokemons have fainted..."); sleep(1.2)
-                pprint("You went to nearest pokecentre..."); sleep(1.2)
-                player.currentLocation = 'Viridian City'
-                player.healAllpoke()
+        elif response == 'G':
+            if len(player.badges) < 6: 
+                pprint(f"The gym is closed. Please Come back later!"); sleep(1)
+            else:
+                if 'Earth Badge' in player.badges:
+                    pprint(f"You have already defeated this Gym Leader. You can't duel again..."); sleep(1)
+                else:
+                    pprint(f"Welcome to Viridian Gym..."); sleep(1)
+                    winner, player = pokemon_duel(player, Giovanni, battle='gym')
+                    Giovanni.healAllpoke()
+                    if winner == player.name: 
+                        player.badges.append('Earth Badge')                    
+                        pprint("Congratulations... You won Earth badge..."); sleep(1.2)
+                    else:
+                        pprint(f"All your pokemons have fainted..."); sleep(1.2)
+                        pprint(f"You went to nearest pokecentre..."); sleep(1.2)
+                        player.healAllpoke()
+                
         elif response == 'E': sys.exit(0)
 
 
@@ -586,7 +585,6 @@ def viridianForest(player):
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 0, 11)
             if not didPlayerWin:
@@ -603,7 +601,21 @@ def pewterCity(player):
     while True:
         response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'G': 
+            if 'Boulder Badge' in player.badges:
+                pprint(f"You have already defeated this Gym Leader. You can't duel again..."); sleep(1)
+            else:
+                pprint(f"Welcome to Pewter Gym..."); sleep(1)
+                winner, player = pokemon_duel(player, Brock, battle='gym')
+                Brock.healAllpoke()
+                if winner == player.name: 
+                    player.badges.append('Boulder Badge')                    
+                    pprint("Congratulations... You won Boulder badge..."); sleep(1.2)
+                else:
+                    pprint(f"All your pokemons have fainted..."); sleep(1.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(1.2)
+                    player.healAllpoke()
+       
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 12, 23)
             if not didPlayerWin:
@@ -619,7 +631,6 @@ def mtMoon(player):
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 15, 30)
             if not didPlayerWin:
@@ -636,7 +647,6 @@ def mtTop(player):
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 17, 50)
             if not didPlayerWin:
@@ -653,7 +663,21 @@ def ceruleanCity(player):
     while True:
         response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'G': 
+            if 'Cascade Badge' in player.badges:
+                pprint(f"You have already defeated this Gym Leader. You can't duel again..."); sleep(1)
+            else:
+                pprint(f"Welcome to Cerulean Gym..."); sleep(1)
+                winner, player = pokemon_duel(player, Misty, battle='gym')
+                Misty.healAllpoke()
+                if winner == player.name: 
+                    player.badges.append('Cascade Badge')                    
+                    pprint("Congratulations... You won Cascade badge..."); sleep(1.2)
+                else:
+                    pprint(f"All your pokemons have fainted..."); sleep(1.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(1.2)
+                    player.healAllpoke()
+            
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 15, 38)
             if not didPlayerWin:
@@ -669,7 +693,22 @@ def vermilionCity(player):
     while True:
         response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'G':
+            if 'Thunder Badge' in player.badges:
+                pprint(f"You have already defeated this Gym Leader. You can't duel again..."); sleep(1)
+            else:
+                pprint(f"Welcome to Vermillion Gym..."); sleep(1)
+                winner, player = pokemon_duel(player, Surge, battle='gym')
+                Surge.healAllpoke()
+                if winner == player.name: 
+                    player.badges.append('Thunder Badge')                    
+                    pprint("Congratulations... You won Thunder badge..."); sleep(1.2)
+                else:
+                    pprint(f"All your pokemons have fainted..."); sleep(1.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(1.2)
+                    player.healAllpoke()
+
+            
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 18, 40)
             if not didPlayerWin:
@@ -685,7 +724,22 @@ def fuschiaCity(player):
     while True:
         response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'G': 
+            if 'Ninja Badge' in player.badges:
+                pprint(f"You have already defeated this Gym Leader. You can't duel again..."); sleep(1)
+            else:
+                pprint(f"Welcome to Fuschia Gym..."); sleep(1)
+                winner, player = pokemon_duel(player, Koga, battle='gym')
+                Koga.healAllpoke()
+                if winner == player.name: 
+                    player.badges.append('Ninja Badge')                    
+                    pprint("Congratulations... You won Ninja badge..."); sleep(1.2)
+                else:
+                    pprint(f"All your pokemons have fainted..."); sleep(1.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(1.2)
+                    player.healAllpoke()
+
+            
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 16, 35)
             if not didPlayerWin:
@@ -701,7 +755,21 @@ def saffronCity(player):
     while True:
         response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'G': 
+            if 'Soul Badge' in player.badges:
+                pprint(f"You have already defeated this Gym Leader. You can't duel again..."); sleep(1)
+            else:
+                pprint(f"Welcome to Saffron Gym..."); sleep(1)
+                winner, player = pokemon_duel(player, Sabrina, battle='gym')
+                Sabrina.healAllpoke()
+                if winner == player.name: 
+                    player.badges.append('Soul Badge')                    
+                    pprint("Congratulations... You won Soul badge..."); sleep(1.2)
+                else:
+                    pprint(f"All your pokemons have fainted..."); sleep(1.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(1.2)
+                    player.healAllpoke()
+            
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 15, 38)
             if not didPlayerWin:
@@ -717,7 +785,6 @@ def lavenderTown(player):
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 10, 45)
             if not didPlayerWin:
@@ -734,7 +801,6 @@ def outskirts(player):
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 30, 70)
             if not didPlayerWin:
@@ -751,7 +817,22 @@ def celadonCity(player):
     while True:
         response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'G': 
+            if 'Rainbow Badge' in player.badges:
+                pprint(f"You have already defeated this Gym Leader. You can't duel again..."); sleep(1)
+            else:
+                pprint(f"Welcome to Celadon Gym..."); sleep(1)
+                winner, player = pokemon_duel(player, Erika, battle='gym')
+                Erika.healAllpoke()
+                if winner == player.name: 
+                    player.badges.append('Rainbow Badge')                    
+                    pprint("Congratulations... You won Rainbow badge..."); sleep(1.2)
+                else:
+                    pprint(f"All your pokemons have fainted..."); sleep(1.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(1.2)
+                    player.healAllpoke()
+
+            
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 10, 20)
             if not didPlayerWin:
@@ -767,7 +848,6 @@ def seafoamIsland(player):
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 8, 19)
             if not didPlayerWin:
@@ -784,7 +864,22 @@ def cinnabarIsland(player):
     while True:
         response, player = navigation_menu(player, hasGym=True, hasWild=True, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
+        elif response == 'G': 
+            if 'Volcano Badge' in player.badges:
+                pprint(f"You have already defeated this Gym Leader. You can't duel again..."); sleep(1)
+            else:
+                pprint(f"Welcome to Cinnabar Gym..."); sleep(1)
+                winner, player = pokemon_duel(player, Blaine, battle='gym')
+                Blaine.healAllpoke()
+                if winner == player.name: 
+                    player.badges.append('Volcano Badge')
+                    pprint("Congratulations... You won Volcano badge..."); sleep(1.2)
+                else:
+                    pprint(f"All your pokemons have fainted..."); sleep(1.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(1.2)
+                    player.healAllpoke()
+
+            
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 30, 60)
             if not didPlayerWin:
@@ -800,7 +895,6 @@ def volcano(player):
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 50, 70)
             if not didPlayerWin:
@@ -813,18 +907,9 @@ def volcano(player):
 
 
 def indigoPlateau(player):
-    listofpokemons = []
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=True, hasPokecenter=True)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
-        elif response == 'W':   
-            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 55, 80)
-            if not didPlayerWin:
-                pprint()
-                pprint("All your pokemons have fainted..."); sleep(1.2)
-                pprint("You went to nearest pokecentre..."); sleep(1.2)
-                player.healAllpoke()
         elif response == 'E': sys.exit(0)
 
 
@@ -833,7 +918,6 @@ def victoryRoad(player):
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 60, 80)
             if not didPlayerWin:
@@ -850,7 +934,6 @@ def horizon(player):
     while True:
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
-        elif response == 'G': pprint(f"Visited gym  of {player.currentLocation}")
         elif response == 'W':   
             didPlayerWin = wildPokemonGenerator(player, listofpokemons, 70, 90)
             if not didPlayerWin:
