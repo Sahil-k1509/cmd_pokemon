@@ -95,7 +95,7 @@ pokemonWorld = {
     'charizard':    {'type': 'fire',        'evolveAt': None,   'evolveTo': None  },           
     'blastoise':    {'type': 'water',       'evolveAt': None,   'evolveTo': None  },           
     'venusaur':     {'type': 'grass',       'evolveAt': None,   'evolveTo': None  },           
-    'vileplme':     {'type': 'grass',       'evolveAt': None,   'evolveTo': None  },           
+    'vileplume':    {'type': 'grass',       'evolveAt': None,   'evolveTo': None  },           
     'butterfree':   {'type': 'bug',         'evolveAt': None,   'evolveTo': None  },           
     'beedrill':     {'type': 'bug',         'evolveAt': None,   'evolveTo': None  },           
     'pidgeot':      {'type': 'flying',      'evolveAt': None,   'evolveTo': None  },           
