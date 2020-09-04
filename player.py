@@ -21,41 +21,41 @@ class PokemonTrainer(object):
         self.money = money
         
     def archiveExchange(self):
-        sleep(1.2)
+        sleep(0.2)
         if len(self.archivePokemons) == 0:
-            pprint("You don't have any pokemon in archive..."); sleep(1)
+            pprint("You don't have any pokemon in archive..."); sleep(0)
             return
         pprint("Pokemons in archive: ")
-        sleep(1.2)
+        sleep(0.2)
         for index, pokemon in enumerate(self.archivePokemons):
                 pprint(index+1, end=') ')
                 pokemon.printPokemon()
                 if pokemon.health > 0: nonzerohp+=1
-                sleep(1.2)
+                sleep(0.3)
         pprint()
         pprint("Pokemon in Hand: ")
         for index, pokemon in enumerate(self.pokemonInHand):
                 pprint(index+1, end=') ')
                 pokemon.printPokemon()
-                sleep(1.2)
+                sleep(0.3)
                 
         pprint()
-        pprint("Select index of pokemon from archive: ", end=''); sleep(1.2)
+        pprint("Select index of pokemon from archive: ", end=''); sleep(0.4)
         archiveIndex = int(input())-1
                 
         pprint()
-        pprint("Select index of pokemon from hand: ", end=''); sleep(1.2)
+        pprint("Select index of pokemon from hand: ", end=''); sleep(0.2)
         handIndex = int(input())-1
         
         if not (0 <= archiveIndex < len(self.archivePokemons)):
-            pprint("You don't have pokemon at that index in archive..."); sleep(1.2)
+            pprint("You don't have pokemon at that index in archive..."); sleep(0.2)
             return 
         
         if not (0 <= handIndex < len(self.pokemonInHand)):
-            pprint("You don't have pokemon at that index in hand..."); sleep(1.2)
+            pprint("You don't have pokemon at that index in hand..."); sleep(0.2)
             return 
         
-        pprint("Pokemon Changed Succesfully..."); sleep(1.2)
+        pprint("Pokemon Changed Succesfully..."); sleep(0.2)
         self.pokemonInHand[handIndex], self.archivePokemons[archiveIndex] = self.archivePokemons[archiveIndex], self.pokemonInHand[handIndex]
         
         self.switchPokemon()
@@ -66,17 +66,17 @@ class PokemonTrainer(object):
     def switchPokemon(self):
         if self.kind == 'player':
             pprint("Your Pokemons: ")
-            sleep(1.2)
+            sleep(0.2)
             nonzerohp = 0
             for index, pokemon in enumerate(self.pokemonInHand):
                 pprint(index+1, end=') ')
                 pokemon.printPokemon()
                 if pokemon.health > 0: nonzerohp+=1
-                sleep(1.2)
+                sleep(0.2)
                 
-            pprint(f"Current Pokemon:"); sleep(1.2)
+            pprint(f"Current Pokemon:"); sleep(0.2)
             self.currentPokemon.printPokemon()
-            sleep(2)
+            sleep(1)
             
             if nonzerohp == 0: return False
             chosen = False
@@ -85,12 +85,12 @@ class PokemonTrainer(object):
                 if 0 <= newCurrentPoke < len(self.pokemonInHand):
                     if self.pokemonInHand[newCurrentPoke].health > 0:
                         self.currentPokemon = self.pokemonInHand[newCurrentPoke]
-                        pprint(f"You chose {self.currentPokemon.name}"); sleep(1.2)
+                        pprint(f"You chose {self.currentPokemon.name}"); sleep(0.2)
                         chosen = True
                     else:
-                        pprint(f"{self.pokemonInHand[newCurrentPoke].name}'s health is zero. You can't chose it"); sleep(1.2)
+                        pprint(f"{self.pokemonInHand[newCurrentPoke].name}'s health is zero. You can't chose it"); sleep(0.2)
                 else:
-                    pprint(f"That is not a valid number. Please choose between 1 and {len(self.pokemonInHand)}"); sleep(1.2)
+                    pprint(f"That is not a valid number. Please choose between 1 and {len(self.pokemonInHand)}"); sleep(0.2)
             
             return True        
         else:
@@ -100,7 +100,7 @@ class PokemonTrainer(object):
             self.currentPokemon = self.pokemonInHand[(indexOfCurrent+1)%len(self.pokemonInHand)]
             if self.currentPokemon.health <= 0: return False
         
-            pprint(f"{self.name} Chose {self.currentPokemon.name}"); sleep(1.1)
+            pprint(f"{self.name} Chose {self.currentPokemon.name}"); sleep(0.1)
             return True    
                 
             
@@ -113,54 +113,56 @@ class PokemonTrainer(object):
             requiredCut = 0.3 + 0.4*random()
             
             if probabilityToCatch >= requiredCut:
-                pprint(f"{pokemonToCatch.name} was caught!\n"); sleep(1.3)
+                pprint(f"{pokemonToCatch.name} was caught!\n"); sleep(0.3)
                 self.pokeballs -= 1
                 if len(self.pokemonInHand) < self.pokemonLimit:
                     self.pokemonInHand.append(pokemonToCatch)
                 else:
                     self.archivePokemons.append(pokemonToCatch)
-                
+                pprint();   pprint("Press Enter to Continue", end=' ');     input()
                 return True
             else:
-                pprint(f"{pokemonToCatch.name} wasn't caught..."); sleep(1.3)
+                pprint(f"{pokemonToCatch.name} wasn't caught..."); sleep(0.3)
                 self.pokeballs -= 1
+                pprint();   pprint("Press Enter to Continue", end=' ');     input()
                 return False
             
         else:
-            pprint("You don't have pokeballs !!\n"); sleep(1.3)
+            pprint("You don't have pokeballs !!\n"); sleep(0.3)
+            pprint();   pprint("Press Enter to Continue", end=' ');     input()
             return False
             
     
     def printTrainer(self, showAllpoke=False):
         if self.kind == 'player':
-            pprint("+--------------------------------------------------------------------------+"); sleep(1.2) 
+            pprint("+--------------------------------------------------------------------------+"); sleep(0.2) 
             pprint()
-            pprint(f"Name: {self.name}"); sleep(1.2)
-            pprint(f"Current Pokemon: {self.currentPokemon.name}"); sleep(1.2)
-            pprint(f"Pokeballs left: {self.pokeballs}"); sleep(1.2)
-            pprint(f"Items: {self.items}"); sleep(1.2)
-            pprint(f"Gym Badges: {self.badges}"); sleep(1.2)
-            pprint(f"Money: {self.money}"); sleep(1.2)
+            pprint(f"Name: {self.name}"); sleep(0.2)
+            pprint(f"Current Pokemon: {self.currentPokemon.name}"); sleep(0.2)
+            pprint(f"Pokeballs left: {self.pokeballs}"); sleep(0.2)
+            pprint(f"Items: {self.items}"); sleep(0.2)
+            pprint(f"Gym Badges: {self.badges}"); sleep(0.2)
+            pprint(f"Money: {self.money}"); sleep(0.2)
             pprint()
             
             if showAllpoke:
                 for pokemon in self.pokemonInHand:
-                    pokemon.displayStats(detailed=True); sleep(1)
+                    pokemon.displayStats(detailed=True); sleep(0)
             
             pprint()
             pprint("+--------------------------------------------------------------------------+")
         else:
-            pprint("+-----------------------------------------------------+"); sleep(1.2) 
+            pprint("+-----------------------------------------------------+"); sleep(0.2) 
             pprint()
-            pprint(f"Name: {self.name}"); sleep(1.2)
-            pprint(f"Number of pokemons: {len(self.pokemonInHand)}"); sleep(1.2)
-            pprint(f"Money: $ {self.money}"); sleep(1.2)
+            pprint(f"Name: {self.name}"); sleep(0.2)
+            pprint(f"Number of pokemons: {len(self.pokemonInHand)}"); sleep(0.2)
+            pprint(f"Money: $ {self.money}"); sleep(0.2)
             pprint()
             pprint("+-----------------------------------------------------+")
             
     def healAllpoke(self):
-        sleep(1.2)
+        sleep(0.2)
         if self.kind == 'player':
-            pprint("All your pokemons have been healed..."); sleep(1.2)
+            pprint("All your pokemons have been healed..."); sleep(0.2)
         for pokemon in self.pokemonInHand:
             pokemon.visitPokemonCentre()

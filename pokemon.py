@@ -39,11 +39,11 @@ class Pokemon(object):
 		self.experience = self.experience - self.nextLevelAt
 		self.nextLevelAt = self.experienceChart[self.level + 1] if self.level < 100 else None
 		if playertype is None:
-			pprint(f"{self.name} levelled up...\n"); sleep(1.3)
-			pprint(f"Current level: {self.level}"); sleep(1.3)
-			pprint(f"Max Health increased by {self.maxHealth}"); sleep(1.3)
-			pprint(f"Defence increased to {self.defence}"); sleep(1.3)
-			pprint(f"Speed increased to {self.speed}\n"); sleep(1.3)
+			pprint(f"{self.name} levelled up...\n"); sleep(0.3)
+			pprint(f"Current level: {self.level}"); sleep(0.3)
+			pprint(f"Max Health increased by {self.maxHealth}"); sleep(0.3)
+			pprint(f"Defence increased to {self.defence}"); sleep(0.3)
+			pprint(f"Speed increased to {self.speed}\n"); sleep(0.3)
 
     
     
@@ -70,26 +70,26 @@ class Pokemon(object):
 		attackToLearn = self.learnableAttacks.pop()
 		if not all(self.attacks):
 			if playertype is None:
-				sleep(1.5)			
-				pprint(f"{self.name} learnt {attackToLearn.name}"); sleep(1)
+				sleep(0.5)			
+				pprint(f"{self.name} learnt {attackToLearn.name}"); sleep(0.5)
 			indNone = self.attacks.index(None)
 			self.attacks[indNone] = attackToLearn
 		else:
 			if playertype is None:
-				sleep(1.5)
+				sleep(0.5)
 				pprint(self.name, 'wants to learn', attackToLearn.name, end='\n')
-				sleep(1)
-				pprint('CURRENT ATTACKS: '); sleep(1)
+				sleep(0.5)
+				pprint('CURRENT ATTACKS: '); sleep(0.5)
 				i=0
 				for attack in self.attacks:
 					pprint(f"{i+1}) {attack.name}")
 					i+=1
-					sleep(1.2)
+					sleep(0.2)
 				pprint()
 				pprint("New Attack Stats: \n")
 				attackToLearn.printAttack()
 				pprint()
-				sleep(1.2)
+				sleep(0.2)
 				discard = input('\t\tWhich attack would you like to replace?\n\t\t(Choose 1, 2, 3, 4. Any other choice will result in not learning the attack): ')
 				if discard in ['1', '2', '3', '4']:
 					self.attacks[int(discard)-1] = attackToLearn
@@ -106,7 +106,7 @@ class Pokemon(object):
 		evolveform = pokemonWorld[self.evolveTo]
 
 		if playertype is None:
-			sleep(1.2)
+			sleep(0.2)
 			pprint()
 			pprint("What is happening !!!!")
 			sleep(2.5)
@@ -125,13 +125,13 @@ class Pokemon(object):
 
 		if evolveform.get('learnableAttacks', None) is not None:
 			self.learnableAttacks = evolveform['learnableAttacks'] + self.learnableAttacks
-
+		
 
 	def attack(self, enemyPokemon, attackUsedInd):
 		attackUsed = self.attacks[attackUsedInd]
 		pprint()
 		pprint(f"{self.name} used {attackUsed.name}")
-		sleep(1.2)
+		sleep(0.2)
 		attackType = attackUsed.attCategory
 		enemyType = enemyPokemon.categories
 
@@ -145,17 +145,17 @@ class Pokemon(object):
 
 				if criticalChance >= 0.92:
 					pprint("Critical Hit...")
-					sleep(1.2)
+					sleep(0.2)
 					enemyPokemon.health -= floor((0.3+random()*0.2)*attackUsed.damage)
 
 				if enemyType in typeAdantages[attackType]:
 					pprint("It's Super Effective !!")
-					sleep(1.2)
+					sleep(0.2)
 					enemyPokemon.health -= floor((0.6+random()*0.8)*attackUsed.damage)
 
 				elif enemyType in typeDisadantages[attackType]:
 					pprint("It's not very effective !!")
-					sleep(1.2)
+					sleep(0.2)
 					enemyPokemon.health += floor((0.2+random()*0.5)*attackUsed.damage)
 
 				enemyPokemon.health -= floor(attackUsed.damage*((2.71823)**(-0.0056*enemyPokemon.defence)))
@@ -163,30 +163,30 @@ class Pokemon(object):
 				pprint(f"Health reduced by {initialHealth - enemyPokemon.health}")
 
 				if attackUsed.recoil != 0:
-					sleep(1.2)
-					pprint(f"{self.name} got a recoil of {-floor(attackUsed.recoil)}"); sleep(1.2)
+					sleep(0.2)
+					pprint(f"{self.name} got a recoil of {-floor(attackUsed.recoil)}"); sleep(0.2)
 					self.health += floor(attackUsed.recoil)
 					self.health = max(0, self.health)
      
 				if attackUsed.heal != 0:
-					sleep(1.2)
+					sleep(0.2)
 					self.health = min(self.maxHealth, self.health + attackUsed.heal)
-					pprint(f"{self.name} healed some portion of it's health..."); sleep(1.2)
+					pprint(f"{self.name} healed some portion of it's health..."); sleep(0.2)
 
 			else:
 				self.health = min(self.maxHealth, self.health + attackUsed.heal)
-				pprint(f"{self.name} healed some portion of it's health..."); sleep(1.2)
+				pprint(f"{self.name} healed some portion of it's health..."); sleep(0.2)
 
 		else:
-			pprint(f"{self.name} missed...\n"); sleep(1.2)
+			pprint(f"{self.name} missed...\n"); sleep(0.2)
 
 
 		self.attacks[attackUsedInd].count -= 1
-		# sleep(1.2); pprint(f"{self.attacks[attackUsedInd].name}'s count decreased to {self.attacks[attackUsedInd].count}"); sleep(1.2)
+		# sleep(0.2); pprint(f"{self.attacks[attackUsedInd].name}'s count decreased to {self.attacks[attackUsedInd].count}"); sleep(0.2)
 
 
 	def printPokemon(self):
-		pprint(f"Name: {self.name}\tLevel: {self.level}\tHP: {self.health}/{self.maxHealth}"); sleep(1)
+		pprint(f"Name: {self.name}\tLevel: {self.level}\tHP: {self.health}/{self.maxHealth}"); sleep(0.5)
 	
 	
 	def displayStats(self, trainer="player's", detailed=False):
@@ -211,7 +211,7 @@ class Pokemon(object):
 				i+=1
 				sleep(0.9)
 			pprint()
-			pprint(f"+---------------------------------------------+"); sleep(1); pprint()
+			pprint(f"+---------------------------------------------+"); sleep(0.5); pprint()
    
 		else:
 			pprint(f"+---------------------------------------------+"); sleep(0.9); pprint()
@@ -219,7 +219,7 @@ class Pokemon(object):
 			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(0.9)
 			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(0.9)
 			pprint()
-			pprint(f"+---------------------------------------------+"); sleep(1); pprint()
+			pprint(f"+---------------------------------------------+"); sleep(0.5); pprint()
 	
 	
 	def gain_exp(self, enemyPok, battletype='wild'):
@@ -268,15 +268,15 @@ class Pokemon(object):
  
  
 	def useStone(self, stonetype, playertype=None):
-		sleep(1)
+		sleep(0.5)
 		if self.name == 'pikachu':
 			if self.level >= 18: 
 				if stonetype == 'thunderstone':
 					if playertype is None:
-						pprint(f"You used {stonetype} to evolve {self.name} into {self.evolveTo}"); sleep(1.2)
+						pprint(f"You used {stonetype} to evolve {self.name} into {self.evolveTo}"); sleep(0.2)
 					self.evolvePokemon(playertype)
-				else: pprint(f"{stonetype} can't be used on {self.name}"); sleep(1.2)
-			else: pprint(f"{self.name} can't be evolved at this level. Train it more..."); sleep(1.2)
+				else: pprint(f"{stonetype} can't be used on {self.name}"); sleep(0.2)
+			else: pprint(f"{self.name} can't be evolved at this level. Train it more..."); sleep(0.2)
 		elif self.name == 'eevee':
 			if self.level >= 10:
 				if stonetype == 'thunderstone':
@@ -303,9 +303,9 @@ class Pokemon(object):
       
 					self.evolvePokemon(playertype)
 
-				else: pprint(f"{stonetype} can't be used on {self.name}."); sleep(1.2)
+				else: pprint(f"{stonetype} can't be used on {self.name}."); sleep(0.2)
     
-			else: pprint(f"{self.name} can't be evolved at this level. Train it more..."); sleep(1.2)
+			else: pprint(f"{self.name} can't be evolved at this level. Train it more..."); sleep(0.2)
 				
  
 

@@ -33,37 +33,38 @@ Colorize text.
 """
 
 def main_menu():
-    pprint(); sleep(1)
-    pprint("(N)ew Game"); sleep(1)
-    pprint("(L)oad Game"); sleep(1)
-    pprint("(E)xit"); sleep(1)
+    pprint(); sleep(0.5)
+    pprint("(N)ew Game"); sleep(0.5)
+    pprint("(L)oad Game"); sleep(0.5)
+    pprint("(E)xit"); sleep(0.5)
     
     pprint()
-    pprint("New Game will overwrite any previously loaded game..."); sleep(1.5)
+    pprint("New Game will overwrite any previously loaded game..."); sleep(0.5)
     pprint('What would you like to do?', end=' ')
     response = input()
     
     if response in ['e', 'E']:
         pprint()
-        pprint("Exiting the game...."); sleep(1.8)
+        pprint("Exiting the game...."); sleep(0.8)
         sys.exit(0)
     
     if response not in ['n', 'N']:
         try:
             pprint("Trying to load the game...\n")
-            sleep(1.5)
+            sleep(0.5)
             player = load_game()
-            pprint("Game Loaded...")
-            sleep(1.5)
+            pprint("Game Loaded... Press Enter to Continue", end=' '); input()
             return player
         except Exception as e:
             pprint(e)
-            pprint("No game found... Starting New Game...")
-            sleep(2.3)
+            pprint("No game found... Starting New Game..."); sleep(0.3)
+            pprint()
+            pprint("Press Enter to Continue", end=' '); input()
             return None
         
     pprint("Starting New Game...")
-    sleep(1.9)
+    sleep(0.3)
+    pprint();   pprint("Press Enter to Continue", end=' ');     input()
     return None
 
         
@@ -73,11 +74,11 @@ def gameloop():
     gameOver = False
     
     if player is None:
-        pprint("Welcome to the world of pokemon...\n"); sleep(1)
-        pprint("Your Goal is to catch all pokemons in the world and\n\t\t become the greatest pokemon trainer of all times.\n"); sleep(1.2)
-        pprint("But, for that, you need to become the champion of\n\t\t Indigo league which is an annual pokemon duel competition...\n"); sleep(1.2)
-        pprint("You need to earn 8 badges by defeating 8 gym leaders\n\t\t to prove that you are worthy of participating in league.\n"); sleep(1.2)
-        pprint("Start you journey and \"Catch'em All\""); sleep(1)
+        pprint("Welcome to the world of pokemon...\n"); sleep(0.5)
+        pprint("Your Goal is to catch all pokemons in the world and\n\t\t become the greatest pokemon trainer of all times.\n"); sleep(0.2)
+        pprint("But, for that, you need to become the champion of\n\t\t Indigo league which is an annual pokemon duel competition...\n"); sleep(0.2)
+        pprint("You need to earn 8 badges by defeating 8 gym leaders\n\t\t to prove that you are worthy of participating in league.\n"); sleep(0.2)
+        pprint("Start you journey and \"Catch'em All\""); sleep(0.5)
         
         pprint()
         pprint("Press Enter to continue"); input()
@@ -86,17 +87,17 @@ def gameloop():
         pprint("What is your name Adventurer?", end=" ")
         name = input()
         player = PokemonTrainer(name)
-        sleep(1.2)
+        sleep(0.2)
         pprint()
-        pprint("We would like you to choose a pokemon before starting your Journey\n"); sleep(1)
-        pprint("(C)harmander"); sleep(1)
-        pprint("(S)quirtle"); sleep(1)
-        pprint("(B)ulbasaur"); sleep(1)
+        pprint("We would like you to choose a pokemon before starting your Journey\n"); sleep(0.5)
+        pprint("(C)harmander"); sleep(0.5)
+        pprint("(S)quirtle"); sleep(0.5)
+        pprint("(B)ulbasaur"); sleep(0.5)
         
         pprint()
         pprint("Choose any one. By default, you get a pikachu. Press enter for pikachu : ", end='')
         pokem = input()
-        
+        sleep(0.4)
         if pokem in ['c', 'C']:    firstpoke = 'charmander'
         elif pokem in ['s', 'S']:  firstpoke = 'squirtle'
         elif pokem in ['b', 'B']:  firstpoke = 'bulbasaur'
@@ -108,11 +109,13 @@ def gameloop():
         player.currentPokemon = playerPokemon
         
         
-        pprint("Let's Start our adventure..."); sleep(1.8)
+        pprint("Let's Start our adventure..."); sleep(0.8)
         
         pprint()
-        pprint(f"'Wait {player.name}!! I am Gary.. I think You remember me...'"); sleep(1.3)
-        pprint(f"'Let's have a pokemon battle to test our pokemons. Shall We? If you are not chickened out..' - Gary"); sleep(2.8)
+        pprint(f"'Wait {player.name}!! I am Gary.. I think You remember me...'"); sleep(0.3)
+        pprint(f"'Let's have a pokemon battle to test our pokemons. Shall We? If you are not chickened out..' - Gary"); sleep(0.8)
+        
+        pprint();   pprint("Press Enter to Continue", end=' ');     input()
         clearScreen()
         
         winner, player = pokemon_duel(player, Gary, battle='duel')
@@ -125,6 +128,7 @@ def gameloop():
             clearScreen()
             pprint("Game Over...\n"); sleep(1.6)
             pprint("But you can start again... Load the game to start from last check point you saved at..."); sleep(1.8)
+            pprint();   pprint("Press Enter to Continue", end=' ');     input()
         else:
             pprint("Saving the Game...")
             save_game(player)
@@ -134,7 +138,7 @@ def gameloop():
         pprint("Press Enter to continue"); input()
         clearScreen()
     else:
-        pprint(f"Welcome Back {player.name}. Let's Continue our adventure..."); sleep(1)
+        pprint(f"Welcome Back {player.name}. Let's Continue our adventure..."); sleep(0.5)
         clearScreen()
     
     while not gameOver:
