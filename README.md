@@ -24,6 +24,8 @@ It is a non graphical game which will ask you to type your decisions in one lett
 - You can **navigate to other cities** and use **world map** as a reference.
 - You can **Hunt pokemons in wild** and **catch them** once they are weak enough.
 - You can **carry 7 pokemons at a time**. Other pokemons caught will be **stored in archive and equipped by visiting pokemon centres**.
+- As pokemons fight and win, they will **gain experience** and *level up*. They will also **learn new attacks** while levelling up.
+- Once your pokemons reach a certain level, they will **evolve** to a stronger pokemon. Some pokemons like *Pikachu, Eevee* require **stones(thunderstone, waterstone, firestone) to evolve**.
 - You can **Challenge Gym leaders** to earn *pokemon badges* which will allow you to enter *Indigo League*.
 - You may encounter some **Legendary pokemons** while exploring the map. They are very strong and nearly impossible to catch or defeat.
 
