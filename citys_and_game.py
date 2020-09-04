@@ -599,6 +599,7 @@ def viridianForest(player):
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
                 player.currentLocation = 'Viridian City'
                 player.healAllpoke()
+                main_game(player)
         elif response == 'E': sys.exit(0)
 
 
@@ -645,6 +646,7 @@ def mtMoon(player):
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
                 player.currentLocation = 'Pewter City'
                 player.healAllpoke()
+                main_game(player)
         elif response == 'E': sys.exit(0)
 
 
@@ -817,6 +819,7 @@ def lavenderTown(player):
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
                 player.currentLocation = 'Cerulean City'
                 player.healAllpoke()
+                main_game(player)
         elif response == 'E': sys.exit(0)
 
 
@@ -898,6 +901,7 @@ def seafoamIsland(player):
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
                 player.currentLocation = 'Fuschia City'
                 player.healAllpoke()
+                main_game(player)
         elif response == 'E': sys.exit(0)
 
 
@@ -986,6 +990,7 @@ def victoryRoad(player):
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
                 player.currentLocation = 'Viridian City'
                 player.healAllpoke()
+                main_game(player)
         elif response == 'E': sys.exit(0)
 
 
@@ -1003,7 +1008,7 @@ def horizon(player):
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(1.2)
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
-                player.currentLocation = 'Viridian Island'
+                player.currentLocation = 'Viridian City'
                 player.healAllpoke()
                 main_game(player)
             else: total += 1
@@ -1025,7 +1030,7 @@ def horizon(player):
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(1.2)
                 pprint("You went to nearest pokecentre..."); sleep(1.2)
-                player.currentLocation = 'Viridian Island'
+                player.currentLocation = 'Viridian City'
                 player.healAllpoke()
                 main_game(player)
 
@@ -1054,7 +1059,12 @@ def main_game(player):
     elif player.currentLocation == 'Seafoam Island': seafoamIsland(player)
     elif player.currentLocation == 'Cinnabar Island': cinnabarIsland(player)
     elif player.currentLocation == 'Volcano': volcano(player)
-    elif player.currentLocation == 'Indigo Plateau': indigoPlateau(player)
+    elif player.currentLocation == 'Indigo Plateau': 
+        if len(player.badges) < 8:
+            pprint("You have to beat all Gym leaders before entering Indigo League..."); sleep(1.2)
+            victoryRoad(player)
+        else:
+            indigoPlateau(player)
     else: sys.exit(0)
 
 
