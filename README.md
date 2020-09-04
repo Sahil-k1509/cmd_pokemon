@@ -15,7 +15,7 @@ It is a non graphical game which will ask you to type your decisions in one lett
 3. You will need to download some modules before running game!  
     `pip install colorama, termcolor, pickle, pyfiglet`
 4. Run _**main.py**_ from Terminal using `python main.py` command   
-For **Other Users**:  
+###### For **Other Users**:  
 1. Download the code and extract it.
 2. Run the main.exe
 
