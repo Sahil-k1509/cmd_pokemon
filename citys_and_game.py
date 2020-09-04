@@ -523,7 +523,7 @@ def navigation_menu(player, hasGym=False, hasWild=False, hasShop=False, hasPokec
         pprint("Where would you like to Go? (Choose no. of city): ", end='')
         cityToGo = int(input())-1
         pprint()
-        if not (0<=cityToGo<=len(routes[currentCity])):
+        if not (0<=cityToGo<len(routes[currentCity])):
             pprint(f"Invalid city. You will stay in {currentCity} only..."); sleep(3)
             clearScreen()
             return ('N', player)
