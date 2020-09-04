@@ -62,7 +62,10 @@ def showMap(player):
     sleep(1)
     pprint()
     
-    print(figlet_format("                M a p ")); sleep(0.7)
+    try:
+        print(figlet_format("                M a p ")); sleep(0.7)
+    except Exception:
+        pprint("M A P"); sleep(0.7)
 
     pprint(r"                                                      Volcano      "); sleep(0.2)
     pprint(r"                                                         |         "); sleep(0.2)
