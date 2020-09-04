@@ -8,7 +8,7 @@ It is a non graphical game which will ask you to type your decisions in one lett
 
 
 ### How to play
-For **Developers**:  
+###### For **Developers**:
 0. Your System must have [python installed](https://www.python.org/)  .
 1. Download the code and extract it.
 2. Open terminal(Command prompt) in the folder where code is present.
