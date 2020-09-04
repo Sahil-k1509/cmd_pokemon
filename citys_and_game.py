@@ -591,12 +591,11 @@ def viridianCity(player):
                         pprint("Congratulations... You won Earth badge..."); sleep(0.2)
                     else:
                         pprint(f"All your pokemons have fainted..."); sleep(0.2)
-                        pprint(f"You went to nearest pokecentre..."); sleep(0.2)
+                        pprint(f"You went to nearest pokecentre..."); sleep(2.2)
                         player.healAllpoke()
                 
         elif response == 'E': sys.exit(0)
-        pprint();   pprint("Press Enter to Continue", end=' ');     input()
-
+        
 
 def viridianForest(player):
     listofpokemons = ['caterpie', 'weedle', 'pidgey', 'eevee', 'oddish']
@@ -608,13 +607,12 @@ def viridianForest(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Viridian City'
                 player.healAllpoke()
                 main_game(player)
         elif response == 'E': sys.exit(0)
-        pprint();   pprint("Press Enter to Continue", end=' ');     input()
-
+        
 
 def pewterCity(player):
     listofpokemons = ['meowth', 'pikachu', 'pidgey', 'nidoran']
@@ -633,7 +631,7 @@ def pewterCity(player):
                     pprint("Congratulations... You won Boulder badge..."); sleep(0.2)
                 else:
                     pprint(f"All your pokemons have fainted..."); sleep(0.2)
-                    pprint(f"You went to nearest pokecentre..."); sleep(0.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(2.2)
                     player.healAllpoke()
        
         elif response == 'W':   
@@ -641,11 +639,10 @@ def pewterCity(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.healAllpoke()
         elif response == 'E': sys.exit(0)
-        pprint();   pprint("Press Enter to Continue", end=' ');     input()
-
+        
 
 def mtMoon(player):
     listofpokemons = ['jigglypuff']
@@ -657,7 +654,7 @@ def mtMoon(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Pewter City'
                 player.healAllpoke()
                 main_game(player)
@@ -677,7 +674,7 @@ def mtTop(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Pewter City'
                 player.healAllpoke()
                 main_game(player)
@@ -693,7 +690,7 @@ def mtTop(player):
             if winner != player.name:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Pewter City'
                 player.healAllpoke()
                 main_game(player)
@@ -716,7 +713,7 @@ def ceruleanCity(player):
                     pprint("Congratulations... You won Cascade badge..."); sleep(0.2)
                 else:
                     pprint(f"All your pokemons have fainted..."); sleep(0.2)
-                    pprint(f"You went to nearest pokecentre..."); sleep(0.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(2.2)
                     player.healAllpoke()
             
         elif response == 'W':   
@@ -724,11 +721,10 @@ def ceruleanCity(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.healAllpoke()
         elif response == 'E': sys.exit(0)
-        pprint();   pprint("Press Enter to Continue", end=' ');     input()
-
+        
 
 def vermilionCity(player):
     listofpokemons = ['sandshrew', 'growlithe']
@@ -747,7 +743,7 @@ def vermilionCity(player):
                     pprint("Congratulations... You won Thunder badge..."); sleep(0.2)
                 else:
                     pprint(f"All your pokemons have fainted..."); sleep(0.2)
-                    pprint(f"You went to nearest pokecentre..."); sleep(0.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(2.2)
                     player.healAllpoke()
 
             
@@ -756,10 +752,9 @@ def vermilionCity(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.healAllpoke()
         elif response == 'E': sys.exit(0)
-        pprint();   pprint("Press Enter to Continue", end=' ');     input()
 
 
 def fuschiaCity(player):
@@ -779,7 +774,7 @@ def fuschiaCity(player):
                     pprint("Congratulations... You won Ninja badge..."); sleep(0.2)
                 else:
                     pprint(f"All your pokemons have fainted..."); sleep(0.2)
-                    pprint(f"You went to nearest pokecentre..."); sleep(0.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(2.2)
                     player.healAllpoke()
 
             
@@ -788,10 +783,9 @@ def fuschiaCity(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.healAllpoke()
         elif response == 'E': sys.exit(0)
-        pprint();   pprint("Press Enter to Continue", end=' ');     input()
 
 
 def saffronCity(player):
@@ -811,7 +805,7 @@ def saffronCity(player):
                     pprint("Congratulations... You won Soul badge..."); sleep(0.2)
                 else:
                     pprint(f"All your pokemons have fainted..."); sleep(0.2)
-                    pprint(f"You went to nearest pokecentre..."); sleep(0.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(2.2)
                     player.healAllpoke()
             
         elif response == 'W':   
@@ -819,10 +813,9 @@ def saffronCity(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.healAllpoke()
         elif response == 'E': sys.exit(0)
-        pprint();   pprint("Press Enter to Continue", end=' ');     input()
 
 
 def lavenderTown(player):
@@ -835,12 +828,11 @@ def lavenderTown(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Cerulean City'
                 player.healAllpoke()
                 main_game(player)
         elif response == 'E': sys.exit(0)
-        pprint();   pprint("Press Enter to Continue", end=' ');     input()
 
 
 def outskirts(player):
@@ -855,7 +847,7 @@ def outskirts(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Cerulean City'
                 player.healAllpoke()
                 main_game(player)
@@ -871,7 +863,7 @@ def outskirts(player):
             if winner != player.name:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Cerulean City'
                 player.healAllpoke()
                 main_game(player)
@@ -894,7 +886,7 @@ def celadonCity(player):
                     pprint("Congratulations... You won Rainbow badge..."); sleep(0.2)
                 else:
                     pprint(f"All your pokemons have fainted..."); sleep(0.2)
-                    pprint(f"You went to nearest pokecentre..."); sleep(0.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(2.2)
                     player.healAllpoke()
 
             
@@ -903,10 +895,9 @@ def celadonCity(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.healAllpoke()
         elif response == 'E': sys.exit(0)
-        pprint();   pprint("Press Enter to Continue", end=' ');     input()
 
 
 def seafoamIsland(player):
@@ -919,12 +910,11 @@ def seafoamIsland(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Fuschia City'
                 player.healAllpoke()
                 main_game(player)
         elif response == 'E': sys.exit(0)
-        pprint();   pprint("Press Enter to Continue", end=' ');     input()
 
 
 def cinnabarIsland(player):
@@ -944,7 +934,7 @@ def cinnabarIsland(player):
                     pprint("Congratulations... You won Volcano badge..."); sleep(0.2)
                 else:
                     pprint(f"All your pokemons have fainted..."); sleep(0.2)
-                    pprint(f"You went to nearest pokecentre..."); sleep(0.2)
+                    pprint(f"You went to nearest pokecentre..."); sleep(2.2)
                     player.healAllpoke()
 
             
@@ -953,10 +943,9 @@ def cinnabarIsland(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.healAllpoke()
         elif response == 'E': sys.exit(0)
-        pprint();   pprint("Press Enter to Continue", end=' ');     input()
 
 
 def volcano(player):
@@ -971,7 +960,7 @@ def volcano(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Cinnabar Island'
                 player.healAllpoke()
                 main_game(player)
@@ -987,7 +976,7 @@ def volcano(player):
             if winner != player.name:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Cinnabar Island'
                 player.healAllpoke()
                 main_game(player)
@@ -1010,12 +999,11 @@ def victoryRoad(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Viridian City'
                 player.healAllpoke()
                 main_game(player)
         elif response == 'E': sys.exit(0)
-        pprint();   pprint("Press Enter to Continue", end=' ');     input()
 
 
 def horizon(player):
@@ -1031,7 +1019,7 @@ def horizon(player):
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Viridian City'
                 player.healAllpoke()
                 main_game(player)
@@ -1053,7 +1041,7 @@ def horizon(player):
             if winner != player.name:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(0.2)
+                pprint("You went to nearest pokecentre..."); sleep(2.2)
                 player.currentLocation = 'Viridian City'
                 player.healAllpoke()
                 main_game(player)

@@ -191,13 +191,13 @@ class Pokemon(object):
 	
 	def displayStats(self, trainer="player's", detailed=False):
 		if trainer == "player's":
-			pprint(f"+---------------------------------------------+"); sleep(0.9); pprint()
-			pprint(f"{trainer} {self.name}"); sleep(0.9)
-			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(0.9)
-			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(0.9)
-			pprint(f"Defense: {self.defence}  Speed: {self.speed}"); sleep(0.9)
-			pprint(f"Experience: {self.experience}/{self.nextLevelAt}"); sleep(0.9)
-			pprint(f"Attacks: "); sleep(0.9)
+			pprint(f"+---------------------------------------------+"); sleep(0.4); pprint()
+			pprint(f"{trainer} {self.name}"); sleep(0.4)
+			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(0.4)
+			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(0.4)
+			pprint(f"Defense: {self.defence}  Speed: {self.speed}"); sleep(0.4)
+			pprint(f"Experience: {self.experience}/{self.nextLevelAt}"); sleep(0.4)
+			pprint(f"Attacks: "); sleep(0.4)
 			i=0
 			for attack in self.attacks:
 				if attack != None:
@@ -209,15 +209,15 @@ class Pokemon(object):
 				else:
 					pprint(f"{i+1}) {attack}")
 				i+=1
-				sleep(0.9)
+				sleep(0.4)
 			pprint()
 			pprint(f"+---------------------------------------------+"); sleep(0.5); pprint()
    
 		else:
-			pprint(f"+---------------------------------------------+"); sleep(0.9); pprint()
-			pprint(f"{trainer} {self.name}"); sleep(0.9)
-			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(0.9)
-			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(0.9)
+			pprint(f"+---------------------------------------------+"); sleep(0.4); pprint()
+			pprint(f"{trainer} {self.name}"); sleep(0.4)
+			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(0.4)
+			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(0.4)
 			pprint()
 			pprint(f"+---------------------------------------------+"); sleep(0.5); pprint()
 	
