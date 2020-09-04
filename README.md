@@ -8,12 +8,16 @@ It is a non graphical game which will ask you to type your decisions in one lett
 
 
 ### How to play
+For **Developers**:
 0. Your System must have [python installed](https://www.python.org/)  .
 1. Download the code and extract it.
 2. Open terminal(Command prompt) in the folder where code is present.
 3. You will need to download some modules before running game!  
     `pip install colorama, termcolor, pickle, pyfiglet`
 4. Run _**main.py**_ from Terminal using `python main.py` command
+For **Other Users**:
+1. Download the code and extract it.
+2. Run the main.exe
 
 
 ### Key Features and basic storyline of game:
