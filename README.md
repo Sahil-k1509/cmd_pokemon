@@ -19,6 +19,7 @@ It is a non graphical game which will ask you to type your decisions in one lett
 1. Download the code and extract it.
 2. Run the main.exe
 
+_**Note: Main.py is the beta version and any update and bug fixes will be released for it before they are added in Executable Game for Users.**_
 
 ### Key Features and basic storyline of game:
 - Game starts with you choosing from four starter pokemons _**(charmander, bulbasaur, squirtle and pikachu)**_
