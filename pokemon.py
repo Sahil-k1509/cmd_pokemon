@@ -36,7 +36,9 @@ class Pokemon(object):
 		self.health = self.maxHealth
 		self.defence += randint(0, 5)
 		self.speed += randint(0, 5)
-		self.experience = self.experience - self.nextLevelAt
+		if playertype is None:
+			self.experience = self.experience - self.nextLevelAt
+		else: self.experience = 0
 		self.nextLevelAt = self.experienceChart[self.level + 1] if self.level < 100 else None
 		if playertype is None:
 			pprint(f"{self.name} levelled up...\n"); sleep(0.3)
