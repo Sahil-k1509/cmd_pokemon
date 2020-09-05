@@ -555,6 +555,7 @@ def wildPokemonGenerator(player, listofpokemon, minlevel=0, maxlevel=100):
     randpoke = choice(listofpokemon)
     randpokedata = pokemonWorld[randpoke]
     wildpokelvl = randint(minlevel, maxlevel)
+    if wildpokelvl < 0: wildpokelvl = randint(0, 4)
     wildpokemon = Pokemon(randpoke, randpokedata, level=0)
     wildpokemon.npcPokemonReady(wildpokelvl)
     pprint(f"A wild {wildpokemon.name} of level {wildpokelvl} appeared..."); sleep(0.2)
@@ -605,7 +606,7 @@ def viridianForest(player):
         response, player = navigation_menu(player, hasGym=False, hasWild=True, hasShop=False, hasPokecenter=False)
         if response == 'N': main_game(player)
         elif response == 'W':   
-            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 0, 11)
+            didPlayerWin = wildPokemonGenerator(player, listofpokemons, -8, 11)
             if not didPlayerWin:
                 pprint()
                 pprint("All your pokemons have fainted..."); sleep(0.2)
