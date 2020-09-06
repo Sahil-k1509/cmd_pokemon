@@ -40,3 +40,14 @@ They can be caught using something known as pokeballs, but you need to weaken th
 stratergies. Occasionally, you may encounter Team Rocket in Wild whose sole aim is to steal pokemons. You need to participate in Ultimate
 Pokemon duelling competition which is the Indigo League, but for that, you need to prove your worth by defeating 8 Pokemon Gym Leaders situated in
 different parts of world. As your pokemon gets stronger and gain experience, it will learn new attacks and even evolve to a stronger pokemon.
+
+
+#### Honest review from developer:
+> "I know the game is far from perfect and the experience is not at all similar to the actual Console Pokemon game. But, I have been playing this terminal version
+> since I released this and it is indeed addictive for me. You miss the fun for exploring areas by actually moving around the map, but It still requires stratergic 
+> thinking to progress in the game as Game gets hard really quickly and need you to train your pokemons to a high level before you can move to next cities which have 
+> very strong pokemons. There is a variety of pokemons present and certain type of pokemons appear only in certain areas rather than equally appearing throughout the map
+> which forces you to explore the map if you want a certain type of pokemon. For example, if you want to catch a jigglypuff, You will only find it in Mt. Moon and Horizon 
+> Or say you want to catch a watertype pokemon, then you will most probably find it in Seafoam Island. Also Some pokemons do have advantage over other pokemons like fire type
+> pokemons inflict more damage to grass type but are weaker than water type. These make the game more realistic. Any way, These are just some of my thoughts. I would appreciate
+> if you play the game and give me a feedback. :-) " ~ Sahil Kumar Bairagi
