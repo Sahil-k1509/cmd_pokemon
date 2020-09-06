@@ -50,4 +50,5 @@ different parts of world. As your pokemon gets stronger and gain experience, it 
 > which forces you to explore the map if you want a certain type of pokemon. For example, if you want to catch a jigglypuff, You will only find it in Mt. Moon and Horizon 
 > Or say you want to catch a watertype pokemon, then you will most probably find it in Seafoam Island. Also Some pokemons do have advantage over other pokemons like fire type
 > pokemons inflict more damage to grass type but are weaker than water type. These make the game more realistic. Any way, These are just some of my thoughts. I would appreciate
-> if you play the game and give me a feedback. :-) " ~ Sahil Kumar Bairagi
+> if you play the game and give me a feedback. :-) "   
+> ~ Sahil Kumar Bairagi
