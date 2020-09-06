@@ -30,6 +30,8 @@ class Attack(object):
         self.damage = self.calcDamage(baseDamage)
         
     def calcDamage(self, baseDamage=-1):
+        if self.name in ['howl', 'sing', 'heal', 'hide', 'agility', 'harden', 'infactuate']: 
+            return 0
         if baseDamage == -1:
             return floor(self.baseDamage + 5*(self.pLevel/2 + (1 - random())/3)**(1.2))
         else:

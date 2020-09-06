@@ -440,11 +440,11 @@ def pokemon_duel(player, opponent, battle='wild'):
             if opponent.currentPokemon.health <= 0:
                 sleep(0.5)
                 pprint(f"{opponent.name}'s {opponent.currentPokemon.name} fainted")
+                player.currentPokemon.gain_exp(opponent.currentPokemon, battletype=battle); sleep(0.2)
                 if not opponent.switchPokemon():
                     sleep(0.5)
                     pprint("You won the battle!!!\n"); sleep(0.4)
                     battleOver = True            
-                    player.currentPokemon.gain_exp(opponent.currentPokemon, battletype=battle); sleep(0.2)
                     player.money += 0.15*opponent.money
                     pprint(f"{opponent.name} gave {player.name}, {floor(opponent.money*0.15)} as a reward for losing against him..."); sleep(1)
                     pprint();   pprint("Press Enter to Continue", end=' ');     input()

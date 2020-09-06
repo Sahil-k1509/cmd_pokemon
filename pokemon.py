@@ -10,7 +10,7 @@ def pprint(*args, **kwargs):
 
 
 class Pokemon(object):
-	__slots__ = 'name', 'categories', 'level', 'health', 'maxHealth', 'experience', 'nextLevelAt', 'attacks', 'learnableAttacks', 'defence', 'speed', 'evolveAt', 'evolveTo', 'newAttackAt'
+	__slots__ = 'name', 'categories', 'level', 'health', 'maxHealth', 'experience', 'nextLevelAt', 'attacks', 'learnableAttacks', 'defence', 'speed', 'evolveAt', 'evolveTo', 'newAttackAt', 'basedef', 'baseSpeed'
 	experienceChart = [0] + [5 + 2 * (i + 1) ** 2 for i in range(100)]
 	learningCheckpoints = [2, 7, 10, 15, 18, 23, 30, 39, 46, 55, 60, 64, 67, 72, 78, 89, 95, 100]
 
@@ -21,6 +21,8 @@ class Pokemon(object):
 		self.level = level
 		self.maxHealth = 15 + floor(log10(self.level * 23 + 1) * self.level ** 1.7)
 		self.health = self.maxHealth
+		self.basedef = pokedata['baseDef']
+		self.baseSpeed = pokedata['baseSpeed']
 		self.defence = pokedata['baseDef']
 		self.speed = pokedata['baseSpeed']
 		self.evolveAt = pokedata['evolveAt']
@@ -36,14 +38,16 @@ class Pokemon(object):
 		self.health = self.maxHealth
 		self.defence += randint(0, 5)
 		self.speed += randint(0, 5)
+		self.basedef = self.defence
+		self.baseSpeed = self.speed
 		if playertype is None:
 			self.experience = self.experience - self.nextLevelAt
-		else: self.experience = 0
+		else: self.experience = randint(0, self.nextLevelAt)
 		self.nextLevelAt = self.experienceChart[self.level + 1] if self.level < 100 else None
 		if playertype is None:
 			pprint(f"{self.name} levelled up...\n"); sleep(0.3)
 			pprint(f"Current level: {self.level}"); sleep(0.3)
-			pprint(f"Max Health increased by {self.maxHealth}"); sleep(0.3)
+			pprint(f"Max Health increased to {self.maxHealth}"); sleep(0.3)
 			pprint(f"Defence increased to {self.defence}"); sleep(0.3)
 			pprint(f"Speed increased to {self.speed}\n"); sleep(0.3)
 
@@ -138,8 +142,28 @@ class Pokemon(object):
 		enemyType = enemyPokemon.categories
 
 		chanceToMiss = random()
+		if attackUsed.name == 'agility':
+			if self.speed < self.baseSpeed + 10:
+				self.speed += floor(random()*2 + random()*1)
+				pprint(f"{self.name}'s speed increased to {self.speed}"); sleep(0.2)
+			else:
+				pprint("Can't increase speed anymore at this level..."); sleep(0.2)
+		elif attackUsed.name == 'howl':
+			if chanceToMiss < attackUsed.accuracy:
+				initialHealth = enemyPokemon.health
+				enemyPokemon.health -= 0.95*enemyPokemon.health
+				enemyPokemon.health = max(0, enemyPokemon.health)
+				pprint(f"Health reduced by {initialHealth - enemyPokemon.health}"); sleep(0.2)
+			else:
+				pprint(f"{self.name} missed..."); sleep(0.2)
+		elif attackUsed.name == 'harden':
+			if self.defence < self.basedef + 9:
+				self.defence += floor(random()*2 + random()*1)
+				pprint(f"{self.name}'s defence increased to {self.defence}"); sleep(0.2)	
+			else:
+				pprint("Can't increase defence anymore at this level..."); sleep(0.2)
 
-		if chanceToMiss < attackUsed.accuracy:
+		elif chanceToMiss < attackUsed.accuracy:
 
 			if attackUsed.name != 'Heal':
 				criticalChance = random()
@@ -193,17 +217,17 @@ class Pokemon(object):
 	
 	def displayStats(self, trainer="player's", detailed=False):
 		if trainer == "player's":
-			pprint(f"+---------------------------------------------+"); sleep(0.4); pprint()
-			pprint(f"{trainer} {self.name}"); sleep(0.4)
-			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(0.4)
-			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(0.4)
-			pprint(f"Defense: {self.defence}  Speed: {self.speed}"); sleep(0.4)
-			pprint(f"Experience: {self.experience}/{self.nextLevelAt}"); sleep(0.4)
+			pprint(f"+---------------------------------------------+"); sleep(0.3); pprint()
+			pprint(f"{trainer} {self.name}"); sleep(0.3)
+			pprint(f"PokemonType: {self.categories}  Level: {self.level}"); sleep(0.3)
+			pprint(f"Health: {self.health}  MaxHealth: {self.maxHealth}"); sleep(0.3)
+			pprint(f"Defense: {self.defence}  Speed: {self.speed}"); sleep(0.3)
+			pprint(f"Experience: {self.experience}/{self.nextLevelAt}"); sleep(0.3)
 			pprint(f"Attacks: "); sleep(0.4)
 			i=0
 			for attack in self.attacks:
 				if attack != None:
-					pprint(f"{i+1}) {attack.name:20} :  {attack.count} left"); sleep(0.5)
+					pprint(f"{i+1}) {attack.name:20} :  {attack.count} left"); sleep(0.2)
 					if detailed: 
 						pprint()
 						attack.printAttack()
@@ -228,14 +252,14 @@ class Pokemon(object):
 		enemyType = enemyPok.categories
 		multiplier = 1
   
-		ExpIncrease = 3*(self.level*2 + 1)
+		ExpIncrease = 3*(self.level*4 + 1)
   
 		if enemyType in typeAdantages[self.categories]:
 			multiplier = 0.4 + random()*0.5
 		elif enemyType in typeDisadantages[self.categories]:
 			multiplier = 1.3 + random()*0.7
    
-		if battletype == 'gym': multiplier += 4
+		if battletype == 'gym': multiplier += 7
 		elif battletype == 'duel': multiplier += 2
    
 		enemylvl = enemyPok.level
