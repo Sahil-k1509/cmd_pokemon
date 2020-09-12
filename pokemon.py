@@ -274,9 +274,10 @@ class Pokemon(object):
 		self.experience += ExpIncrease
 		# pprint(f"{self.experience} <- Total exp\n")
 		sleep(0.8)
-		if self.experience > self.nextLevelAt:
-			while self.experience > self.nextLevelAt:
-   				self.updateLevel()
+		if self.nextLevelAt is not None:
+			if self.experience > self.nextLevelAt:
+				while self.experience > self.nextLevelAt:
+					self.updateLevel()
 			
 
 	def visitPokemonCentre(self):

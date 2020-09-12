@@ -1,6 +1,7 @@
 from pokeworld import pokemonWorld, small_pokemons, legendary_pokemons
 from pokemon import Pokemon
 from npc import Gary, Zapdos, Articuno, Moltres, SelmonJongUn, Brock, Misty, Surge, Erika, Koga, Sabrina, Blaine, Giovanni
+from npc import Lorelei, Bruno, Agatha, Lance, Chindigo
 
 import os
 import sys
@@ -216,7 +217,7 @@ def pokemon_duel(player, opponent, battle='wild'):
         if battle == 'wild':
             
             if whatTodo in ['e', 'E']:
-                if escapeProb >= 0.1:
+                if escapeProb >= 0.1 and opponent.name not in ['articuno', 'moltres', 'zapdos', 'selmon jong un']:
                     clearScreen()
                     pprint("Escaped Successfully..."); sleep(0.8)
                     battleOver = True
@@ -225,10 +226,13 @@ def pokemon_duel(player, opponent, battle='wild'):
                     pprint("couldn't escape..\n\n"); sleep(0.8)
             
             if whatTodo in ['t', 'T']:
-                if player.catchPokemon(opponent):
-                    battleOver = True
-                    clearScreen()
-                    return (None, player)
+                if opponent.name not in ['articuno', 'moltres', 'zapdos', 'selmon jong un']:
+                    if player.catchPokemon(opponent):
+                        battleOver = True
+                        clearScreen()
+                        return (None, player)
+                else:
+                    pprint("You can't catch that pokemon...")
             
             if whatTodo in ['s', 'S']:
                 if not player.switchPokemon():
@@ -317,13 +321,29 @@ def pokemon_duel(player, opponent, battle='wild'):
                                 return (opponent.name, player)
             
             if opponent.health <= 0:
-                sleep(0.2)
-                pprint(f"wild {opponent.name} fainted"); sleep(0.2)
-                pprint("You won the battle!!!\n"); sleep(0.2)
-                battleOver = True            
-                player.currentPokemon.gain_exp(opponent, battletype=battle); sleep(0.2)
-                pprint();   pprint("Press Enter to Continue", end=' ');     input()
-                return (player.name, player)
+                if opponent.name not in ['articuno', 'moltres', 'zapdos', 'selmon jong un']:
+                    sleep(0.2)
+                    pprint(f"wild {opponent.name} fainted"); sleep(0.2)
+                    pprint("You won the battle!!!\n"); sleep(0.2)
+                    battleOver = True            
+                    player.currentPokemon.gain_exp(opponent, battletype=battle); sleep(0.2)
+                    pprint();   pprint("Press Enter to Continue", end=' ');     input()
+                    return (player.name, player)
+                else:
+                    sleep(0.2)
+                    pprint(f"Wild {opponent.name} fainted"); sleep(0.2)
+                    pprint(f"You defeated the legendary {opponent.name}..."); sleep(0.8)
+                    pprint()
+                    pprint("Wait what ??? It's impossible..."); sleep(2)
+                    pprint()
+                    pprint()
+                    pprint(f"Legendary {opponent.name} woke up..."); sleep(1.6)
+                    pprint(f"Legendary {opponent.name} used a mysterious attack..."); sleep(1.6)
+                    battleOver = True            
+                    player.currentPokemon.gain_exp(opponent, battletype=battle); sleep(0.2)
+                    pprint();   pprint("Press Enter to Continue", end=' ');     input()
+                    return (opponent.name, player)
+                    
         
         else:
             
@@ -678,29 +698,30 @@ def mtMoon(player):
 def mtTop(player):
     listofpokemons = ['diglett', 'sandshrew', 'nidoran', 'ekans', 'zubat']
     total = 0
+    npoke = randint(3, 6)
     while True:
-        pprint("What is 1 + 1 = ?", end=' ')
-        answer = input()
-        if answer == '1': total += 1
-        else:
-            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 17, 50)
-            if not didPlayerWin:
-                pprint()
-                pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(2.2)
-                player.currentLocation = 'Pewter City'
-                player.healAllpoke()
-                
-                pprint();   pprint("Press Enter to Continue", end=' ');     input()
+        didPlayerWin = wildPokemonGenerator(player, listofpokemons, 17, 50)
+        if not didPlayerWin:
+            pprint()
+            pprint("All your pokemons have fainted..."); sleep(0.2)
+            pprint("You went to nearest pokecentre..."); sleep(2.2)
+            player.currentLocation = 'Pewter City'
+            player.healAllpoke()
             
-                main_game(player)
-            else: total += 1
+            pprint();   pprint("Press Enter to Continue", end=' ');     input()
         
-        if total >= 3:
+            main_game(player)
+        else: total += 1
+    
+        if total >= npoke:
             pprint("What is that ?!!!!"); sleep(2)
             pprint("It's a pokemon! But, pokedex doesn't have it in database..."); sleep(2)
             pprint()
             pprint("A Legendary Articuno appeared..."); sleep(2)
+            
+            pprint()
+            pprint()
+            pprint("Press Enter to continue..", end=' '); input()
             clearScreen()
             winner, player = pokemon_duel(player, Articuno, battle='wild')
             if winner != player.name:
@@ -878,29 +899,29 @@ def lavenderTown(player):
 def outskirts(player):
     listofpokemons = ['psyduck', 'gastly', 'vulpix', 'geodude', 'onix']
     total = 0
+    npoke = randint(3, 6)
     while True:
-        pprint("What is 1 + 1 = ?", end=' ')
-        answer = input()
-        if answer == '1': total += 1
-        else:
-            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 30, 60)
-            if not didPlayerWin:
-                pprint()
-                pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(2.2)
-                player.currentLocation = 'Cerulean City'
-                player.healAllpoke()
-            
-                pprint();   pprint("Press Enter to Continue", end=' ');     input()
-            
-                main_game(player)
-            else: total += 1
+        didPlayerWin = wildPokemonGenerator(player, listofpokemons, 30, 60)
+        if not didPlayerWin:
+            pprint()
+            pprint("All your pokemons have fainted..."); sleep(0.2)
+            pprint("You went to nearest pokecentre..."); sleep(2.2)
+            player.currentLocation = 'Cerulean City'
+            player.healAllpoke()
         
-        if total >= 3:
+            pprint();   pprint("Press Enter to Continue", end=' ');     input()
+        
+            main_game(player)
+        else: total += 1
+    
+        if total >= npoke:
             pprint("What is that ?!!!!"); sleep(2)
             pprint("It's a pokemon! But, pokedex doesn't have it in database..."); sleep(2)
             pprint()
             pprint("A Legendary Zapdos appeared..."); sleep(2)
+            pprint()
+            pprint()
+            pprint("Press Enter to continue..", end=' '); input()
             clearScreen()
             winner, player = pokemon_duel(player, Zapdos, battle='wild')
             if winner != player.name:
@@ -1005,29 +1026,30 @@ def cinnabarIsland(player):
 def volcano(player):
     listofpokemons = ['sandshrew', 'vulpix', 'charmander', 'diglett', 'geodude', 'magmar']
     total = 0
+    npoke = randint(3, 6)
     while True:
-        pprint("What is 1 + 1 = ?", end=' ')
-        answer = input()
-        if answer == '1': total += 1
-        else:
-            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 50, 70)
-            if not didPlayerWin:
-                pprint()
-                pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(2.2)
-                player.currentLocation = 'Cinnabar Island'
-                player.healAllpoke()
-            
-                pprint();   pprint("Press Enter to Continue", end=' ');     input()
-            
-                main_game(player)
-            else: total += 1
+        didPlayerWin = wildPokemonGenerator(player, listofpokemons, 50, 70)
+        if not didPlayerWin:
+            pprint()
+            pprint("All your pokemons have fainted..."); sleep(0.2)
+            pprint("You went to nearest pokecentre..."); sleep(2.2)
+            player.currentLocation = 'Cinnabar Island'
+            player.healAllpoke()
         
-        if total >= 3:
+            pprint();   pprint("Press Enter to Continue", end=' ');     input()
+        
+            main_game(player)
+        else: total += 1
+    
+        if total >= npoke:
             pprint("What is that ?!!!!"); sleep(2)
             pprint("It's a pokemon! But, pokedex doesn't have it in database..."); sleep(2)
             pprint()
             pprint("A Legendary Moltres appeared..."); sleep(2)
+            
+            pprint()
+            pprint()
+            pprint("Press Enter to continue..", end=' '); input()
             clearScreen()
             winner, player = pokemon_duel(player, Moltres, battle='wild')
             if winner != player.name:
@@ -1043,10 +1065,66 @@ def volcano(player):
     
 
 def indigoPlateau(player):
+    trainers = [Lorelei, Bruno, Agatha, Lance]
+    presentOpp = 0
+    pprint("Welcome to Indigo League trainer..."); sleep(0.8)
+    pprint("To win the title of Pokemon Champion, you have to defeat previous Champion..."); sleep(0.8)
+    pprint("We will heal all your pokemons before fight..."); sleep(0.8)
+    player.healAllpoke()
+    pprint();   pprint("Press Enter to Continue", end=' ');     input()
+    
+    clearScreen()
     while True:
-        response, player = navigation_menu(player, hasGym=False, hasWild=False, hasShop=True, hasPokecenter=True)
-        if response == 'N': main_game(player)
-        elif response == 'E': sys.exit(0)
+        opponent = trainers[presentOpp]
+        pprint(f"Pokemon master {opponent.name} challenges you to a duel..."); sleep(0.8)
+        pprint();   pprint("Press Enter to Continue", end=' ');     input()
+        
+        winner, player = pokemon_duel(player, opponent, battle='duel')
+        if winner != player.name:
+            pprint()
+            pprint("All your pokemons have fainted..."); sleep(0.2)
+            pprint("You can't continue further in the championship..."); sleep(0.2)
+            pprint("You went back to Pallet Town..."); sleep(2.2)
+            player.currentLocation = 'Pallet Town'
+            player.healAllpoke()
+            trainers[presentOpp].healAllpoke()
+            presentOpp = 0
+            pprint();   pprint("Press Enter to Continue", end=' ');     input()
+        
+            main_game(player)
+        else:
+            pprint()
+            pprint("You have won this round..."); sleep(0.2)
+            player.healAllpoke()
+            pprint("You may proceed to next round..."); sleep(0.2)
+            trainers[presentOpp].healAllpoke()
+            presentOpp += 1
+        
+        if presentOpp == len(trainers):
+            pprint("You have defeated all pokemon masters... Time to fight the Pokemon Champion..."); sleep(0.8)
+            break
+    
+    winner, player = pokemon_duel(player, Chindigo, battle='duel')
+    if winner != player.name:
+        pprint()
+        pprint("You couldn't defeat the pokemon champion..."); sleep(0.8)
+        pprint("Try again next season..."); sleep(0.8)
+        pprint("You went back to pallet town..."); sleep(0.8)
+        
+        player.currentLocation = 'Pallet Town'
+    
+    else:
+        pprint()
+        pprint(f"Congratulations {player.name}. You are the new Champion..."); sleep(0.8)
+        pprint(f"You can continue to explore island now..."); sleep(0.8)
+        pprint(f"Time to go back to Pallet Town and see your mom, Pokemon Champion..."); sleep(0.8)
+        
+        player.currentLocation = 'Pallet Town'
+        
+    player.healAllpoke()
+    Chindigo.healAllpoke()  
+    pprint();   pprint("Press Enter to Continue", end=' ');     input()
+    main_game(player)          
 
 
 def victoryRoad(player):
@@ -1072,26 +1150,22 @@ def victoryRoad(player):
 def horizon(player):
     listofpokemons = ['gastly', 'psyduck', 'jigglypuff', 'abra']        
     total = 0
+    npoke = randint(3, 6)
     while True:
-        clearScreen()
-        pprint("What is 1 + 1 = ?", end=' ')
-        answer = input()
-        if answer == '1': total += 1
-        else:
-            didPlayerWin = wildPokemonGenerator(player, listofpokemons, 70, 90)
-            if not didPlayerWin:
-                pprint()
-                pprint("All your pokemons have fainted..."); sleep(0.2)
-                pprint("You went to nearest pokecentre..."); sleep(2.2)
-                player.currentLocation = 'Viridian City'
-                player.healAllpoke()
-            
-                pprint();   pprint("Press Enter to Continue", end=' ');     input()
-            
-                main_game(player)
-            else: total += 1
+        didPlayerWin = wildPokemonGenerator(player, listofpokemons, 70, 90)
+        if not didPlayerWin:
+            pprint()
+            pprint("All your pokemons have fainted..."); sleep(0.2)
+            pprint("You went to nearest pokecentre..."); sleep(2.2)
+            player.currentLocation = 'Viridian City'
+            player.healAllpoke()
         
-        if total >= 3:
+            pprint();   pprint("Press Enter to Continue", end=' ');     input()
+        
+            main_game(player)
+        else: total += 1
+    
+        if total >= npoke:
             clearScreen()
             pprint("What is that ?!!!!"); sleep(2)
             pprint("It's a pokemon! But, pokedex doesn't have it in database..."); sleep(2)

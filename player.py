@@ -110,9 +110,9 @@ class PokemonTrainer(object):
             pokemonMaxHealth = pokemonToCatch.maxHealth
             
             probabilityToCatch = 1 - (pokemonHealth/pokemonMaxHealth)
-            requiredCut = 0.3 + 0.4*random()
+            requiredCut = 0.6 + 0.2*random()
             
-            if probabilityToCatch >= requiredCut:
+            if probabilityToCatch >= requiredCut and pokemonHealth <= 40 + pokemonToCatch.level:
                 pprint(f"{pokemonToCatch.name} was caught!\n"); sleep(0.3)
                 self.pokeballs -= 1
                 if len(self.pokemonInHand) < self.pokemonLimit:
