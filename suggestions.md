@@ -1,0 +1,1 @@
+- Starting Pokemon to be level 5 (both player and Gary). Viridian Forest pokemon are too overleveled otherwise, and it is also in keeping with the games.

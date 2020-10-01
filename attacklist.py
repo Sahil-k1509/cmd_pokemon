@@ -4,22 +4,42 @@ from attacks import Attack
 # ----------------------------------------------------------------------------------------- #
 
 # Fire type
-flamethrower = Attack(name='flamethrower', attCategory='fire', baseDamage=40, pokemonLevel=0, baseCount=7, recoil=0, heal=0, accuracy=1)
-ember = Attack(name='ember', attCategory='fire', baseDamage=23, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=0.95)
-firepunch = Attack(name='fire punch', attCategory='fire', baseDamage=36, pokemonLevel=0, baseCount=8, recoil=0, heal=0, accuracy=0.9)
-firespin = Attack(name='fire spin', attCategory='fire', baseDamage=50, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=0.8)
+
+#new moves added
+blastburn = Attack(name='blast burn', attCategory='fire', baseDamage=150, pokemonLevel=0, baseCount=5, recoil=15, heal=0, accuracy=0.9)
+blazekick = Attack(name='blaze kick', attCategory='fire', baseDamage=85, pokemonLevel=0, baseCount=10, recoil=0, heal=0, accuracy=0.9)
+fierydance = Attack(name='fiery dance', attCategory='fire', baseDamage=80, pokemonLevel=0, baseCount=10, recoil=0, heal=0, accuracy=1)
+firefang = Attack(name='fire fang', attCategory='fire', baseDamage=65, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=0.95)
+flameburst = Attack(name='flame burst', attCategory='fire', baseDamage=70, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=1)
+flamecharge = Attack(name='flame charge', attCategory='fire', baseDamage=50, pokemonLevel=0, baseCount=20, recoil=0, heal=0, accuracy=1)
+flamewheel = Attack(name='flame wheel', attCategory='fire', baseDamage=60, pokemonLevel=0, baseCount=25, recoil=0, heal=0, accuracy=1)
+flareblitz = Attack(name='flare blitz', attCategory='fire', baseDamage=120, pokemonLevel=0, baseCount=15, recoil=10, heal=0, accuracy=1)
+heatwave = Attack(name='heat wave', attCategory='fire', baseDamage=95, pokemonLevel=0, baseCount=10, recoil=0, heal=0, accuracy=0.9)
+
+
+#modified
+flamethrower = Attack(name='flamethrower', attCategory='fire', baseDamage=90, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=1)
+ember = Attack(name='ember', attCategory='fire', baseDamage=40, pokemonLevel=0, baseCount=25, recoil=0, heal=0, accuracy=1)
+firepunch = Attack(name='fire punch', attCategory='fire', baseDamage=75, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=1)
+firespin = Attack(name='fire spin', attCategory='fire', baseDamage=35, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=0.85)
+
+#not modified
 shelltrap = Attack(name='shell trap', attCategory='fire', baseDamage=235, pokemonLevel=0, baseCount=2, recoil=40, heal=0, accuracy=0.8)
 fireblast = Attack(name='fire blast', attCategory='fire', baseDamage=270, pokemonLevel=0, baseCount=4, recoil=30, heal=0, accuracy=0.85)
 sacredfire = Attack(name='sacred fire', attCategory='fire', baseDamage=350, pokemonLevel=0, baseCount=1, increasable=0, recoil=0, heal=30, accuracy=1)
 
 
 # Electric type
-thundershock = Attack(name='thundershock', attCategory='electric', baseDamage=15, pokemonLevel=0, baseCount=10, recoil=0, heal=0, accuracy=0.9)
-thunderbolt = Attack(name='thunderbolt', attCategory='electric', baseDamage=45, pokemonLevel=0, baseCount=6, recoil=0, heal=0, accuracy=0.95)
-thunderpunch = Attack(name='thunder punch', attCategory='electric', baseDamage=70, pokemonLevel=0, baseCount=8, recoil=0, heal=0, accuracy=0.96)
+
+#modified
+thundershock = Attack(name='thundershock', attCategory='electric', baseDamage=40, pokemonLevel=0, baseCount=30, recoil=0, heal=0, accuracy=1)
+thunderbolt = Attack(name='thunderbolt', attCategory='electric', baseDamage=90, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=1)
+thunderpunch = Attack(name='thunder punch', attCategory='electric', baseDamage=75, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=1)
+discharge = Attack(name='discharge', attCategory='electric', baseDamage=80, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=1)
+
+#not modified
 bolttackle = Attack(name='bolt tackle', attCategory='electric', baseDamage=140, pokemonLevel=0, baseCount=2, recoil=40, heal=0, accuracy=0.8)
 electroball = Attack(name='electro ball', attCategory='electric', baseDamage=180, pokemonLevel=0, baseCount=4, recoil=0, heal=0, accuracy=0.65)
-discharge = Attack(name='discharge', attCategory='electric', baseDamage=100, pokemonLevel=0, baseCount=7, recoil=0, heal=0, accuracy=0.85)
 catastropika = Attack(name='Catastropika', attCategory='electric', baseDamage=285, pokemonLevel=0, baseCount=1, increasable=0, recoil=0, heal=0, accuracy=1)
 
 
