@@ -236,7 +236,7 @@ chindigop2 = Pokemon('bulbasaur', chindigop2, level=0)
 chindigop3 = Pokemon('pidgey', chindigop3, level=0)
 chindigop4 = Pokemon('nidoran', chindigop4, level=0)
 chindigop5 = Pokemon('onix', chindigop5, level=0)
-chindigop6 = Pokemon('magikarp', chindigop5, level=0)
+chindigop6 = Pokemon('magikarp', chindigop6, level=0)
 
 chindigop1.npcPokemonReady(maxlevel=84)
 chindigop2.npcPokemonReady(maxlevel=87)
