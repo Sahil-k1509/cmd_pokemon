@@ -1,4 +1,4 @@
-> **Developer:** [Sahil Bairagi](http://Sahil-k1509.github.io)  
+> **Developers and Contributors:** [Sahil Bairagi](http://Sahil-k1509.github.io), [Ujjwal Goyal](https://github.com/importhuman)  
 > **Development Started:** 28th August, 2020  
 > **Status:** Bug Fixing, Enhancements and Expansions  
 
