@@ -1,6 +1,6 @@
 > **Developer:** [Sahil Bairagi](http://Sahil-k1509.github.io)  
 > **Development Started:** 28th August, 2020  
-> **Status:** In development  
+> **Status:** Bug Fixing, Enhancements and Expansions  
 
 ## cmd_pokemon
 CMD Pokemon is a Terminal(Command line) based pokemon game written purely in python in Object Oriented Fashion.  
