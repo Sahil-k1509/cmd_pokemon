@@ -12,8 +12,8 @@ It is a non graphical game which will ask you to type your decisions in one lett
 0. Your System must have [python installed](https://www.python.org/)  .
 1. Download the code and extract it.
 2. Open terminal(Command prompt) in the folder where code is present.
-3. You will need to download some modules before running game!  
-    `pip install colorama, termcolor, pyfiglet`
+3. Install the required packages using the following command:  
+    `pip install -r requirements.txt`
 4. Run _**main.py**_ from Terminal using `python main.py` command   
 ###### For **Other Users**:  
 1. Download the code and extract it.
