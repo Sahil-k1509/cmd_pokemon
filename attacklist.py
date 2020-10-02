@@ -11,9 +11,9 @@ blazekick = Attack(name='blaze kick', attCategory='fire', baseDamage=85, pokemon
 fierydance = Attack(name='fiery dance', attCategory='fire', baseDamage=80, pokemonLevel=0, baseCount=10, recoil=0, heal=0, accuracy=1)
 firefang = Attack(name='fire fang', attCategory='fire', baseDamage=65, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=0.95)
 flameburst = Attack(name='flame burst', attCategory='fire', baseDamage=70, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=1)
-flamecharge = Attack(name='flame charge', attCategory='fire', baseDamage=50, pokemonLevel=0, baseCount=20, recoil=0, heal=0, accuracy=1)
+flamecharge = Attack(name='flame charge', attCategory='fire', baseDamage=50, pokemonLevel=0, baseCount=20, recoil=0, heal=10, accuracy=0.9)
 flamewheel = Attack(name='flame wheel', attCategory='fire', baseDamage=60, pokemonLevel=0, baseCount=25, recoil=0, heal=0, accuracy=1)
-flareblitz = Attack(name='flare blitz', attCategory='fire', baseDamage=120, pokemonLevel=0, baseCount=15, recoil=10, heal=0, accuracy=1)
+flareblitz = Attack(name='flare blitz', attCategory='fire', baseDamage=120, pokemonLevel=0, baseCount=15, recoil=20, heal=0, accuracy=1)
 heatwave = Attack(name='heat wave', attCategory='fire', baseDamage=95, pokemonLevel=0, baseCount=10, recoil=0, heal=0, accuracy=0.9)
 
 
@@ -21,7 +21,7 @@ heatwave = Attack(name='heat wave', attCategory='fire', baseDamage=95, pokemonLe
 flamethrower = Attack(name='flamethrower', attCategory='fire', baseDamage=90, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=1)
 ember = Attack(name='ember', attCategory='fire', baseDamage=40, pokemonLevel=0, baseCount=25, recoil=0, heal=0, accuracy=1)
 firepunch = Attack(name='fire punch', attCategory='fire', baseDamage=75, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=1)
-firespin = Attack(name='fire spin', attCategory='fire', baseDamage=35, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=0.85)
+firespin = Attack(name='fire spin', attCategory='fire', baseDamage=35, pokemonLevel=0, baseCount=35, recoil=0, heal=0, accuracy=0.85)
 
 #not modified
 shelltrap = Attack(name='shell trap', attCategory='fire', baseDamage=235, pokemonLevel=0, baseCount=2, recoil=40, heal=0, accuracy=0.8)
@@ -30,6 +30,13 @@ sacredfire = Attack(name='sacred fire', attCategory='fire', baseDamage=350, poke
 
 
 # Electric type
+
+#new
+nuzzle = Attack(name='nuzzle', attCategory='electric', baseDamage=20, pokemonLevel=0, baseCount=20, recoil=0, heal=7, accuracy=1)
+chargebeam = Attack(name='charge beam', attCategory='electric', baseDamage=50, pokemonLevel=0, baseCount=10, recoil=0, heal=0, accuracy=0.9)
+paraboliccharge = Attack(name='parabolic charge', attCategory='electric', baseDamage=65, pokemonLevel=0, baseCount=15, recoil=0, heal=25, accuracy=1)
+thunderfang = Attack(name='thunder fang', attCategory='electric', baseDamage=65, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=0.95)
+wildcharge = Attack(name='wild charge', attCategory='electric', baseDamage=120, pokemonLevel=0, baseCount=15, recoil=20, heal=, accuracy=1)
 
 #modified
 thundershock = Attack(name='thundershock', attCategory='electric', baseDamage=40, pokemonLevel=0, baseCount=30, recoil=0, heal=0, accuracy=1)
