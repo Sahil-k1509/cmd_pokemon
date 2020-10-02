@@ -31,6 +31,9 @@ sacredfire = Attack(name='sacred fire', attCategory='fire', baseDamage=350, poke
 
 # Electric type
 
+#new
+nuzzle = Attack(name='nuzzle', attCategory='electric', baseDamage=20, pokemonLevel=0, baseCount=20, recoil=0, heal=0, accuracy=1)
+
 #modified
 thundershock = Attack(name='thundershock', attCategory='electric', baseDamage=40, pokemonLevel=0, baseCount=30, recoil=0, heal=0, accuracy=1)
 thunderbolt = Attack(name='thunderbolt', attCategory='electric', baseDamage=90, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=1)
