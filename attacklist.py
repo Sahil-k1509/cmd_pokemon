@@ -36,7 +36,7 @@ nuzzle = Attack(name='nuzzle', attCategory='electric', baseDamage=20, pokemonLev
 chargebeam = Attack(name='charge beam', attCategory='electric', baseDamage=50, pokemonLevel=0, baseCount=10, recoil=0, heal=0, accuracy=0.9)
 paraboliccharge = Attack(name='parabolic charge', attCategory='electric', baseDamage=65, pokemonLevel=0, baseCount=15, recoil=0, heal=25, accuracy=1)
 thunderfang = Attack(name='thunder fang', attCategory='electric', baseDamage=65, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=0.95)
-wildcharge = Attack(name='wild charge', attCategory='electric', baseDamage=120, pokemonLevel=0, baseCount=15, recoil=20, heal=, accuracy=1)
+wildcharge = Attack(name='wild charge', attCategory='electric', baseDamage=120, pokemonLevel=0, baseCount=15, recoil=20, heal=0, accuracy=1)
 thunder = Attack(name='thunder', attCategory='electric', baseDamage=110, pokemonLevel=0, baseCount=5, recoil=0, heal=0, accuracy=0.7)
 
 #modified
