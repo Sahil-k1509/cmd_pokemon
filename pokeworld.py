@@ -7,13 +7,13 @@ def deepcopy(actualAttack):
 
 small_pokemons = ['pikachu', 'charmander', 'squirtle', 'bulbasaur', 'caterpie', 'weedle', 'pidgey', 'ekans', 
                   'sandshrew', 'nidoran',  'vulpix', 'jigglypuff', 'zubat',  'diglett', 'meowth', 'psyduck',  
-                  'growlithe', 'abra', 'geodude', 'shellder', 'gastly', 'onix', 'koffing', 'horsea', 'staryu', 'scyther', 'magmar', 'magikarp', 
-                  'eevee']
+                  'growlithe', 'abra', 'geodude', 'shellder', 'gastly', 'onix', 'cubone', 'koffing', 'horsea', 
+                  'staryu', 'scyther', 'magmar', 'magikarp', 'eevee']
 
 medium_pokemons = ['raichu', 'charmeleon', 'wartortle', 'ivysaur', 'metapod', 'kakuna', 'pidgeotto', 'arbok', 'sandslash', 
                    'nidorina', 'nidorino', 'ninetales',  'golbat',  'dugtrio', 
-                   'persian', 'golduck',  'arcanine', 'kadabra', 'graveler', 'cloyster', 'haunter', 'weezing', 'seadra', 'starmie', 
-                   'gyarados', 'vaporeon', 'jolteon', 'flareon']
+                   'persian', 'golduck',  'arcanine', 'kadabra', 'graveler', 'cloyster', 'haunter', 'weezing', 'marowak',
+                   'seadra', 'starmie', 'gyarados', 'vaporeon', 'jolteon', 'flareon']
 
 large_pokemons = ['charizard', 'blastoise', 'venusaur', 'butterfree', 'beedrill', 'pidgeot', 'nidoqueen', 'nidoking', 'alakazam',  'gengar']
 
@@ -52,6 +52,7 @@ pokemonWorld = {
     'shelldar':     {'type': 'water',       'evolveAt': 18,     'evolveTo': 'cloyster',     'baseDef': 19,  'baseSpeed': 16, 'startAttacks': [deepcopy(watergun), deepcopy(bubblebeam), None, None],                'learnableAttacks': [deepcopy(bite), deepcopy(icywind), deepcopy(lick), deepcopy(waterslap), deepcopy(aurorabeam), deepcopy(icebeam), deepcopy(iceburn), deepcopy(psyshock)][::-1]      },           
     'gastly':       {'type': 'ghost',       'evolveAt': 18,     'evolveTo': 'haunter',      'baseDef': 19,  'baseSpeed': 20, 'startAttacks': [deepcopy(lick), deepcopy(psybeam), None, None],                       'learnableAttacks': [deepcopy(hide), deepcopy(shadowball), deepcopy(curse), deepcopy(feintattack), deepcopy(pursuit), deepcopy(shadowpunch), deepcopy(crunch), deepcopy(dreameater), deepcopy(futuresight)][::-1]       },           
     'onix':         {'type': 'rock',        'evolveAt': None,   'evolveTo': None,           'baseDef': 31,  'baseSpeed': 20, 'startAttacks': [deepcopy(sandattack), deepcopy(rockthrow), None, None],               'learnableAttacks': [deepcopy(stoneedge), deepcopy(irontail), deepcopy(mudslap), deepcopy(earthquake), deepcopy(rockwrecker), deepcopy(headsmash), deepcopy(meteormash)][::-1]         },           
+    'cubone':       {'type': 'ground',      'evolveAt': 28,     'evolveTo': 'marowak',      'baseDef': 20,  'baseSpeed': 16, 'startAttacks': [deepcopy(growl), deepcopy(boneclub), None, None],                     'learnableAttacks': [deepcopy(tailwhip), deepcopy(headbutt), deepcopy(bonemerang)][::-1]         },           
     'koffing':      {'type': 'poison',      'evolveAt': 18,     'evolveTo': 'weezing',      'baseDef': 21,  'baseSpeed': 15, 'startAttacks': [deepcopy(smokescreen), deepcopy(tackle), None, None],                 'learnableAttacks': [deepcopy(sandattack), deepcopy(acid), deepcopy(poisonfang), deepcopy(poisonpowder), deepcopy(sludgebomb), deepcopy(gunkshot)][::-1]      },           
     'horsea':       {'type': 'water',       'evolveAt': 18,     'evolveTo': 'seadra',       'baseDef': 15,  'baseSpeed': 14, 'startAttacks': [deepcopy(watergun), deepcopy(bubblebeam), None, None],                'learnableAttacks': [deepcopy(poisonsting), deepcopy(waterslap), deepcopy(hydropump), deepcopy(watercannon), deepcopy(icebeam)][::-1]         },           
     'staryu':       {'type': 'water',       'evolveAt': 16,     'evolveTo': 'starmie',      'baseDef': 13,  'baseSpeed': 15, 'startAttacks': [deepcopy(watergun), deepcopy(swift), None, None],                     'learnableAttacks': [deepcopy(tackle), deepcopy(bubblebeam), deepcopy(quickattack), deepcopy(hydropump), deepcopy(watercannon), deepcopy(waterspout), deepcopy(hydrovortex)][::-1]        },           
@@ -83,6 +84,7 @@ pokemonWorld = {
     'graveler':     {'type': 'rock',        'evolveAt': None,   'evolveTo': None            },           
     'cloyster':     {'type': 'ice',         'evolveAt': None,   'evolveTo': None            },           
     'haunter':      {'type': 'ghost',       'evolveAt': 34,     'evolveTo': 'gengar'        },           
+    'marowak':      {'type': 'ground',      'evolveAt': None,   'evolveTo': None            },           
     'weezing':      {'type': 'poison',      'evolveAt': None,   'evolveTo': None            },           
     'seadra':       {'type': 'water',       'evolveAt': None,   'evolveTo': None            },           
     'starmie':      {'type': 'water',       'evolveAt': None,   'evolveTo': None            },           
