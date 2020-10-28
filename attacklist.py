@@ -111,6 +111,7 @@ aeroblast = Attack(name='aero blast', attCategory='flying', baseDamage=100, poke
 # Normal type------------------------------
 #new
 headcharge = Attack(name='head charge', attCategory='normal', baseDamage=120, pokemonLevel=0, baseCount=15, recoil=20, heal=0, accuracy=1)
+growl = Attack(name='growl', attCategory='normal', baseDamage=0, pokemonLevel=0, baseCount=40, recoil=0, heal=0, accuracy=1)
 
 
 #modified
