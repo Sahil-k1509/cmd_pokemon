@@ -6,14 +6,14 @@ def deepcopy(actualAttack):
     return newattack
 
 small_pokemons = ['pikachu', 'charmander', 'squirtle', 'bulbasaur', 'caterpie', 'weedle', 'pidgey', 'ekans', 
-                  'sandshrew', 'nidoran',  'vulpix', 'jigglypuff', 'zubat',  'diglett', 'meowth', 'psyduck',  
-                  'growlithe', 'abra', 'geodude', 'shellder', 'gastly', 'onix', 'cubone', 'koffing', 'horsea', 
-                  'staryu', 'scyther', 'magmar', 'magikarp', 'eevee']
+                  'sandshrew', 'nidoran', 'clefairy', 'vulpix', 'jigglypuff', 'zubat',  'diglett', 'meowth', 'psyduck',  
+                  'growlithe', 'abra', 'geodude', 'shellder', 'gastly', 'onix', 'cubone', 'koffing', 'horsea', 'staryu', 'scyther', 'magmar', 'magikarp', 
+                  'eevee']
 
 medium_pokemons = ['raichu', 'charmeleon', 'wartortle', 'ivysaur', 'metapod', 'kakuna', 'pidgeotto', 'arbok', 'sandslash', 
-                   'nidorina', 'nidorino', 'ninetales',  'golbat',  'dugtrio', 
-                   'persian', 'golduck',  'arcanine', 'kadabra', 'graveler', 'cloyster', 'haunter', 'weezing', 'marowak',
-                   'seadra', 'starmie', 'gyarados', 'vaporeon', 'jolteon', 'flareon']
+                   'nidorina', 'nidorino', 'clefable', 'ninetales',  'golbat',  'dugtrio', 
+                   'persian', 'golduck',  'arcanine', 'kadabra', 'graveler', 'cloyster', 'haunter', 'weezing', 'marowak', 'seadra', 'starmie', 
+                   'gyarados', 'vaporeon', 'jolteon', 'flareon']
 
 large_pokemons = ['charizard', 'blastoise', 'venusaur', 'butterfree', 'beedrill', 'pidgeot', 'nidoqueen', 'nidoking', 'alakazam',  'gengar']
 
@@ -40,6 +40,7 @@ pokemonWorld = {
     'ekans':        {'type': 'poison',      'evolveAt': 14,     'evolveTo': 'arbok',        'baseDef': 14,  'baseSpeed': 21, 'startAttacks': [deepcopy(acid), deepcopy(poisonsting), None, None],                   'learnableAttacks': [deepcopy(poisonpowder), deepcopy(quickattack), deepcopy(tailwhip), deepcopy(agility), deepcopy(leechlife), deepcopy(poisonfang), deepcopy(gunkshot)][::-1]       },           
     'sandshrew':    {'type': 'ground',      'evolveAt': 18,     'evolveTo': 'sandslash',    'baseDef': 30,  'baseSpeed': 18, 'startAttacks': [deepcopy(sandattack), deepcopy(tackle), None, None],                  'learnableAttacks': [deepcopy(dig), deepcopy(quickattack), deepcopy(scratch), deepcopy(mudslap)][::-1]       },           
     'nidoran':      {'type': 'poison',      'evolveAt': 15,     'evolveTo': None,           'baseDef': 13,  'baseSpeed': 15, 'startAttacks': [deepcopy(tackle), deepcopy(poisonsting), None, None],                 'learnableAttacks': [deepcopy(sandattack), deepcopy(quickattack), deepcopy(bite), deepcopy(agility), deepcopy(headbutt), deepcopy(megahorn), deepcopy(acid), deepcopy(hyperbeam), deepcopy(icebeam), deepcopy(icepunch), deepcopy(thunderbolt), deepcopy(earthquake)][::-1]        },           
+    'clefairy':     {'type': 'normal',      'evolveAt': None,   'evolveTo': None,           'baseDef': 19,  'baseSpeed': 16, 'startAttacks': [deepcopy(growl), deepcopy(pound), None, None],                        'learnableAttacks': [deepcopy(sing)][::-1]        },           
     'vulpix':       {'type': 'fire',        'evolveAt': 18,     'evolveTo': 'ninetales',    'baseDef': 18,  'baseSpeed': 19, 'startAttacks': [deepcopy(tackle), deepcopy(ember), None, None],                       'learnableAttacks': [deepcopy(flamethrower), deepcopy(quickattack), deepcopy(headbutt), deepcopy(firespin), deepcopy(scratch), deepcopy(bite), deepcopy(fireblast)][::-1]         },           
     'jigglypuff':   {'type': 'psychic',     'evolveAt': None,   'evolveTo': None,           'baseDef': 13,  'baseSpeed': 20, 'startAttacks': [deepcopy(pound), deepcopy(sing), None, None],                         'learnableAttacks': [deepcopy(tackle), deepcopy(heal), deepcopy(headbutt), deepcopy(infactuate), deepcopy(cut), deepcopy(curse), deepcopy(ironpunch), deepcopy(hyperbeam)][::-1]         },           
     'zubat':        {'type': 'flying',      'evolveAt': 14,     'evolveTo': 'golbat',       'baseDef': 14,  'baseSpeed': 23, 'startAttacks': [deepcopy(poisonsting), deepcopy(whirlwind), None, None],              'learnableAttacks': [deepcopy(wingattack), deepcopy(airslash), deepcopy(quickattack), deepcopy(poisonfang), deepcopy(stinger)][::-1]        },           
@@ -74,6 +75,7 @@ pokemonWorld = {
     'sandslash':    {'type': 'ground',      'evolveAt': None,   'evolveTo': None            },           
     'nidorina':     {'type': 'poison',      'evolveAt': 30,     'evolveTo': 'nidoqueen'     },           
     'nidorino':     {'type': 'poison',      'evolveAt': 30,     'evolveTo': 'nidoking'      },           
+    'clefable':     {'type': 'normal',      'evolveAt': None,   'evolveTo': None            },           
     'ninetales':    {'type': 'fire',        'evolveAt': None,   'evolveTo': None            },           
     'golbat':       {'type': 'flying',      'evolveAt': None,   'evolveTo': None            },           
     'dugtrio':      {'type': 'ground',      'evolveAt': None,   'evolveTo': None            },           
