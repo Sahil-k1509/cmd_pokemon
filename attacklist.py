@@ -154,7 +154,8 @@ iceburn = Attack(name='ice burn', attCategory='ice', baseDamage=250, pokemonLeve
 fissure = Attack(name='fissure', attCategory='ground', baseDamage=300, pokemonLevel=0, baseCount=5, recoil=0, heal=0, accuracy=0.2)
 mudbomb = Attack(name='mud bomb', attCategory='ground', baseDamage=65, pokemonLevel=0, baseCount=10, recoil=0, heal=0, accuracy=0.85)
 mudshot = Attack(name='mud shot', attCategory='ground', baseDamage=55, pokemonLevel=0, baseCount=15, recoil=0, heal=0, accuracy=0.95)
-
+boneclub = Attack(name='bone club', attCategory='ground', baseDamage=65, pokemonLevel=0, baseCount=20, recoil=0, heal=0, accuracy=0.85)
+bonemerang = Attack(name='bonemerang', attCategory='ground', baseDamage=50, pokemonLevel=43, baseCount=10, recoil=10, heal=0, accuracy=0.9)
 
 #modified
 sandattack = Attack(name='sandattack', attCategory='ground', baseDamage=15, pokemonLevel=0, baseCount=15, recoil=0, heal=5, accuracy=0.8)
