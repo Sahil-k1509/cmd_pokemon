@@ -2,6 +2,7 @@ from attacklist import *
 
 
 def deepcopy(actualAttack):
+    if not actualAttack: return actualAttack
     newattack = Attack(actualAttack.name, actualAttack.attCategory, actualAttack.baseDamage, actualAttack.pLevel, actualAttack.maxcount, heal=actualAttack.heal, accuracy=actualAttack.accuracy, recoil=actualAttack.recoil)
     return newattack
 
@@ -111,8 +112,8 @@ pokemonWorld = {
 
 
 for pokemon in pokemonWorld:
-    startAttacks = pokemon.get('startAttacks', [])
-    learnableAttacks = pokemon.get('learnableAttacks', [])
+    startAttacks = pokemonWorld[pokemon].get('startAttacks', [])
+    learnableAttacks = pokemonWorld[pokemon].get('learnableAttacks', [])
     for i in range(len(startAttacks)):
         startAttacks[i] = deepcopy(startAttacks[i])
 
